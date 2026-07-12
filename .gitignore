@@ -1,0 +1,51 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Build outputs
+frontend/dist/
+
+# IDE
+.idea/
+.vscode/
+
+# Logs
+*.log
+.run/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Secrets and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+
+# Local databases and runtime backups
+*.db
+*.sqlite
+*.sqlite3
+backend/data/backups/
+backend/data/*.tmp
+
+# Local imports / exports
+*.xlsx
+*.xls
+
+# OS
+.DS_Store
+Thumbs.db

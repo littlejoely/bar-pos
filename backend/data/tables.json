@@ -1,0 +1,216 @@
+{
+  "tables": [
+    {
+      "id": "A1",
+      "area": "A区",
+      "status": "empty",
+      "guests": 0,
+      "opened_at": null,
+      "order_id": null,
+      "default_guests": 1,
+      "remark": ""
+    },
+    {
+      "id": "A2",
+      "area": "A区",
+      "status": "empty",
+      "guests": 0,
+      "opened_at": null,
+      "order_id": null,
+      "remark": ""
+    },
+    {
+      "id": "A3",
+      "area": "A区",
+      "status": "empty",
+      "guests": 0,
+      "opened_at": null,
+      "order_id": null,
+      "remark": ""
+    },
+    {
+      "id": "A4",
+      "area": "A区",
+      "status": "empty",
+      "guests": 0,
+      "opened_at": null,
+      "order_id": null
+    },
+    {
+      "id": "A5",
+      "area": "A区",
+      "status": "empty",
+      "guests": 0,
+      "opened_at": null,
+      "order_id": null
+    },
+    {
+      "id": "A6",
+      "area": "A区",
+      "status": "empty",
+      "guests": 0,
+      "opened_at": null,
+      "order_id": null,
+      "remark": ""
+    },
+    {
+      "id": "A7",
+      "area": "A区",
+      "status": "empty",
+      "guests": 0,
+      "opened_at": null,
+      "order_id": null
+    },
+    {
+      "id": "A8",
+      "area": "A区",
+      "status": "empty",
+      "guests": 0,
+      "opened_at": null,
+      "order_id": null
+    },
+    {
+      "id": "A9",
+      "area": "A区",
+      "status": "empty",
+      "guests": 0,
+      "opened_at": null,
+      "order_id": null
+    },
+    {
+      "id": "A10",
+      "area": "A区",
+      "status": "empty",
+      "guests": 0,
+      "opened_at": null,
+      "order_id": null,
+      "remark": ""
+    },
+    {
+      "id": "B1",
+      "area": "B区",
+      "status": "empty",
+      "guests": 0,
+      "opened_at": null,
+      "order_id": null
+    },
+    {
+      "id": "B2",
+      "area": "B区",
+      "status": "empty",
+      "guests": 0,
+      "opened_at": null,
+      "order_id": null,
+      "remark": ""
+    },
+    {
+      "id": "B3",
+      "area": "B区",
+      "status": "empty",
+      "guests": 0,
+      "opened_at": null,
+      "order_id": null
+    },
+    {
+      "id": "B4",
+      "area": "B区",
+      "status": "empty",
+      "guests": 0,
+      "opened_at": null,
+      "order_id": null
+    },
+    {
+      "id": "B5",
+      "area": "B区",
+      "status": "empty",
+      "guests": 0,
+      "opened_at": null,
+      "order_id": null,
+      "default_guests": 1
+    },
+    {
+      "id": "C1",
+      "area": "C区",
+      "status": "empty",
+      "guests": 0,
+      "opened_at": null,
+      "order_id": null,
+      "default_guests": 2
+    },
+    {
+      "id": "C2",
+      "area": "C区",
+      "status": "empty",
+      "guests": 0,
+      "opened_at": null,
+      "order_id": null,
+      "default_guests": 4
+    },
+    {
+      "id": "C3",
+      "area": "C区",
+      "status": "empty",
+      "guests": 0,
+      "opened_at": null,
+      "order_id": null,
+      "default_guests": 2
+    },
+    {
+      "id": "D1",
+      "area": "D区",
+      "status": "empty",
+      "guests": 0,
+      "opened_at": null,
+      "order_id": null,
+      "default_guests": 2,
+      "remark": ""
+    },
+    {
+      "id": "D2",
+      "area": "D区",
+      "status": "empty",
+      "guests": 0,
+      "opened_at": null,
+      "order_id": null,
+      "default_guests": 6,
+      "remark": ""
+    },
+    {
+      "id": "W1",
+      "area": "W区",
+      "status": "empty",
+      "guests": 0,
+      "opened_at": null,
+      "order_id": null,
+      "default_guests": 2,
+      "remark": ""
+    },
+    {
+      "id": "W2",
+      "area": "W区",
+      "status": "empty",
+      "guests": 0,
+      "opened_at": null,
+      "order_id": null,
+      "default_guests": 2,
+      "remark": ""
+    }
+  ],
+  "areas": [
+    {
+      "name": "A区"
+    },
+    {
+      "name": "C区"
+    },
+    {
+      "name": "B区"
+    },
+    {
+      "name": "D区"
+    },
+    {
+      "name": "W区"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "100元代金券",
+    "sale_price": 90.0,
+    "face_value": 100.0
+  },
+  {
+    "id": 2,
+    "name": "88抵扣",
+    "sale_price": 88.0,
+    "face_value": 88.0
+  },
+  {
+    "id": 3,
+    "name": "78抵扣",
+    "sale_price": 78.0,
+    "face_value": 78.0
+  },
+  {
+    "id": 4,
+    "name": "68抵扣",
+    "sale_price": 68.0,
+    "face_value": 68.0
+  },
+  {
+    "id": 5,
+    "name": "98抵扣",
+    "sale_price": 98.0,
+    "face_value": 98.0
+  }
+]

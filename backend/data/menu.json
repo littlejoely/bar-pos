@@ -1,0 +1,1997 @@
+{
+  "shop_name": "SILVER LINING",
+  "categories": [
+    {
+      "name": "Cocktail",
+      "items": [
+        {
+          "id": 4793824065,
+          "name": "特调",
+          "price": 88.0,
+          "spu_id": 4793824064,
+          "sku_id": 4793824065,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4789654960,
+          "name": "无耻之徒",
+          "price": 88.0,
+          "spu_id": 4789654959,
+          "sku_id": 4789654960,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "english_name": "Shameless",
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 7867347790,
+          "name": "玫瑰青提",
+          "price": 98.0,
+          "spu_id": 7867347789,
+          "sku_id": 7867347790,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "english_name": "Emerald Veil of Dawn",
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 5542064721,
+          "name": "温斯顿",
+          "price": 88.0,
+          "spu_id": 5542064720,
+          "sku_id": 5542064721,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "english_name": "Winston",
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 7869105055,
+          "name": "山茶花",
+          "price": 88.0,
+          "spu_id": 7869105054,
+          "sku_id": 7869105055,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "english_name": "Camellia",
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 11736812510,
+          "name": "尾巴之歌",
+          "price": 88.0,
+          "spu_id": 11736812509,
+          "sku_id": 11736812510,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 9421872157,
+          "name": "老赖流浪汉",
+          "price": 78.0,
+          "spu_id": 9421872156,
+          "sku_id": 9421872157,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 11740987379,
+          "name": "回龙观的春天",
+          "price": 88.0,
+          "spu_id": 11740987378,
+          "sku_id": 11740987379,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 11735517459,
+          "name": "西南幺哥",
+          "price": 88.0,
+          "spu_id": 11735517458,
+          "sku_id": 11735517459,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 9785224661,
+          "name": "笨蛋解药",
+          "price": 98.0,
+          "spu_id": 9785075043,
+          "sku_id": 9785224661,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 11736218919,
+          "name": "橄榄油酸",
+          "price": 88.0,
+          "spu_id": 11736218918,
+          "sku_id": 11736218919,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 11730077150,
+          "name": "香香斯普莫尼",
+          "price": 88.0,
+          "spu_id": 11730077149,
+          "sku_id": 11730077150,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 11729132695,
+          "name": "青瓜金汤力",
+          "price": 78.0,
+          "spu_id": 11729132694,
+          "sku_id": 11729132695,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 11729698681,
+          "name": "白咖啡尼格罗尼",
+          "price": 98.0,
+          "spu_id": 11729698680,
+          "sku_id": 11729698681,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 11725887029,
+          "name": "出现又离开",
+          "price": 88.0,
+          "spu_id": 11725887028,
+          "sku_id": 11725887029,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4785763457,
+          "name": "纸鸢",
+          "price": 88.0,
+          "spu_id": 4785763456,
+          "sku_id": 4785763457,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "english_name": "Paper Kite",
+          "sale_status": "off_sale"
+        },
+        {
+          "id": 4778348905,
+          "name": "腼腆之人",
+          "price": 88.0,
+          "spu_id": 4778348904,
+          "sku_id": 4778348905,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "english_name": "Bashfulness  Man",
+          "sale_status": "off_sale"
+        },
+        {
+          "id": 4794181553,
+          "name": "I'm working",
+          "price": 88.0,
+          "spu_id": 4794181552,
+          "sku_id": 4794181553,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "sale_status": "off_sale"
+        },
+        {
+          "id": 5528844139,
+          "name": "沉默是金",
+          "price": 88.0,
+          "spu_id": 5528844138,
+          "sku_id": 5528844139,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "english_name": "Keep Silence",
+          "sale_status": "off_sale"
+        },
+        {
+          "id": 5538507309,
+          "name": "羽毛",
+          "price": 88.0,
+          "spu_id": 5538507308,
+          "sku_id": 5538507309,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "english_name": "Feather",
+          "sale_status": "off_sale"
+        },
+        {
+          "id": 5524352644,
+          "name": "在西伯利亚森林中",
+          "price": 88.0,
+          "spu_id": 5524352643,
+          "sku_id": 5524352644,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "english_name": "In the Forests of Siberia",
+          "sale_status": "off_sale"
+        },
+        {
+          "id": 5533290980,
+          "name": "一树梨花压海棠",
+          "price": 88.0,
+          "spu_id": 5533290979,
+          "sku_id": 5533290980,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "english_name": "So Fucking Close",
+          "sale_status": "off_sale"
+        },
+        {
+          "id": 5529643766,
+          "name": "隐德来希",
+          "price": 88.0,
+          "spu_id": 5529643765,
+          "sku_id": 5529643766,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "english_name": "Fulla",
+          "sale_status": "off_sale"
+        },
+        {
+          "id": 6389479824,
+          "name": "热红酒",
+          "price": 68.0,
+          "spu_id": 6389479823,
+          "sku_id": 6389479824,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "sale_status": "off_sale"
+        },
+        {
+          "id": 7867347785,
+          "name": "狗",
+          "price": 88.0,
+          "spu_id": 7867347784,
+          "sku_id": 7867347785,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "english_name": "Sunka",
+          "sale_status": "off_sale"
+        },
+        {
+          "id": 7867271048,
+          "name": "旷野",
+          "price": 98.0,
+          "spu_id": 7867271047,
+          "sku_id": 7867271048,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "english_name": "Savanna",
+          "sale_status": "off_sale"
+        },
+        {
+          "id": 7868113372,
+          "name": "不眠不休",
+          "price": 88.0,
+          "spu_id": 7868113371,
+          "sku_id": 7868113372,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "english_name": "No Night",
+          "sale_status": "off_sale"
+        },
+        {
+          "id": 7866283689,
+          "name": "智者有言",
+          "price": 88.0,
+          "spu_id": 7866283688,
+          "sku_id": 7866283689,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "english_name": "Wise Men Say",
+          "sale_status": "off_sale"
+        },
+        {
+          "id": 7869408105,
+          "name": "Need A Drink?",
+          "price": 88.0,
+          "spu_id": 7869408104,
+          "sku_id": 7869408105,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "sale_status": "off_sale"
+        },
+        {
+          "id": 7868521085,
+          "name": "生活有点芒",
+          "price": 88.0,
+          "spu_id": 7868521084,
+          "sku_id": 7868521085,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "english_name": "Life…",
+          "sale_status": "off_sale"
+        },
+        {
+          "id": 7865912173,
+          "name": "Volta",
+          "price": 88.0,
+          "spu_id": 7865912172,
+          "sku_id": 7865912173,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "sale_status": "off_sale"
+        },
+        {
+          "id": 7868296667,
+          "name": "美丽的废物",
+          "price": 78.0,
+          "spu_id": 7868296666,
+          "sku_id": 7868296667,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "english_name": "Uh!",
+          "sale_status": "off_sale"
+        },
+        {
+          "id": 7867271056,
+          "name": "恶毒的你！",
+          "price": 88.0,
+          "spu_id": 7867271055,
+          "sku_id": 7867271056,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "english_name": "Fuck off!",
+          "sale_status": "off_sale"
+        },
+        {
+          "id": 9423616863,
+          "name": "咖啡奶白",
+          "price": 88.0,
+          "spu_id": 9423616862,
+          "sku_id": 9423616863,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "sale_status": "off_sale"
+        },
+        {
+          "id": 9423511292,
+          "name": "马格南小子",
+          "price": 88.0,
+          "spu_id": 9423511291,
+          "sku_id": 9423511292,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "sale_status": "off_sale"
+        },
+        {
+          "id": 9424868559,
+          "name": "蜜瓜茉莉",
+          "price": 88.0,
+          "spu_id": 9424868558,
+          "sku_id": 9424868559,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "sale_status": "off_sale"
+        },
+        {
+          "id": 9785138697,
+          "name": "怪酒",
+          "price": 98.0,
+          "spu_id": 9785138696,
+          "sku_id": 9785138697,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "sale_status": "off_sale"
+        },
+        {
+          "id": 9785373687,
+          "name": "罗勒酸",
+          "price": 78.0,
+          "spu_id": 9785373686,
+          "sku_id": 9785373687,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "sale_status": "off_sale"
+        },
+        {
+          "id": 9784622921,
+          "name": "苦瓜马天尼",
+          "price": 88.0,
+          "spu_id": 9784622920,
+          "sku_id": 9784622921,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "sale_status": "off_sale"
+        },
+        {
+          "id": 9785619371,
+          "name": "枣遇桂仁",
+          "price": 88.0,
+          "spu_id": 9785619370,
+          "sku_id": 9785619371,
+          "specification": "标准",
+          "category_level1_code": 91919509,
+          "category_level2_code": null,
+          "sale_status": "off_sale"
+        }
+      ]
+    },
+    {
+      "name": "Mocktail",
+      "items": [
+        {
+          "id": 4788844274,
+          "name": "清洁费",
+          "price": 150.0,
+          "spu_id": 4788844273,
+          "sku_id": 4788844274,
+          "specification": "标准",
+          "category_level1_code": 91733535,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 5403670154,
+          "name": "服务费",
+          "price": 200.0,
+          "spu_id": 5403670153,
+          "sku_id": 5403670154,
+          "specification": "标准",
+          "category_level1_code": 91733535,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 6000601756,
+          "name": "软饮",
+          "price": 20.0,
+          "spu_id": 6000601755,
+          "sku_id": 6000601756,
+          "specification": "标准",
+          "category_level1_code": 91733535,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 7866822929,
+          "name": "无酒精特调",
+          "price": 68.0,
+          "spu_id": 7866822928,
+          "sku_id": 7866822929,
+          "specification": "标准",
+          "category_level1_code": 91733535,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 5541315807,
+          "name": "晨曦",
+          "price": 68.0,
+          "spu_id": 5541315806,
+          "sku_id": 5541315807,
+          "specification": "标准",
+          "category_level1_code": 91733535,
+          "category_level2_code": null,
+          "english_name": "Aurora",
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 5536197872,
+          "name": "蓦然",
+          "price": 68.0,
+          "spu_id": 5536197871,
+          "sku_id": 5536197872,
+          "specification": "标准",
+          "category_level1_code": 91733535,
+          "category_level2_code": null,
+          "english_name": "Back",
+          "sale_status": "on_sale"
+        }
+      ]
+    },
+    {
+      "name": "Classics",
+      "items": [
+        {
+          "id": 4774588462,
+          "name": "Gin Tonic",
+          "price": 68.0,
+          "spu_id": 4774588461,
+          "sku_id": 4774588462,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787354765,
+          "name": "High Ball",
+          "price": 68.0,
+          "spu_id": 4787354764,
+          "sku_id": 4787354765,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4786571316,
+          "name": "Side Car",
+          "price": 80.0,
+          "spu_id": 4786571315,
+          "sku_id": 4786571316,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4764494436,
+          "name": "Penicillin",
+          "price": 88.0,
+          "spu_id": 4764494435,
+          "sku_id": 4764494436,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4789652910,
+          "name": "Moscow Mule",
+          "price": 80.0,
+          "spu_id": 4789652909,
+          "sku_id": 4789652910,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4795687073,
+          "name": "God Father",
+          "price": 80.0,
+          "spu_id": 4795687072,
+          "sku_id": 4795687073,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4782864283,
+          "name": "Singapore Sling",
+          "price": 88.0,
+          "spu_id": 4782864282,
+          "sku_id": 4782864283,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4776396547,
+          "name": "Bloody Mary",
+          "price": 88.0,
+          "spu_id": 4776396546,
+          "sku_id": 4776396547,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4788410996,
+          "name": "Whisky Sour",
+          "price": 80.0,
+          "spu_id": 4788410995,
+          "sku_id": 4788410996,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4755856806,
+          "name": "Old fashion",
+          "price": 80.0,
+          "spu_id": 4755856805,
+          "sku_id": 4755856806,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4797425458,
+          "name": "Nigroni",
+          "price": 80.0,
+          "spu_id": 4797425457,
+          "sku_id": 4797425458,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4792510105,
+          "name": "Paper Plane",
+          "price": 80.0,
+          "spu_id": 4792510104,
+          "sku_id": 4792510105,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4778222503,
+          "name": "Mojito",
+          "price": 80.0,
+          "spu_id": 4778222502,
+          "sku_id": 4778222503,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787159319,
+          "name": "Martini",
+          "price": 88.0,
+          "spu_id": 4787159318,
+          "sku_id": 4787159319,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4797830741,
+          "name": "Zombies",
+          "price": 88.0,
+          "spu_id": 4797830740,
+          "sku_id": 4797830741,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4784588319,
+          "name": "Daiquiri",
+          "price": 80.0,
+          "spu_id": 4784588318,
+          "sku_id": 4784588319,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4795714872,
+          "name": "Gin Fizz",
+          "price": 88.0,
+          "spu_id": 4795714871,
+          "sku_id": 4795714872,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4789438117,
+          "name": "Rusty Nail",
+          "price": 88.0,
+          "spu_id": 4789438116,
+          "sku_id": 4789438117,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4786577239,
+          "name": "Manhattan",
+          "price": 88.0,
+          "spu_id": 4786577238,
+          "sku_id": 4786577239,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4792739974,
+          "name": "Margarita",
+          "price": 80.0,
+          "spu_id": 4792739973,
+          "sku_id": 4792739974,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4760288205,
+          "name": "Screwdriver",
+          "price": 68.0,
+          "spu_id": 4760288204,
+          "sku_id": 4760288205,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4791014704,
+          "name": "Cuba Libre",
+          "price": 68.0,
+          "spu_id": 4791014703,
+          "sku_id": 4791014704,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4789654807,
+          "name": "Pina Colada",
+          "price": 88.0,
+          "spu_id": 4789654806,
+          "sku_id": 4789654807,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4773016639,
+          "name": "Pisco Sour",
+          "price": 80.0,
+          "spu_id": 4773016638,
+          "sku_id": 4773016639,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4785976743,
+          "name": "Amaretto Sour",
+          "price": 80.0,
+          "spu_id": 4785976742,
+          "sku_id": 4785976743,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4793465335,
+          "name": "French 75",
+          "price": 88.0,
+          "spu_id": 4793465334,
+          "sku_id": 4793465335,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4790458851,
+          "name": "White Lady",
+          "price": 80.0,
+          "spu_id": 4790458850,
+          "sku_id": 4790458851,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4792272996,
+          "name": "Gimlet",
+          "price": 80.0,
+          "spu_id": 4792272995,
+          "sku_id": 4792272996,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4797399287,
+          "name": "Cosmopolitan",
+          "price": 80.0,
+          "spu_id": 4797399286,
+          "sku_id": 4797399287,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4785499292,
+          "name": "Tequila Sunrise",
+          "price": 68.0,
+          "spu_id": 4785499291,
+          "sku_id": 4785499292,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4792273013,
+          "name": "Long Island",
+          "price": 88.0,
+          "spu_id": 4792273012,
+          "sku_id": 4792273013,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4774127678,
+          "name": "Last Word",
+          "price": 80.0,
+          "spu_id": 4774127677,
+          "sku_id": 4774127678,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4792999434,
+          "name": "Paloma",
+          "price": 80.0,
+          "spu_id": 4792999433,
+          "sku_id": 4792999434,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4793666994,
+          "name": "Amaricano",
+          "price": 80.0,
+          "spu_id": 4793666993,
+          "sku_id": 4793666994,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4792277667,
+          "name": "Vesper",
+          "price": 80.0,
+          "spu_id": 4792277666,
+          "sku_id": 4792277667,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4809628867,
+          "name": "Shot",
+          "price": 30.0,
+          "spu_id": 4809628866,
+          "sku_id": 4809628867,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 5928690622,
+          "name": "Shot big",
+          "price": 40.0,
+          "spu_id": 5928690621,
+          "sku_id": 5928690622,
+          "specification": "标准",
+          "category_level1_code": 91492290,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        }
+      ]
+    },
+    {
+      "name": "Whisky/glass（杯）",
+      "items": [
+        {
+          "id": 4787215988,
+          "name": "波摩12年单一麦芽威士忌",
+          "price": 75.0,
+          "spu_id": 4787215987,
+          "sku_id": 4787215988,
+          "specification": "45ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857368,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787215990,
+          "name": "布赫拉迪莱迪经典",
+          "price": 90.0,
+          "spu_id": 4787215989,
+          "sku_id": 4787215990,
+          "specification": "45ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857368,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787215992,
+          "name": "拉弗格10年单一麦芽威士忌",
+          "price": 80.0,
+          "spu_id": 4787215991,
+          "sku_id": 4787215992,
+          "specification": "45ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857368,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787215994,
+          "name": "艾柏迪12年单一麦芽威士忌",
+          "price": 75.0,
+          "spu_id": 4787215993,
+          "sku_id": 4787215994,
+          "specification": "45ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857368,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787215996,
+          "name": "安奴克12年单一麦芽威士忌",
+          "price": 65.0,
+          "spu_id": 4787215995,
+          "sku_id": 4787215996,
+          "specification": "45ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857368,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787215998,
+          "name": "格兰杰经典单一麦芽威士忌",
+          "price": 75.0,
+          "spu_id": 4787215997,
+          "sku_id": 4787215998,
+          "specification": "45ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857368,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787216000,
+          "name": "欧本14年单一麦芽威士忌",
+          "price": 95.0,
+          "spu_id": 4787215999,
+          "sku_id": 4787216000,
+          "specification": "45ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857368,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787216002,
+          "name": "百富12年双桶单一麦芽威士忌",
+          "price": 110.0,
+          "spu_id": 4787216001,
+          "sku_id": 4787216002,
+          "specification": "45ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857368,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787216004,
+          "name": "格兰威特12年单一麦芽威士忌",
+          "price": 65.0,
+          "spu_id": 4787216003,
+          "sku_id": 4787216004,
+          "specification": "45ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857368,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787216010,
+          "name": "麦卡伦12年单一麦芽威士忌",
+          "price": 160.0,
+          "spu_id": 4787216009,
+          "sku_id": 4787216010,
+          "specification": "45ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857368,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787216012,
+          "name": "苏格登12年雪梨桶",
+          "price": 90.0,
+          "spu_id": 4787216011,
+          "sku_id": 4787216012,
+          "specification": "45ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857368,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787216014,
+          "name": "欧摩12年",
+          "price": 90.0,
+          "spu_id": 4787216013,
+          "sku_id": 4787216014,
+          "specification": "45ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857368,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787216016,
+          "name": "高原骑士12年单一麦芽威士忌",
+          "price": 90.0,
+          "spu_id": 4787216015,
+          "sku_id": 4787216016,
+          "specification": "45ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857368,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787216018,
+          "name": "朱拉10年单一麦芽威士忌",
+          "price": 75.0,
+          "spu_id": 4787216017,
+          "sku_id": 4787216018,
+          "specification": "45ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857368,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787216020,
+          "name": "泰斯卡风暴",
+          "price": 65.0,
+          "spu_id": 4787216019,
+          "sku_id": 4787216020,
+          "specification": "45ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857368,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787216022,
+          "name": "格兰昆奇12年陈酿威士忌",
+          "price": 65.0,
+          "spu_id": 4787216021,
+          "sku_id": 4787216022,
+          "specification": "45ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857368,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787216024,
+          "name": "欧肯特轩12年单一麦芽威士忌",
+          "price": 65.0,
+          "spu_id": 4787216023,
+          "sku_id": 4787216024,
+          "specification": "45ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857368,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787216026,
+          "name": "布莱特波本威士忌",
+          "price": 55.0,
+          "spu_id": 4787216025,
+          "sku_id": 4787216026,
+          "specification": "45ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857368,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787216028,
+          "name": "布莱特黑麦威士忌",
+          "price": 55.0,
+          "spu_id": 4787216027,
+          "sku_id": 4787216028,
+          "specification": "45ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857368,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787216030,
+          "name": "美国美格波本威士忌",
+          "price": 55.0,
+          "spu_id": 4787216029,
+          "sku_id": 4787216030,
+          "specification": "45ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857368,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787216032,
+          "name": "芝华士12年苏格兰威士忌",
+          "price": 55.0,
+          "spu_id": 4787216031,
+          "sku_id": 4787216032,
+          "specification": "45ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857368,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 5411462930,
+          "name": "威凤凰威士忌",
+          "price": 55.0,
+          "spu_id": 5411462929,
+          "sku_id": 5411462930,
+          "specification": "45ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857368,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 5403764717,
+          "name": "四玫瑰威士忌",
+          "price": 55.0,
+          "spu_id": 5403764716,
+          "sku_id": 5403764717,
+          "specification": "45ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857368,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 7185688062,
+          "name": "阿贝乌干达",
+          "price": 210.0,
+          "spu_id": 7185688061,
+          "sku_id": 7185688062,
+          "specification": "标准",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857368,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 10931635413,
+          "name": "格兰菲迪18年",
+          "price": 130.0,
+          "spu_id": 10931635412,
+          "sku_id": 10931635413,
+          "specification": "标准",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857368,
+          "sale_status": "on_sale"
+        }
+      ]
+    },
+    {
+      "name": "Whisky/bottle（瓶）",
+      "items": [
+        {
+          "id": 4788618105,
+          "name": "阿贝乌干达单一麦芽威士忌（瓶）",
+          "price": 2780.0,
+          "spu_id": 4788618104,
+          "sku_id": 4788618105,
+          "specification": "700ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857366,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4788618107,
+          "name": "波摩12年单一麦芽威士忌（瓶）",
+          "price": 998.0,
+          "spu_id": 4788618106,
+          "sku_id": 4788618107,
+          "specification": "700ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857366,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4788618109,
+          "name": "布赫拉迪莱迪经典（瓶）",
+          "price": 1280.0,
+          "spu_id": 4788618108,
+          "sku_id": 4788618109,
+          "specification": "700ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857366,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4788618111,
+          "name": "拉弗格10年单一麦芽威士忌（瓶）",
+          "price": 1180.0,
+          "spu_id": 4788618110,
+          "sku_id": 4788618111,
+          "specification": "700ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857366,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4788618113,
+          "name": "艾柏迪12年单一麦芽威士忌（瓶）",
+          "price": 998.0,
+          "spu_id": 4788618112,
+          "sku_id": 4788618113,
+          "specification": "700ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857366,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4788618115,
+          "name": "安奴克12年单一麦芽威士忌（瓶）",
+          "price": 888.0,
+          "spu_id": 4788618114,
+          "sku_id": 4788618115,
+          "specification": "700ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857366,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4788618117,
+          "name": "格兰杰经典单一麦芽威士忌（瓶）",
+          "price": 998.0,
+          "spu_id": 4788618116,
+          "sku_id": 4788618117,
+          "specification": "700ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857366,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4788618119,
+          "name": "欧本14年单一麦芽威士忌（瓶）",
+          "price": 1380.0,
+          "spu_id": 4788618118,
+          "sku_id": 4788618119,
+          "specification": "700ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857366,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4788618121,
+          "name": "百富12年双桶单一麦芽威士忌（瓶）",
+          "price": 1680.0,
+          "spu_id": 4788618120,
+          "sku_id": 4788618121,
+          "specification": "700ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857366,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4788618123,
+          "name": "格兰威特12年单一麦芽威士忌（瓶）",
+          "price": 888.0,
+          "spu_id": 4788618122,
+          "sku_id": 4788618123,
+          "specification": "700ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857366,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4788618125,
+          "name": "格兰威特18年单一麦芽威士忌（瓶）",
+          "price": 2780.0,
+          "spu_id": 4788618124,
+          "sku_id": 4788618125,
+          "specification": "700ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857366,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4788618127,
+          "name": "格兰菲迪18年（瓶）",
+          "price": 2180.0,
+          "spu_id": 4788618126,
+          "sku_id": 4788618127,
+          "specification": "700ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857366,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4788618129,
+          "name": "麦卡伦12年单一麦芽威士忌（瓶）",
+          "price": 2080.0,
+          "spu_id": 4788618128,
+          "sku_id": 4788618129,
+          "specification": "700ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857366,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787215946,
+          "name": "苏格登12年雪梨桶（瓶）",
+          "price": 1280.0,
+          "spu_id": 4787215945,
+          "sku_id": 4787215946,
+          "specification": "700ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857366,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787215948,
+          "name": "欧摩12年（瓶）",
+          "price": 1280.0,
+          "spu_id": 4787215947,
+          "sku_id": 4787215948,
+          "specification": "700ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857366,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787215950,
+          "name": "高原骑士12年单一麦芽威士忌（瓶）",
+          "price": 1280.0,
+          "spu_id": 4787215949,
+          "sku_id": 4787215950,
+          "specification": "700ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857366,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787215952,
+          "name": "朱拉10年单一麦芽威士忌（瓶）",
+          "price": 998.0,
+          "spu_id": 4787215951,
+          "sku_id": 4787215952,
+          "specification": "700ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857366,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787215954,
+          "name": "泰斯卡风暴（瓶）",
+          "price": 888.0,
+          "spu_id": 4787215953,
+          "sku_id": 4787215954,
+          "specification": "700ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857366,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787215956,
+          "name": "格兰昆奇12年陈酿威士忌（瓶）",
+          "price": 888.0,
+          "spu_id": 4787215955,
+          "sku_id": 4787215956,
+          "specification": "750ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857366,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787215958,
+          "name": "欧肯特轩12年单一麦芽威士忌（瓶）",
+          "price": 888.0,
+          "spu_id": 4787215957,
+          "sku_id": 4787215958,
+          "specification": "750ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857366,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787215960,
+          "name": "布莱特波本威士忌（瓶）",
+          "price": 680.0,
+          "spu_id": 4787215959,
+          "sku_id": 4787215960,
+          "specification": "750ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857366,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787215962,
+          "name": "布莱特黑麦威士忌（瓶）",
+          "price": 680.0,
+          "spu_id": 4787215961,
+          "sku_id": 4787215962,
+          "specification": "750ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857366,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787215964,
+          "name": "美国美格波本威士忌（瓶）",
+          "price": 680.0,
+          "spu_id": 4787215963,
+          "sku_id": 4787215964,
+          "specification": "750ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857366,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4787215966,
+          "name": "芝华士12年苏格兰威士忌 （瓶）",
+          "price": 680.0,
+          "spu_id": 4787215965,
+          "sku_id": 4787215966,
+          "specification": "700ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857366,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 5400604661,
+          "name": "威凤凰威士忌（瓶）",
+          "price": 680.0,
+          "spu_id": 5400604660,
+          "sku_id": 5400604661,
+          "specification": "750ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857366,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 5405508090,
+          "name": "四玫瑰威士忌（瓶）",
+          "price": 650.0,
+          "spu_id": 5405508089,
+          "sku_id": 5405508090,
+          "specification": "700ML",
+          "category_level1_code": 91693492,
+          "category_level2_code": 91857366,
+          "sale_status": "on_sale"
+        }
+      ]
+    },
+    {
+      "name": "Red",
+      "items": [
+        {
+          "id": 4838612577,
+          "name": "百岁",
+          "price": 280.0,
+          "spu_id": 4838612576,
+          "sku_id": 4838612577,
+          "specification": "标准",
+          "category_level1_code": 93009305,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4838187089,
+          "name": "琳达马尔贝克老藤",
+          "price": 368.0,
+          "spu_id": 4838187088,
+          "sku_id": 4838187089,
+          "specification": "标准",
+          "category_level1_code": 93009305,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4838481655,
+          "name": "马斯特伊皮尼亚",
+          "price": 528.0,
+          "spu_id": 4838481654,
+          "sku_id": 4838481655,
+          "specification": "标准",
+          "category_level1_code": 93009305,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        }
+      ]
+    },
+    {
+      "name": "White",
+      "items": [
+        {
+          "id": 4845214511,
+          "name": "阿维莱达阿瓦里诺",
+          "price": 308.0,
+          "spu_id": 4845214510,
+          "sku_id": 4845214511,
+          "specification": "标准",
+          "category_level1_code": 92995257,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4834568148,
+          "name": "布克宁-沃夫博士雷司令",
+          "price": 598.0,
+          "spu_id": 4834568147,
+          "sku_id": 4834568148,
+          "specification": "标准",
+          "category_level1_code": 92995257,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        }
+      ]
+    },
+    {
+      "name": "Sparkling",
+      "items": [
+        {
+          "id": 4844431815,
+          "name": "甘嘉",
+          "price": 282.0,
+          "spu_id": 4844431814,
+          "sku_id": 4844431815,
+          "specification": "标准",
+          "category_level1_code": 93139951,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4836734882,
+          "name": "菲娅卡瓦",
+          "price": 358.0,
+          "spu_id": 4836734881,
+          "sku_id": 4836734882,
+          "specification": "标准",
+          "category_level1_code": 93139951,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 6553926267,
+          "name": "石源黑标卡瓦",
+          "price": 358.0,
+          "spu_id": 6553926266,
+          "sku_id": 6553926267,
+          "specification": "标准",
+          "category_level1_code": 93139951,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        }
+      ]
+    },
+    {
+      "name": "Snack",
+      "items": [
+        {
+          "id": 4835711127,
+          "name": "卤牛腱子肉",
+          "price": 38.0,
+          "spu_id": 4835711126,
+          "sku_id": 4835711127,
+          "specification": "标准",
+          "category_level1_code": 92978115,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4839182560,
+          "name": "麻辣鸡脚筋",
+          "price": 28.0,
+          "spu_id": 4839182559,
+          "sku_id": 4839182560,
+          "specification": "标准",
+          "category_level1_code": 92978115,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4839181666,
+          "name": "卤辣鸭郡头",
+          "price": 30.0,
+          "spu_id": 4839181665,
+          "sku_id": 4839181666,
+          "specification": "标准",
+          "category_level1_code": 92978115,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4839042291,
+          "name": "麻辣脆牛肚",
+          "price": 35.0,
+          "spu_id": 4839042290,
+          "sku_id": 4839042291,
+          "specification": "标准",
+          "category_level1_code": 92978115,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4837112464,
+          "name": "萨拉米火腿",
+          "price": 48.0,
+          "spu_id": 4837112463,
+          "sku_id": 4837112464,
+          "specification": "标准",
+          "category_level1_code": 92978115,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4837182557,
+          "name": "坚果拼盘",
+          "price": 28.0,
+          "spu_id": 4837182556,
+          "sku_id": 4837182557,
+          "specification": "标准",
+          "category_level1_code": 92978115,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4838513507,
+          "name": "凉拌沙拉",
+          "price": 20.0,
+          "spu_id": 4838513506,
+          "sku_id": 4838513507,
+          "specification": "标准",
+          "category_level1_code": 92978115,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 6703741183,
+          "name": "炸薯条",
+          "price": 28.0,
+          "spu_id": 6703741182,
+          "sku_id": 6703741183,
+          "specification": "标准",
+          "category_level1_code": 92978115,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 6690330531,
+          "name": "烤吐司",
+          "price": 28.0,
+          "spu_id": 6690330530,
+          "sku_id": 6690330531,
+          "specification": "标准",
+          "category_level1_code": 92978115,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 6686303825,
+          "name": "炸鸡米花",
+          "price": 32.0,
+          "spu_id": 6686303824,
+          "sku_id": 6686303825,
+          "specification": "标准",
+          "category_level1_code": 92978115,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 6686612230,
+          "name": "炸鸡翅",
+          "price": 35.0,
+          "spu_id": 6686612229,
+          "sku_id": 6686612230,
+          "specification": "标准",
+          "category_level1_code": 92978115,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 6702715758,
+          "name": "炸物拼盘",
+          "price": 58.0,
+          "spu_id": 6702715757,
+          "sku_id": 6702715758,
+          "specification": "标准",
+          "category_level1_code": 92978115,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        }
+      ]
+    },
+    {
+      "name": "Beer",
+      "items": [
+        {
+          "id": 4790236161,
+          "name": "鹅岛",
+          "price": 35.0,
+          "spu_id": 4790236160,
+          "sku_id": 4790236161,
+          "specification": "标准",
+          "category_level1_code": 91881607,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4782298806,
+          "name": "科罗娜",
+          "price": 28.0,
+          "spu_id": 4782298805,
+          "sku_id": 4782298806,
+          "specification": "标准",
+          "category_level1_code": 91881607,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 9929207132,
+          "name": "朝日",
+          "price": 25.0,
+          "spu_id": 9929207131,
+          "sku_id": 9929207132,
+          "specification": "标准",
+          "category_level1_code": 91881607,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        }
+      ]
+    },
+    {
+      "name": "Spirits/Gin",
+      "items": [
+        {
+          "id": 4788618089,
+          "name": "孟买蓝宝石金（瓶）",
+          "price": 328.0,
+          "spu_id": 4788618088,
+          "sku_id": 4788618089,
+          "specification": "750ML",
+          "category_level1_code": 91693491,
+          "category_level2_code": 91857365,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4788618091,
+          "name": "亨利爵士高级金酒（瓶）",
+          "price": 900.0,
+          "spu_id": 4788618090,
+          "sku_id": 4788618091,
+          "specification": "700ML",
+          "category_level1_code": 91693491,
+          "category_level2_code": 91857365,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4788618093,
+          "name": "伦敦1号蓝色杜松子酒（瓶）",
+          "price": 828.0,
+          "spu_id": 4788618092,
+          "sku_id": 4788618093,
+          "specification": "700ML",
+          "category_level1_code": 91693491,
+          "category_level2_code": 91857365,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4788618095,
+          "name": "猴王47黑刺莓金酒（瓶）",
+          "price": 1260.0,
+          "spu_id": 4788618094,
+          "sku_id": 4788618095,
+          "specification": "700ML",
+          "category_level1_code": 91693491,
+          "category_level2_code": 91857365,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4788618103,
+          "name": "海曼黑刺梅金酒（瓶）",
+          "price": 728.0,
+          "spu_id": 4788618102,
+          "sku_id": 4788618103,
+          "specification": "700ML",
+          "category_level1_code": 91693491,
+          "category_level2_code": 91857365,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 5402439512,
+          "name": "诺迪斯金酒（瓶）",
+          "price": 890.0,
+          "spu_id": 5402439511,
+          "sku_id": 5402439512,
+          "specification": "700ML",
+          "category_level1_code": 91693491,
+          "category_level2_code": 91857365,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 5408492924,
+          "name": "植物学家金酒（瓶）",
+          "price": 980.0,
+          "spu_id": 5408492923,
+          "sku_id": 5408492924,
+          "specification": "700ML",
+          "category_level1_code": 91693491,
+          "category_level2_code": 91857365,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 7737444902,
+          "name": "亨利爵士（杯）",
+          "price": 70.0,
+          "spu_id": 7737444901,
+          "sku_id": 7737444902,
+          "specification": "标准",
+          "category_level1_code": 91693491,
+          "category_level2_code": 91857365,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 7747756908,
+          "name": "植物学家（杯）",
+          "price": 75.0,
+          "spu_id": 7747756907,
+          "sku_id": 7747756908,
+          "specification": "标准",
+          "category_level1_code": 91693491,
+          "category_level2_code": 91857365,
+          "sale_status": "on_sale"
+        }
+      ]
+    },
+    {
+      "name": "Spirits/Vodka",
+      "items": [
+        {
+          "id": 4788618087,
+          "name": "绝对伏特加原味（瓶）",
+          "price": 288.0,
+          "spu_id": 4788618086,
+          "sku_id": 4788618087,
+          "specification": "750ML",
+          "category_level1_code": 91693491,
+          "category_level2_code": 91912941,
+          "sale_status": "on_sale"
+        }
+      ]
+    },
+    {
+      "name": "Spirits/Tequila",
+      "items": [
+        {
+          "id": 4788618097,
+          "name": "金快活龙舌兰（瓶）",
+          "price": 288.0,
+          "spu_id": 4788618096,
+          "sku_id": 4788618097,
+          "specification": "700ML",
+          "category_level1_code": 91693491,
+          "category_level2_code": 91780988,
+          "sale_status": "on_sale"
+        },
+        {
+          "id": 4788618099,
+          "name": "银快活龙舌兰（瓶）",
+          "price": 288.0,
+          "spu_id": 4788618098,
+          "sku_id": 4788618099,
+          "specification": "700ML",
+          "category_level1_code": 91693491,
+          "category_level2_code": 91780988,
+          "sale_status": "on_sale"
+        }
+      ]
+    },
+    {
+      "name": "Spirits/Brandy",
+      "items": [
+        {
+          "id": 7207478694,
+          "name": "人头马VSOP",
+          "price": 90.0,
+          "spu_id": 7207478693,
+          "sku_id": 7207478694,
+          "specification": "标准",
+          "category_level1_code": 91693491,
+          "category_level2_code": 91943083,
+          "sale_status": "on_sale"
+        }
+      ]
+    },
+    {
+      "name": "Spirits/Other",
+      "items": [
+        {
+          "id": 4788618101,
+          "name": "百利甜力娇酒（瓶）",
+          "price": 328.0,
+          "spu_id": 4788618100,
+          "sku_id": 4788618101,
+          "specification": "750ML",
+          "category_level1_code": 91693491,
+          "category_level2_code": 91913891,
+          "sale_status": "on_sale"
+        }
+      ]
+    },
+    {
+      "name": "礼品",
+      "items": [
+        {
+          "id": 9392292746,
+          "name": "big shot",
+          "price": 40.0,
+          "spu_id": 9392292745,
+          "sku_id": 9392292746,
+          "specification": "标准",
+          "category_level1_code": 204188167,
+          "category_level2_code": null,
+          "sale_status": "on_sale"
+        }
+      ]
+    }
+  ]
+}

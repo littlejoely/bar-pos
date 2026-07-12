@@ -1,0 +1,4800 @@
+{
+  "orders": [
+    {
+      "id": "20260612-A1-001",
+      "table_id": "A1",
+      "created_at": "2026-06-12 21:19:37",
+      "items": [
+        {
+          "id": 1,
+          "name": "无耻之徒 2.0",
+          "price": 88.0,
+          "quantity": 2
+        },
+        {
+          "id": 2,
+          "name": "玫瑰青提",
+          "price": 98.0,
+          "quantity": 2
+        },
+        {
+          "id": 3,
+          "name": "温斯顿",
+          "price": 88.0,
+          "quantity": 2
+        }
+      ],
+      "total": 548.0,
+      "status": "paid",
+      "paid_at": "2026-06-12 21:20:00"
+    },
+    {
+      "id": "20260612-A5-001",
+      "table_id": "A5",
+      "created_at": "2026-06-12 21:20:48",
+      "items": [],
+      "total": 0,
+      "status": "canceled",
+      "canceled_at": "2026-06-12 23:00:32"
+    },
+    {
+      "id": "20260612-A7-001",
+      "table_id": "A7",
+      "created_at": "2026-06-12 21:21:06",
+      "items": [
+        {
+          "id": 4,
+          "name": "山茶花 2.0",
+          "price": 88.0,
+          "quantity": 1
+        },
+        {
+          "id": 3,
+          "name": "温斯顿",
+          "price": 88.0,
+          "quantity": 1
+        }
+      ],
+      "total": 176.0,
+      "status": "canceled",
+      "canceled_at": "2026-06-12 23:00:35"
+    },
+    {
+      "id": "20260612-A4-001",
+      "table_id": "A4",
+      "created_at": "2026-06-12 22:08:37",
+      "items": [
+        {
+          "id": 1,
+          "name": "无耻之徒 2.0",
+          "price": 88.0,
+          "quantity": 1
+        },
+        {
+          "id": 2,
+          "name": "玫瑰青提",
+          "price": 98.0,
+          "quantity": 1
+        },
+        {
+          "id": 3,
+          "name": "温斯顿",
+          "price": 88.0,
+          "quantity": 1
+        },
+        {
+          "id": 10,
+          "name": "香香斯普莫尼",
+          "price": 88.0,
+          "quantity": 1
+        },
+        {
+          "id": 9,
+          "name": "橄榄油酸",
+          "price": 88.0,
+          "quantity": 3
+        }
+      ],
+      "total": 626.0,
+      "status": "canceled",
+      "canceled_at": "2026-06-12 22:40:51"
+    },
+    {
+      "id": "20260612-C3-001",
+      "table_id": "C3",
+      "created_at": "2026-06-12 22:41:01",
+      "items": [
+        {
+          "id": 1,
+          "name": "无耻之徒 2.0",
+          "price": 88.0,
+          "quantity": 1
+        },
+        {
+          "id": 2,
+          "name": "玫瑰青提",
+          "price": 98.0,
+          "quantity": 1
+        },
+        {
+          "id": 9,
+          "name": "橄榄油酸",
+          "price": 88.0,
+          "quantity": 1
+        },
+        {
+          "id": 10,
+          "name": "香香斯普莫尼",
+          "price": 88.0,
+          "quantity": 1
+        }
+      ],
+      "total": 362.0,
+      "status": "canceled",
+      "canceled_at": "2026-06-12 23:00:38"
+    },
+    {
+      "id": "20260612-A6-001",
+      "table_id": "A6",
+      "created_at": "2026-06-12 23:00:42",
+      "items": [
+        {
+          "id": 2,
+          "name": "玫瑰青提",
+          "price": 98.0,
+          "quantity": 1
+        },
+        {
+          "id": 3,
+          "name": "温斯顿",
+          "price": 88.0,
+          "quantity": 1
+        }
+      ],
+      "total": 186.0,
+      "status": "paid",
+      "submitted_at": "2026-06-12 23:06:16",
+      "served_at": "2026-06-12 23:06:42",
+      "guests": 1,
+      "paid_at": "2026-06-12 23:07:00"
+    },
+    {
+      "id": "20260612-C1-001",
+      "table_id": "C1",
+      "created_at": "2026-06-12 23:07:19",
+      "items": [
+        {
+          "id": 2,
+          "name": "玫瑰青提",
+          "price": 98.0,
+          "quantity": 1
+        },
+        {
+          "id": 3,
+          "name": "温斯顿",
+          "price": 88.0,
+          "quantity": 1
+        },
+        {
+          "id": 10,
+          "name": "香香斯普莫尼",
+          "price": 88.0,
+          "quantity": 1
+        },
+        {
+          "id": 11,
+          "name": "白咖啡尼格罗尼",
+          "price": 98.0,
+          "quantity": 1
+        }
+      ],
+      "total": 372.0,
+      "guests": 2,
+      "status": "paid",
+      "submitted_at": "2026-06-12 23:07:30",
+      "served_at": "2026-06-12 23:28:53",
+      "paid_at": "2026-06-12 23:28:56"
+    },
+    {
+      "id": "20260612-A6-002",
+      "table_id": "A6",
+      "created_at": "2026-06-12 23:29:24",
+      "items": [
+        {
+          "id": 2,
+          "name": "玫瑰青提",
+          "price": 98.0,
+          "quantity": 1
+        },
+        {
+          "id": 9,
+          "name": "橄榄油酸",
+          "price": 88.0,
+          "quantity": 4
+        }
+      ],
+      "total": 450.0,
+      "guests": 2,
+      "status": "canceled",
+      "submitted_at": "2026-06-12 23:29:28",
+      "adjustments": [
+        {
+          "type": "remove",
+          "item_id": 10,
+          "reason": "赠菜",
+          "created_at": "2026-06-12 23:29:44"
+        },
+        {
+          "type": "remove",
+          "item_id": 3,
+          "reason": "错点",
+          "created_at": "2026-06-12 23:29:49"
+        }
+      ],
+      "canceled_at": "2026-06-12 23:51:23"
+    },
+    {
+      "id": "20260613-A5-001",
+      "table_id": "A5",
+      "created_at": "2026-06-13 00:10:37",
+      "items": [
+        {
+          "id": 2,
+          "name": "玫瑰青提",
+          "price": 98.0,
+          "quantity": 1
+        },
+        {
+          "id": 10,
+          "name": "香香斯普莫尼",
+          "price": 88.0,
+          "quantity": 1
+        },
+        {
+          "id": 3,
+          "name": "温斯顿",
+          "price": 88.0,
+          "quantity": 1
+        },
+        {
+          "id": 4,
+          "name": "山茶花 2.0",
+          "price": 88.0,
+          "quantity": 1
+        },
+        {
+          "id": 11,
+          "name": "白咖啡尼格罗尼",
+          "price": 98.0,
+          "quantity": 1
+        }
+      ],
+      "total": 460.0,
+      "guests": 1,
+      "status": "paid",
+      "submitted_at": "2026-06-13 00:10:38",
+      "tickets": [
+        {
+          "id": "T20260613001038498328",
+          "type": "下单",
+          "created_at": "2026-06-13 00:10:38",
+          "archived": true,
+          "items": [
+            {
+              "id": 2,
+              "name": "玫瑰青提",
+              "price": 98.0,
+              "quantity": 1
+            }
+          ],
+          "archived_at": "2026-06-13 00:11:18"
+        },
+        {
+          "id": "T20260613001611419056",
+          "type": "补打",
+          "created_at": "2026-06-13 00:16:11",
+          "archived": true,
+          "items": [
+            {
+              "id": 2,
+              "name": "玫瑰青提",
+              "price": 98.0,
+              "quantity": 1
+            }
+          ],
+          "archived_at": "2026-06-13 00:16:15"
+        },
+        {
+          "id": "T20260613001641845846",
+          "type": "加菜",
+          "created_at": "2026-06-13 00:16:41",
+          "archived": true,
+          "items": [
+            {
+              "id": 10,
+              "name": "香香斯普莫尼",
+              "price": 88,
+              "quantity": 1
+            }
+          ],
+          "archived_at": "2026-06-13 00:16:44"
+        },
+        {
+          "id": "T20260613001654252171",
+          "type": "加菜",
+          "created_at": "2026-06-13 00:16:54",
+          "archived": true,
+          "items": [
+            {
+              "id": 3,
+              "name": "温斯顿",
+              "price": 88,
+              "quantity": 1
+            },
+            {
+              "id": 4,
+              "name": "山茶花 2.0",
+              "price": 88,
+              "quantity": 1
+            },
+            {
+              "id": 11,
+              "name": "白咖啡尼格罗尼",
+              "price": 98,
+              "quantity": 1
+            }
+          ],
+          "archived_at": "2026-06-13 00:17:00"
+        }
+      ],
+      "paid_at": "2026-06-13 00:17:17"
+    },
+    {
+      "id": "20260613-D1-001",
+      "table_id": "D1",
+      "created_at": "2026-06-13 00:10:47",
+      "items": [
+        {
+          "id": 2,
+          "name": "玫瑰青提",
+          "price": 98.0,
+          "quantity": 1
+        },
+        {
+          "id": 10,
+          "name": "香香斯普莫尼",
+          "price": 88.0,
+          "quantity": 1
+        }
+      ],
+      "total": 186.0,
+      "guests": 2,
+      "status": "paid",
+      "submitted_at": "2026-06-13 00:10:48",
+      "tickets": [
+        {
+          "id": "T20260613001048366436",
+          "type": "下单",
+          "created_at": "2026-06-13 00:10:48",
+          "archived": true,
+          "items": [
+            {
+              "id": 2,
+              "name": "玫瑰青提",
+              "price": 98.0,
+              "quantity": 1
+            },
+            {
+              "id": 10,
+              "name": "香香斯普莫尼",
+              "price": 88.0,
+              "quantity": 1
+            }
+          ],
+          "archived_at": "2026-06-13 00:11:19"
+        }
+      ],
+      "paid_at": "2026-06-13 00:16:31"
+    },
+    {
+      "id": "20260613-D2-001",
+      "table_id": "D2",
+      "created_at": "2026-06-13 00:11:02",
+      "items": [
+        {
+          "id": 2,
+          "name": "玫瑰青提",
+          "price": 98.0,
+          "quantity": 1
+        },
+        {
+          "id": 3,
+          "name": "温斯顿",
+          "price": 88.0,
+          "quantity": 1
+        },
+        {
+          "id": 4,
+          "name": "山茶花 2.0",
+          "price": 88.0,
+          "quantity": 1
+        },
+        {
+          "id": 10,
+          "name": "香香斯普莫尼",
+          "price": 88.0,
+          "quantity": 1
+        },
+        {
+          "id": 11,
+          "name": "白咖啡尼格罗尼",
+          "price": 98.0,
+          "quantity": 1
+        },
+        {
+          "id": 12,
+          "name": "闲人贝里尼",
+          "price": 88.0,
+          "quantity": 1
+        },
+        {
+          "id": 9,
+          "name": "橄榄油酸",
+          "price": 88.0,
+          "quantity": 1
+        },
+        {
+          "id": 6,
+          "name": "老赖流浪汉",
+          "price": 78.0,
+          "quantity": 1
+        },
+        {
+          "id": 5,
+          "name": "Volta",
+          "price": 88.0,
+          "quantity": 1
+        }
+      ],
+      "total": 802.0,
+      "guests": 6,
+      "status": "paid",
+      "submitted_at": "2026-06-13 00:11:06",
+      "tickets": [
+        {
+          "id": "T20260613001106255675",
+          "type": "下单",
+          "created_at": "2026-06-13 00:11:06",
+          "archived": true,
+          "items": [
+            {
+              "id": 2,
+              "name": "玫瑰青提",
+              "price": 98.0,
+              "quantity": 1
+            },
+            {
+              "id": 3,
+              "name": "温斯顿",
+              "price": 88.0,
+              "quantity": 1
+            },
+            {
+              "id": 4,
+              "name": "山茶花 2.0",
+              "price": 88.0,
+              "quantity": 1
+            },
+            {
+              "id": 10,
+              "name": "香香斯普莫尼",
+              "price": 88.0,
+              "quantity": 1
+            },
+            {
+              "id": 11,
+              "name": "白咖啡尼格罗尼",
+              "price": 98.0,
+              "quantity": 1
+            },
+            {
+              "id": 12,
+              "name": "闲人贝里尼",
+              "price": 88.0,
+              "quantity": 1
+            }
+          ],
+          "archived_at": "2026-06-13 00:11:20"
+        }
+      ],
+      "paid_at": "2026-06-13 00:17:07"
+    },
+    {
+      "id": "20260711-A1-001",
+      "table_id": "A1",
+      "created_at": "2026-07-11 14:34:05",
+      "items": [
+        {
+          "id": 1,
+          "name": "无耻之徒 2.0",
+          "price": 88.0,
+          "quantity": 3,
+          "line_total": 264.0,
+          "remark": "少冰"
+        },
+        {
+          "id": 3,
+          "name": "温斯顿",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 10,
+          "name": "香香斯普莫尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 9,
+          "name": "橄榄油酸",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        }
+      ],
+      "total": 528.0,
+      "guests": 2,
+      "status": "canceled",
+      "submitted_at": "2026-07-11 14:34:36",
+      "tickets": [
+        {
+          "id": "T20260711143436793617",
+          "type": "下单",
+          "created_at": "2026-07-11 14:34:36",
+          "archived": true,
+          "items": [
+            {
+              "id": 1,
+              "name": "无耻之徒 2.0",
+              "price": 88.0,
+              "quantity": 1
+            }
+          ],
+          "archived_at": "2026-07-11 14:34:52"
+        },
+        {
+          "id": "T20260711143500136397",
+          "type": "补打",
+          "created_at": "2026-07-11 14:35:00",
+          "archived": true,
+          "items": [
+            {
+              "id": 1,
+              "name": "无耻之徒 2.0",
+              "price": 88.0,
+              "quantity": 1
+            }
+          ],
+          "archived_at": "2026-07-11 14:35:03"
+        },
+        {
+          "id": "T20260711144409882468",
+          "type": "加菜",
+          "created_at": "2026-07-11 14:44:09",
+          "archived": true,
+          "items": [
+            {
+              "id": 3,
+              "name": "温斯顿",
+              "price": 88,
+              "quantity": 1
+            },
+            {
+              "id": 10,
+              "name": "香香斯普莫尼",
+              "price": 88,
+              "quantity": 1
+            },
+            {
+              "id": 9,
+              "name": "橄榄油酸",
+              "price": 88,
+              "quantity": 1
+            }
+          ],
+          "archived_at": "2026-07-11 15:03:35"
+        },
+        {
+          "id": "T20260711144414060189",
+          "type": "补打",
+          "created_at": "2026-07-11 14:44:14",
+          "archived": true,
+          "items": [
+            {
+              "id": 1,
+              "name": "无耻之徒 2.0",
+              "price": 88.0,
+              "quantity": 1
+            },
+            {
+              "id": 3,
+              "name": "温斯顿",
+              "price": 88.0,
+              "quantity": 1
+            },
+            {
+              "id": 10,
+              "name": "香香斯普莫尼",
+              "price": 88.0,
+              "quantity": 1
+            },
+            {
+              "id": 9,
+              "name": "橄榄油酸",
+              "price": 88.0,
+              "quantity": 1
+            }
+          ],
+          "archived_at": "2026-07-11 14:44:17"
+        }
+      ],
+      "remark": "客人赶时间",
+      "canceled_at": "2026-07-11 15:26:30"
+    },
+    {
+      "id": "20260711-A2-001",
+      "table_id": "A2",
+      "created_at": "2026-07-11 14:58:45",
+      "items": [
+        {
+          "id": 1,
+          "name": "无耻之徒 2.0",
+          "price": 88.0,
+          "quantity": 3,
+          "line_total": 264.0
+        },
+        {
+          "id": 2,
+          "name": "玫瑰青提",
+          "price": 98.0,
+          "quantity": 2,
+          "line_total": 196.0
+        },
+        {
+          "id": 3,
+          "name": "温斯顿",
+          "price": 88.0,
+          "quantity": 3,
+          "line_total": 264.0
+        },
+        {
+          "id": 10,
+          "name": "香香斯普莫尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 9,
+          "name": "橄榄油酸",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        }
+      ],
+      "total": 900.0,
+      "guests": 2,
+      "status": "canceled",
+      "transferred_from": "B1",
+      "transferred_at": "2026-07-11 15:40:38",
+      "canceled_at": "2026-07-11 15:41:33"
+    },
+    {
+      "id": "20260711-A3-001",
+      "table_id": "A3",
+      "created_at": "2026-07-11 15:41:10",
+      "items": [],
+      "total": 100.0,
+      "guests": 2,
+      "status": "merged",
+      "merged_to": "20260711-A2-001",
+      "merged_at": "2026-07-11 15:41:10"
+    },
+    {
+      "id": "20260711-A2-002",
+      "table_id": "A2",
+      "created_at": "2026-07-11 15:42:48",
+      "items": [
+        {
+          "id": 1,
+          "name": "无耻之徒 2.0",
+          "price": 88.0,
+          "quantity": 4,
+          "line_total": 0,
+          "discount": 100.0
+        },
+        {
+          "id": 6,
+          "name": "老赖流浪汉",
+          "price": 78.0,
+          "quantity": 1,
+          "line_total": 78.0
+        }
+      ],
+      "total": 78.0,
+      "guests": 2,
+      "status": "canceled",
+      "submitted_at": "2026-07-11 15:49:36",
+      "tickets": [
+        {
+          "id": "T20260711154936647577",
+          "type": "下单",
+          "created_at": "2026-07-11 15:49:36",
+          "archived": true,
+          "items": [
+            {
+              "id": 1,
+              "name": "无耻之徒 2.0",
+              "price": 88.0,
+              "quantity": 2
+            },
+            {
+              "id": 6,
+              "name": "老赖流浪汉",
+              "price": 78.0,
+              "quantity": 1
+            }
+          ],
+          "archived_at": "2026-07-11 15:49:39"
+        }
+      ],
+      "canceled_at": "2026-07-11 15:52:10"
+    },
+    {
+      "id": "20260711-A1-002",
+      "table_id": "A1",
+      "created_at": "2026-07-11 15:52:41",
+      "items": [
+        {
+          "id": 1,
+          "name": "无耻之徒 2.0",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 7,
+          "name": "苦瓜马天尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 12,
+          "name": "闲人贝里尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 11,
+          "name": "白咖啡尼格罗尼",
+          "price": 98.0,
+          "quantity": 2,
+          "line_total": 196.0
+        }
+      ],
+      "total": 460.0,
+      "guests": 1,
+      "status": "paid",
+      "submitted_at": "2026-07-11 15:52:44",
+      "tickets": [
+        {
+          "id": "T20260711155244568302",
+          "type": "下单",
+          "created_at": "2026-07-11 15:52:44",
+          "archived": false,
+          "items": [
+            {
+              "id": 1,
+              "name": "无耻之徒 2.0",
+              "price": 88.0,
+              "quantity": 1
+            },
+            {
+              "id": 7,
+              "name": "苦瓜马天尼",
+              "price": 88.0,
+              "quantity": 1
+            },
+            {
+              "id": 12,
+              "name": "闲人贝里尼",
+              "price": 88.0,
+              "quantity": 1
+            },
+            {
+              "id": 11,
+              "name": "白咖啡尼格罗尼",
+              "price": 98.0,
+              "quantity": 2
+            }
+          ]
+        }
+      ],
+      "paid_at": "2026-07-11 18:08:42",
+      "payment_method": "微信支付",
+      "paid_amount": 460.0
+    },
+    {
+      "id": "20260711-A2-003",
+      "table_id": "A2",
+      "created_at": "2026-07-11 15:53:11",
+      "items": [
+        {
+          "id": 1,
+          "name": "无耻之徒 2.0",
+          "price": 88.0,
+          "quantity": 2,
+          "line_total": 0,
+          "gift_quantity": 2,
+          "gift_reason": "x"
+        },
+        {
+          "id": 6,
+          "name": "老赖流浪汉",
+          "price": 78.0,
+          "quantity": 1,
+          "line_total": 0,
+          "discount": 100.0
+        }
+      ],
+      "total": 0,
+      "guests": 2,
+      "status": "canceled",
+      "canceled_at": "2026-07-11 16:06:49"
+    },
+    {
+      "id": "20260711-A1-003",
+      "table_id": "A1",
+      "created_at": "2026-07-11 18:21:44",
+      "items": [
+        {
+          "id": 5,
+          "name": "Volta",
+          "price": 88.0,
+          "quantity": 2,
+          "line_total": 176.0
+        },
+        {
+          "id": 2,
+          "name": "玫瑰青提",
+          "price": 98.0,
+          "quantity": 1,
+          "line_total": 98.0
+        },
+        {
+          "id": 9,
+          "name": "橄榄油酸",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 13,
+          "name": "暖冬 · 热红酒",
+          "price": 68.0,
+          "quantity": 1,
+          "line_total": 68.0
+        },
+        {
+          "id": 22,
+          "name": "威凤凰 / 杯",
+          "price": 55.0,
+          "quantity": 1,
+          "line_total": 55.0
+        },
+        {
+          "id": 24,
+          "name": "泰斯卡风暴 / 杯",
+          "price": 65.0,
+          "quantity": 1,
+          "line_total": 65.0
+        },
+        {
+          "id": 14,
+          "name": "美格波本 / 杯",
+          "price": 55.0,
+          "quantity": 2,
+          "line_total": 110.0
+        },
+        {
+          "id": 10,
+          "name": "香香斯普莫尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 11,
+          "name": "白咖啡尼格罗尼",
+          "price": 98.0,
+          "quantity": 1,
+          "line_total": 98.0
+        },
+        {
+          "id": 16,
+          "name": "布莱特黑麦 / 杯",
+          "price": 55.0,
+          "quantity": 1,
+          "line_total": 55.0
+        },
+        {
+          "id": 26,
+          "name": "欧肯特轩 12 年 / 杯",
+          "price": 65.0,
+          "quantity": 1,
+          "line_total": 65.0
+        },
+        {
+          "id": 20,
+          "name": "四玫瑰 / 杯",
+          "price": 55.0,
+          "quantity": 2,
+          "line_total": 110.0
+        },
+        {
+          "id": 1,
+          "name": "无耻之徒 2.0",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        }
+      ],
+      "total": 1164.0,
+      "guests": 1,
+      "status": "paid",
+      "submitted_at": "2026-07-11 18:21:55",
+      "tickets": [
+        {
+          "id": "T20260711182155384968",
+          "type": "下单",
+          "created_at": "2026-07-11 18:21:55",
+          "archived": true,
+          "items": [
+            {
+              "id": 5,
+              "name": "Volta",
+              "price": 88.0,
+              "quantity": 2
+            },
+            {
+              "id": 2,
+              "name": "玫瑰青提",
+              "price": 98.0,
+              "quantity": 1
+            }
+          ],
+          "archived_at": "2026-07-11 18:25:49"
+        },
+        {
+          "id": "T20260711182450194047",
+          "type": "加菜",
+          "created_at": "2026-07-11 18:24:50",
+          "archived": true,
+          "items": [
+            {
+              "id": 9,
+              "name": "橄榄油酸",
+              "price": 88,
+              "quantity": 1
+            },
+            {
+              "id": 13,
+              "name": "暖冬 · 热红酒",
+              "price": 68,
+              "quantity": 1
+            },
+            {
+              "id": 22,
+              "name": "威凤凰 / 杯",
+              "price": 55,
+              "quantity": 1
+            },
+            {
+              "id": 24,
+              "name": "泰斯卡风暴 / 杯",
+              "price": 65,
+              "quantity": 1
+            },
+            {
+              "id": 14,
+              "name": "美格波本 / 杯",
+              "price": 55,
+              "quantity": 2
+            },
+            {
+              "id": 10,
+              "name": "香香斯普莫尼",
+              "price": 88,
+              "quantity": 1
+            },
+            {
+              "id": 11,
+              "name": "白咖啡尼格罗尼",
+              "price": 98,
+              "quantity": 1
+            },
+            {
+              "id": 16,
+              "name": "布莱特黑麦 / 杯",
+              "price": 55,
+              "quantity": 1
+            },
+            {
+              "id": 26,
+              "name": "欧肯特轩 12 年 / 杯",
+              "price": 65,
+              "quantity": 1
+            },
+            {
+              "id": 20,
+              "name": "四玫瑰 / 杯",
+              "price": 55,
+              "quantity": 2
+            },
+            {
+              "id": 1,
+              "name": "无耻之徒 2.0",
+              "price": 88,
+              "quantity": 1
+            }
+          ],
+          "archived_at": "2026-07-11 18:25:48"
+        }
+      ],
+      "order_discount": 10.0,
+      "order_reduction": 20.0,
+      "payments": [
+        {
+          "id": "P20260711183444569016",
+          "method": "微信支付",
+          "amount": 500.0,
+          "time": "2026-07-11 18:34:44"
+        },
+        {
+          "id": "P20260711183458192040",
+          "method": "现金",
+          "amount": 527.6,
+          "time": "2026-07-11 18:34:58"
+        }
+      ],
+      "paid_at": "2026-07-11 18:34:58",
+      "payment_method": "组合支付",
+      "paid_amount": 1027.6
+    },
+    {
+      "id": "20260711-A1-004",
+      "table_id": "A1",
+      "created_at": "2026-07-11 18:36:21",
+      "items": [
+        {
+          "id": 7,
+          "name": "苦瓜马天尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        }
+      ],
+      "total": 88.0,
+      "guests": 4,
+      "status": "canceled",
+      "canceled_at": "2026-07-11 18:36:27"
+    },
+    {
+      "id": "20260711-D2-001",
+      "table_id": "D2",
+      "created_at": "2026-07-11 18:36:39",
+      "items": [
+        {
+          "id": 30,
+          "name": "格兰威特 12 年 / 杯",
+          "price": 65.0,
+          "quantity": 1,
+          "line_total": 65.0
+        },
+        {
+          "id": 20,
+          "name": "四玫瑰 / 杯",
+          "price": 55.0,
+          "quantity": 1,
+          "line_total": 55.0
+        },
+        {
+          "id": 32,
+          "name": "波摩 12 年 / 杯",
+          "price": 75.0,
+          "quantity": 1,
+          "line_total": 75.0
+        },
+        {
+          "id": 4,
+          "name": "山茶花 2.0",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 9,
+          "name": "橄榄油酸",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 8,
+          "name": "笨蛋解药",
+          "price": 98.0,
+          "quantity": 1,
+          "line_total": 98.0
+        },
+        {
+          "id": 7,
+          "name": "苦瓜马天尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        }
+      ],
+      "total": 557.0,
+      "guests": 6,
+      "status": "paid",
+      "submitted_at": "2026-07-11 18:36:44",
+      "tickets": [
+        {
+          "id": "T20260711183644117577",
+          "type": "下单",
+          "created_at": "2026-07-11 18:36:44",
+          "archived": true,
+          "items": [
+            {
+              "id": 30,
+              "name": "格兰威特 12 年 / 杯",
+              "price": 65.0,
+              "quantity": 1
+            },
+            {
+              "id": 20,
+              "name": "四玫瑰 / 杯",
+              "price": 55.0,
+              "quantity": 1
+            },
+            {
+              "id": 32,
+              "name": "波摩 12 年 / 杯",
+              "price": 75.0,
+              "quantity": 1
+            },
+            {
+              "id": 4,
+              "name": "山茶花 2.0",
+              "price": 88.0,
+              "quantity": 1
+            },
+            {
+              "id": 9,
+              "name": "橄榄油酸",
+              "price": 88.0,
+              "quantity": 1
+            },
+            {
+              "id": 8,
+              "name": "笨蛋解药",
+              "price": 98.0,
+              "quantity": 1
+            },
+            {
+              "id": 7,
+              "name": "苦瓜马天尼",
+              "price": 88.0,
+              "quantity": 1
+            }
+          ],
+          "archived_at": "2026-07-11 18:37:20"
+        }
+      ],
+      "payments": [
+        {
+          "id": "P20260711202143538962",
+          "method": "微信支付",
+          "amount": 557.0,
+          "time": "2026-07-11 20:21:43"
+        }
+      ],
+      "paid_at": "2026-07-11 20:21:45",
+      "payment_method": "微信支付",
+      "paid_amount": 557.0
+    },
+    {
+      "id": "20260711-W1-001",
+      "table_id": "W1",
+      "created_at": "2026-07-11 20:39:26",
+      "items": [
+        {
+          "id": 5,
+          "name": "Volta",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        }
+      ],
+      "total": 88.0,
+      "guests": 2,
+      "status": "paid",
+      "submitted_at": "2026-07-11 20:39:28",
+      "tickets": [
+        {
+          "id": "T20260711203928066793",
+          "type": "下单",
+          "created_at": "2026-07-11 20:39:28",
+          "archived": false,
+          "items": [
+            {
+              "id": 5,
+              "name": "Volta",
+              "price": 88.0,
+              "quantity": 1
+            }
+          ]
+        }
+      ],
+      "payments": [
+        {
+          "id": "P20260711203932150466",
+          "method": "微信支付",
+          "amount": 88.0,
+          "time": "2026-07-11 20:39:32"
+        }
+      ],
+      "paid_at": "2026-07-11 20:39:33",
+      "payment_method": "微信支付",
+      "paid_amount": 88.0
+    },
+    {
+      "id": "20260711-A1-005",
+      "table_id": "B4",
+      "created_at": "2026-07-11 23:13:04",
+      "items": [],
+      "total": 98.0,
+      "guests": 4,
+      "status": "merged",
+      "submitted_at": "2026-07-11 23:40:14",
+      "tickets": [
+        {
+          "id": "T20260711234014134728",
+          "type": "下单",
+          "created_at": "2026-07-11 23:40:14",
+          "archived": true,
+          "items": [
+            {
+              "id": 5,
+              "name": "Volta",
+              "price": 88.0,
+              "quantity": 2
+            },
+            {
+              "id": 2,
+              "name": "玫瑰青提",
+              "price": 98.0,
+              "quantity": 1
+            }
+          ],
+          "archived_at": "2026-07-11 23:40:25"
+        }
+      ],
+      "adjustments": [
+        {
+          "type": "remove",
+          "item_id": 5,
+          "reason": "退菜",
+          "created_at": "2026-07-12 00:25:36"
+        }
+      ],
+      "transferred_from": "A4",
+      "transferred_at": "2026-07-12 00:55:41",
+      "merged_to": "20260711-A2-004",
+      "merged_at": "2026-07-12 00:55:47"
+    },
+    {
+      "id": "20260711-A2-004",
+      "table_id": "A2",
+      "created_at": "2026-07-11 23:49:39",
+      "items": [
+        {
+          "id": 67,
+          "name": "特调",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 5,
+          "name": "Volta",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0,
+          "remark": "不要冰"
+        },
+        {
+          "id": 7,
+          "name": "苦瓜马天尼",
+          "price": 88.0,
+          "quantity": 2,
+          "line_total": 176.0
+        },
+        {
+          "id": 6,
+          "name": "老赖流浪汉",
+          "price": 78.0,
+          "quantity": 2,
+          "line_total": 78.0,
+          "gift_quantity": 1,
+          "gift_reason": "经理赠送"
+        }
+      ],
+      "total": 430.0,
+      "guests": 2,
+      "status": "paid",
+      "transferred_from": "B3",
+      "transferred_at": "2026-07-12 00:41:25",
+      "submitted_at": "2026-07-12 01:00:53",
+      "tickets": [
+        {
+          "id": "T20260712010053280801",
+          "type": "下单",
+          "created_at": "2026-07-12 01:00:53",
+          "archived": true,
+          "items": [
+            {
+              "id": 67,
+              "name": "特调",
+              "price": 88.0,
+              "quantity": 1
+            },
+            {
+              "id": 5,
+              "name": "Volta",
+              "price": 88.0,
+              "quantity": 1
+            },
+            {
+              "id": 7,
+              "name": "苦瓜马天尼",
+              "price": 88.0,
+              "quantity": 2
+            },
+            {
+              "id": 6,
+              "name": "老赖流浪汉",
+              "price": 78.0,
+              "quantity": 2
+            }
+          ],
+          "archived_at": "2026-07-12 01:10:38"
+        }
+      ],
+      "payments": [
+        {
+          "id": "P20260712021939041049",
+          "method": "微信支付",
+          "amount": 52.0,
+          "time": "2026-07-12 02:19:39"
+        },
+        {
+          "id": "P20260712021957736038",
+          "method": "支付宝",
+          "amount": 99.0,
+          "time": "2026-07-12 02:19:57"
+        },
+        {
+          "id": "P20260712022159781255",
+          "method": "现金",
+          "amount": 259.0,
+          "time": "2026-07-12 02:21:59"
+        }
+      ],
+      "round_down": 20.0,
+      "paid_at": "2026-07-12 02:29:27",
+      "payment_method": "组合支付",
+      "paid_amount": 410.0
+    },
+    {
+      "id": "20260712-A1-001",
+      "table_id": "A1",
+      "created_at": "2026-07-12 01:30:34",
+      "items": [
+        {
+          "id": 67,
+          "name": "特调",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 7,
+          "name": "苦瓜马天尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        }
+      ],
+      "total": 176.0,
+      "guests": 1,
+      "status": "paid",
+      "submitted_at": "2026-07-12 02:29:36",
+      "tickets": [
+        {
+          "id": "T20260712022936098301",
+          "type": "下单",
+          "created_at": "2026-07-12 02:29:36",
+          "archived": true,
+          "items": [
+            {
+              "id": 67,
+              "name": "特调",
+              "price": 88.0,
+              "quantity": 1
+            },
+            {
+              "id": 7,
+              "name": "苦瓜马天尼",
+              "price": 88.0,
+              "quantity": 1
+            }
+          ],
+          "archived_at": "2026-07-12 02:31:20"
+        }
+      ],
+      "payments": [
+        {
+          "id": "P20260712024810530000",
+          "method": "支付宝",
+          "amount": 176.0,
+          "time": "2026-07-12 02:48:10"
+        }
+      ],
+      "paid_at": "2026-07-12 02:48:11",
+      "payment_method": "支付宝",
+      "paid_amount": 176.0
+    },
+    {
+      "id": "20260712-A1-002",
+      "table_id": "A1",
+      "created_at": "2026-07-12 02:49:21",
+      "items": [
+        {
+          "id": 67,
+          "name": "特调",
+          "price": 88.0,
+          "quantity": 2,
+          "line_total": 176.0
+        },
+        {
+          "id": 5,
+          "name": "Volta",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 7,
+          "name": "苦瓜马天尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 8,
+          "name": "笨蛋解药",
+          "price": 98.0,
+          "quantity": 1,
+          "line_total": 98.0
+        }
+      ],
+      "total": 450.0,
+      "guests": 1,
+      "status": "paid",
+      "submitted_at": "2026-07-12 11:03:21",
+      "tickets": [
+        {
+          "id": "T20260712110321802410",
+          "type": "下单",
+          "created_at": "2026-07-12 11:03:21",
+          "archived": true,
+          "items": [
+            {
+              "id": 67,
+              "name": "特调",
+              "price": 88.0,
+              "quantity": 2
+            },
+            {
+              "id": 5,
+              "name": "Volta",
+              "price": 88.0,
+              "quantity": 1
+            }
+          ],
+          "archived_at": "2026-07-12 11:14:27"
+        }
+      ],
+      "payments": [
+        {
+          "id": "P20260712111847471899",
+          "method": "现金",
+          "amount": 450.0,
+          "time": "2026-07-12 11:18:47"
+        }
+      ],
+      "paid_at": "2026-07-12 11:18:48",
+      "payment_method": "现金",
+      "paid_amount": 450.0
+    },
+    {
+      "id": "20260712-A3-001",
+      "table_id": "A3",
+      "created_at": "2026-07-12 11:05:43",
+      "items": [
+        {
+          "id": 7,
+          "name": "苦瓜马天尼",
+          "price": 88.0,
+          "quantity": 2,
+          "line_total": 176.0
+        },
+        {
+          "id": 6,
+          "name": "老赖流浪汉",
+          "price": 78.0,
+          "quantity": 1,
+          "line_total": 78.0
+        },
+        {
+          "id": 12,
+          "name": "闲人贝里尼",
+          "price": 88.0,
+          "quantity": 2,
+          "line_total": 176.0
+        },
+        {
+          "id": 5,
+          "name": "Volta",
+          "price": 88.0,
+          "quantity": 2,
+          "line_total": 176.0
+        },
+        {
+          "id": 2,
+          "name": "玫瑰青提",
+          "price": 98.0,
+          "quantity": 1,
+          "line_total": 98.0
+        },
+        {
+          "id": 4,
+          "name": "山茶花 2.0",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        }
+      ],
+      "total": 792.0,
+      "guests": 1,
+      "status": "paid",
+      "submitted_at": "2026-07-12 11:08:13",
+      "tickets": [
+        {
+          "id": "T20260712110813082620",
+          "type": "下单",
+          "created_at": "2026-07-12 11:08:13",
+          "archived": true,
+          "items": [
+            {
+              "id": 7,
+              "name": "苦瓜马天尼",
+              "price": 88.0,
+              "quantity": 1
+            },
+            {
+              "id": 6,
+              "name": "老赖流浪汉",
+              "price": 78.0,
+              "quantity": 1
+            },
+            {
+              "id": 12,
+              "name": "闲人贝里尼",
+              "price": 88.0,
+              "quantity": 2
+            }
+          ],
+          "archived_at": "2026-07-12 11:14:26"
+        }
+      ],
+      "payments": [
+        {
+          "id": "P20260712111431836793",
+          "method": "微信支付",
+          "amount": 792.0,
+          "time": "2026-07-12 11:14:31"
+        }
+      ],
+      "paid_at": "2026-07-12 11:14:33",
+      "payment_method": "微信支付",
+      "paid_amount": 792.0
+    },
+    {
+      "id": "20260712-A2-001",
+      "table_id": "A2",
+      "created_at": "2026-07-12 11:19:10",
+      "items": [
+        {
+          "id": 1000036,
+          "menu_item_id": 1,
+          "name": "无耻之徒 2.0",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 1000035,
+          "menu_item_id": 8,
+          "name": "笨蛋解药",
+          "price": 98.0,
+          "quantity": 1,
+          "line_total": 98.0
+        },
+        {
+          "id": 1000034,
+          "menu_item_id": 7,
+          "name": "苦瓜马天尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 1000025,
+          "menu_item_id": 8,
+          "name": "笨蛋解药",
+          "price": 98.0,
+          "quantity": 2,
+          "line_total": 196.0
+        },
+        {
+          "id": 1000024,
+          "menu_item_id": 2,
+          "name": "玫瑰青提",
+          "price": 98.0,
+          "quantity": 1,
+          "line_total": 98.0
+        },
+        {
+          "id": 1000023,
+          "menu_item_id": 5,
+          "name": "Volta",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 1000022,
+          "menu_item_id": 7,
+          "name": "苦瓜马天尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 1000014,
+          "menu_item_id": 5,
+          "name": "Volta",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 1000013,
+          "menu_item_id": 4,
+          "name": "山茶花 2.0",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 1000012,
+          "menu_item_id": 2,
+          "name": "玫瑰青提",
+          "price": 98.0,
+          "quantity": 2,
+          "line_total": 196.0
+        },
+        {
+          "id": 7,
+          "menu_item_id": 7,
+          "name": "苦瓜马天尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 5,
+          "menu_item_id": 5,
+          "name": "Volta",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 67,
+          "menu_item_id": 67,
+          "name": "特调",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        }
+      ],
+      "total": 1380.0,
+      "guests": 1,
+      "status": "paid",
+      "submitted_at": "2026-07-12 11:19:12",
+      "tickets": [
+        {
+          "id": "T20260712111912880555",
+          "type": "下单",
+          "created_at": "2026-07-12 11:19:12",
+          "archived": true,
+          "items": [
+            {
+              "id": 7,
+              "name": "苦瓜马天尼",
+              "price": 88.0,
+              "quantity": 1
+            },
+            {
+              "id": 5,
+              "name": "Volta",
+              "price": 88.0,
+              "quantity": 1
+            },
+            {
+              "id": 67,
+              "name": "特调",
+              "price": 88.0,
+              "quantity": 1
+            }
+          ],
+          "archived_at": "2026-07-12 11:19:16"
+        },
+        {
+          "id": "T20260712112457347394",
+          "type": "加菜",
+          "created_at": "2026-07-12 11:24:57",
+          "archived": true,
+          "items": [
+            {
+              "id": 1000014,
+              "name": "Volta",
+              "price": 88,
+              "quantity": 1
+            },
+            {
+              "id": 1000013,
+              "name": "山茶花 2.0",
+              "price": 88,
+              "quantity": 1
+            },
+            {
+              "id": 1000012,
+              "name": "玫瑰青提",
+              "price": 98,
+              "quantity": 2
+            }
+          ],
+          "archived_at": "2026-07-12 11:35:43"
+        },
+        {
+          "id": "T20260712113444592798",
+          "type": "加菜",
+          "created_at": "2026-07-12 11:34:44",
+          "archived": true,
+          "items": [
+            {
+              "id": 1000025,
+              "name": "笨蛋解药",
+              "price": 98,
+              "quantity": 2
+            },
+            {
+              "id": 1000024,
+              "name": "玫瑰青提",
+              "price": 98,
+              "quantity": 1
+            },
+            {
+              "id": 1000023,
+              "name": "Volta",
+              "price": 88,
+              "quantity": 1
+            },
+            {
+              "id": 1000022,
+              "name": "苦瓜马天尼",
+              "price": 88,
+              "quantity": 1
+            }
+          ],
+          "archived_at": "2026-07-12 11:35:42"
+        },
+        {
+          "id": "T20260712113547353812",
+          "type": "补打",
+          "created_at": "2026-07-12 11:35:47",
+          "archived": true,
+          "items": [
+            {
+              "id": 1000025,
+              "name": "笨蛋解药",
+              "price": 98.0,
+              "quantity": 2
+            },
+            {
+              "id": 1000024,
+              "name": "玫瑰青提",
+              "price": 98.0,
+              "quantity": 1
+            },
+            {
+              "id": 1000023,
+              "name": "Volta",
+              "price": 88.0,
+              "quantity": 1
+            },
+            {
+              "id": 1000022,
+              "name": "苦瓜马天尼",
+              "price": 88.0,
+              "quantity": 1
+            },
+            {
+              "id": 1000014,
+              "name": "Volta",
+              "price": 88.0,
+              "quantity": 1
+            },
+            {
+              "id": 1000013,
+              "name": "山茶花 2.0",
+              "price": 88.0,
+              "quantity": 1
+            },
+            {
+              "id": 1000012,
+              "name": "玫瑰青提",
+              "price": 98.0,
+              "quantity": 2
+            },
+            {
+              "id": 7,
+              "name": "苦瓜马天尼",
+              "price": 88.0,
+              "quantity": 1
+            },
+            {
+              "id": 5,
+              "name": "Volta",
+              "price": 88.0,
+              "quantity": 1
+            },
+            {
+              "id": 67,
+              "name": "特调",
+              "price": 88.0,
+              "quantity": 1
+            }
+          ],
+          "archived_at": "2026-07-12 11:35:52"
+        },
+        {
+          "id": "T20260712120034389618",
+          "type": "加菜",
+          "created_at": "2026-07-12 12:00:34",
+          "archived": true,
+          "items": [
+            {
+              "id": 1000036,
+              "name": "无耻之徒 2.0",
+              "price": 88,
+              "quantity": 1
+            },
+            {
+              "id": 1000035,
+              "name": "笨蛋解药",
+              "price": 98,
+              "quantity": 1
+            },
+            {
+              "id": 1000034,
+              "name": "苦瓜马天尼",
+              "price": 88,
+              "quantity": 1
+            }
+          ],
+          "archived_at": "2026-07-12 12:00:36"
+        },
+        {
+          "id": "T20260712120102250774",
+          "type": "补打制作单",
+          "created_at": "2026-07-12 12:01:02",
+          "archived": true,
+          "items": [
+            {
+              "id": 1000036,
+              "name": "无耻之徒 2.0",
+              "price": 88,
+              "quantity": 1
+            },
+            {
+              "id": 1000035,
+              "name": "笨蛋解药",
+              "price": 98,
+              "quantity": 1
+            },
+            {
+              "id": 1000034,
+              "name": "苦瓜马天尼",
+              "price": 88,
+              "quantity": 1
+            },
+            {
+              "id": 1000025,
+              "name": "笨蛋解药",
+              "price": 98,
+              "quantity": 1
+            },
+            {
+              "id": 1000024,
+              "name": "玫瑰青提",
+              "price": 98,
+              "quantity": 1
+            },
+            {
+              "id": 1000023,
+              "name": "Volta",
+              "price": 88,
+              "quantity": 1
+            },
+            {
+              "id": 1000022,
+              "name": "苦瓜马天尼",
+              "price": 88,
+              "quantity": 1
+            },
+            {
+              "id": 1000014,
+              "name": "Volta",
+              "price": 88,
+              "quantity": 1
+            }
+          ],
+          "archived_at": "2026-07-12 12:01:07"
+        }
+      ],
+      "next_line_id": 1000037,
+      "voucher": {
+        "name": "100元代金券×2、68抵扣×1",
+        "amount": 268.0,
+        "items": [
+          {
+            "id": 1,
+            "name": "100元代金券",
+            "quantity": 2,
+            "face_value": 100.0,
+            "amount": 200.0
+          },
+          {
+            "id": 4,
+            "name": "68抵扣",
+            "quantity": 1,
+            "face_value": 68.0,
+            "amount": 68.0
+          }
+        ]
+      },
+      "payments": [
+        {
+          "id": "P20260712120124880845",
+          "method": "微信支付",
+          "amount": 1112.0,
+          "time": "2026-07-12 12:01:24"
+        }
+      ],
+      "paid_at": "2026-07-12 12:01:26",
+      "payment_method": "微信支付",
+      "paid_amount": 1112.0
+    },
+    {
+      "id": "20260712-D2-001",
+      "table_id": "B2",
+      "created_at": "2026-07-12 12:05:27",
+      "items": [
+        {
+          "id": 7,
+          "menu_item_id": 7,
+          "name": "苦瓜马天尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 67,
+          "menu_item_id": 67,
+          "name": "特调",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 70.4,
+          "discount": 20.0
+        }
+      ],
+      "total": 158.4,
+      "guests": 6,
+      "status": "canceled",
+      "submitted_at": "2026-07-12 12:05:49",
+      "tickets": [
+        {
+          "id": "T20260712120549070555",
+          "type": "下单",
+          "created_at": "2026-07-12 12:05:49",
+          "archived": true,
+          "items": [
+            {
+              "id": 7,
+              "name": "苦瓜马天尼",
+              "price": 88.0,
+              "quantity": 1
+            },
+            {
+              "id": 67,
+              "name": "特调",
+              "price": 88.0,
+              "quantity": 1
+            }
+          ],
+          "archived_at": "2026-07-12 12:06:14"
+        }
+      ],
+      "transferred_from": "W2",
+      "transferred_at": "2026-07-12 12:06:36",
+      "canceled_at": "2026-07-12 12:06:43"
+    },
+    {
+      "id": "20260712-B2-002",
+      "table_id": "B2",
+      "created_at": "2026-07-12 12:06:47",
+      "items": [
+        {
+          "id": 1000003,
+          "menu_item_id": 20,
+          "name": "四玫瑰 / 杯",
+          "price": 55.0,
+          "quantity": 1,
+          "line_total": 55.0
+        },
+        {
+          "id": 1000001,
+          "menu_item_id": 1,
+          "name": "无耻之徒 2.0",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 1000000,
+          "menu_item_id": 12,
+          "name": "闲人贝里尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 1,
+          "menu_item_id": 1,
+          "name": "无耻之徒 2.0",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 0,
+          "returned": true,
+          "return_reason": "退菜",
+          "returned_at": "2026-07-12 12:10:32"
+        },
+        {
+          "id": 8,
+          "menu_item_id": 8,
+          "name": "笨蛋解药",
+          "price": 98.0,
+          "quantity": 1,
+          "line_total": 0,
+          "returned": true,
+          "return_reason": "退菜",
+          "returned_at": "2026-07-12 12:10:51"
+        },
+        {
+          "id": 7,
+          "menu_item_id": 7,
+          "name": "苦瓜马天尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 6,
+          "menu_item_id": 6,
+          "name": "老赖流浪汉",
+          "price": 78.0,
+          "quantity": 1,
+          "line_total": 78.0
+        }
+      ],
+      "total": 397.0,
+      "guests": 1,
+      "status": "paid",
+      "submitted_at": "2026-07-12 12:06:51",
+      "tickets": [
+        {
+          "id": "T20260712120651314913",
+          "type": "下单",
+          "created_at": "2026-07-12 12:06:51",
+          "archived": true,
+          "items": [
+            {
+              "id": 11,
+              "name": "白咖啡尼格罗尼",
+              "price": 98.0,
+              "quantity": 1
+            },
+            {
+              "id": 12,
+              "name": "闲人贝里尼",
+              "price": 88.0,
+              "quantity": 1
+            },
+            {
+              "id": 1,
+              "name": "无耻之徒 2.0",
+              "price": 88.0,
+              "quantity": 1
+            },
+            {
+              "id": 8,
+              "name": "笨蛋解药",
+              "price": 98.0,
+              "quantity": 1
+            },
+            {
+              "id": 7,
+              "name": "苦瓜马天尼",
+              "price": 88.0,
+              "quantity": 1
+            },
+            {
+              "id": 6,
+              "name": "老赖流浪汉",
+              "price": 78.0,
+              "quantity": 1
+            }
+          ],
+          "archived_at": "2026-07-12 12:11:35"
+        },
+        {
+          "id": "T20260712121132246644",
+          "type": "加菜",
+          "created_at": "2026-07-12 12:11:32",
+          "archived": true,
+          "items": [
+            {
+              "id": 1000001,
+              "name": "无耻之徒 2.0",
+              "price": 88,
+              "quantity": 1
+            },
+            {
+              "id": 1000000,
+              "name": "闲人贝里尼",
+              "price": 88,
+              "quantity": 1
+            }
+          ],
+          "archived_at": "2026-07-12 12:11:34"
+        },
+        {
+          "id": "T20260712122119261509",
+          "type": "加菜",
+          "created_at": "2026-07-12 12:21:19",
+          "archived": true,
+          "items": [
+            {
+              "id": 1000003,
+              "name": "四玫瑰 / 杯",
+              "price": 55,
+              "quantity": 1
+            }
+          ],
+          "archived_at": "2026-07-12 12:21:24"
+        }
+      ],
+      "adjustments": [
+        {
+          "type": "remove",
+          "item_id": 11,
+          "reason": "退菜",
+          "created_at": "2026-07-12 12:06:55"
+        },
+        {
+          "type": "remove",
+          "item_id": 12,
+          "reason": "退菜",
+          "created_at": "2026-07-12 12:07:01"
+        },
+        {
+          "type": "remove",
+          "item_id": 1,
+          "reason": "退菜",
+          "created_at": "2026-07-12 12:10:32"
+        },
+        {
+          "type": "remove",
+          "item_id": 8,
+          "reason": "退菜",
+          "created_at": "2026-07-12 12:10:51"
+        }
+      ],
+      "next_line_id": 1000004,
+      "round_down": 7.0,
+      "payments": [
+        {
+          "id": "P20260712122142666873",
+          "method": "现金",
+          "amount": 390.0,
+          "time": "2026-07-12 12:21:42"
+        }
+      ],
+      "paid_at": "2026-07-12 12:21:43",
+      "payment_method": "现金",
+      "paid_amount": 390.0
+    },
+    {
+      "id": "20260712-D1-001",
+      "table_id": "D1",
+      "created_at": "2026-07-12 12:11:37",
+      "items": [
+        {
+          "id": 1000001,
+          "menu_item_id": 31,
+          "name": "格兰威特 12 年 / 瓶",
+          "price": 888.0,
+          "quantity": 1,
+          "line_total": 0,
+          "returned": true,
+          "return_reason": "错点",
+          "returned_at": "2026-07-12 12:20:43"
+        },
+        {
+          "id": 1000000,
+          "menu_item_id": 21,
+          "name": "四玫瑰 / 瓶",
+          "price": 680.0,
+          "quantity": 1,
+          "line_total": 680.0
+        },
+        {
+          "id": 19,
+          "menu_item_id": 19,
+          "name": "芝华士 12 年 / 瓶",
+          "price": 680.0,
+          "quantity": 1,
+          "line_total": 680.0
+        },
+        {
+          "id": 22,
+          "menu_item_id": 22,
+          "name": "威凤凰 / 杯",
+          "price": 55.0,
+          "quantity": 1,
+          "line_total": 55.0
+        },
+        {
+          "id": 1,
+          "menu_item_id": 1,
+          "name": "无耻之徒 2.0",
+          "price": 88.0,
+          "quantity": 2,
+          "line_total": 176.0
+        },
+        {
+          "id": 7,
+          "menu_item_id": 7,
+          "name": "苦瓜马天尼",
+          "price": 88.0,
+          "quantity": 4,
+          "line_total": 352.0
+        }
+      ],
+      "total": 1943.0,
+      "guests": 2,
+      "status": "paid",
+      "submitted_at": "2026-07-12 12:11:42",
+      "tickets": [
+        {
+          "id": "T20260712121142207068",
+          "type": "下单",
+          "created_at": "2026-07-12 12:11:42",
+          "archived": true,
+          "items": [
+            {
+              "id": 19,
+              "name": "芝华士 12 年 / 瓶",
+              "price": 680.0,
+              "quantity": 1
+            },
+            {
+              "id": 22,
+              "name": "威凤凰 / 杯",
+              "price": 55.0,
+              "quantity": 1
+            },
+            {
+              "id": 1,
+              "name": "无耻之徒 2.0",
+              "price": 88.0,
+              "quantity": 2
+            },
+            {
+              "id": 7,
+              "name": "苦瓜马天尼",
+              "price": 88.0,
+              "quantity": 4
+            }
+          ],
+          "archived_at": "2026-07-12 12:12:26"
+        },
+        {
+          "id": "T20260712121221911455",
+          "type": "加菜",
+          "created_at": "2026-07-12 12:12:21",
+          "archived": true,
+          "items": [
+            {
+              "id": 1000001,
+              "name": "格兰威特 12 年 / 瓶",
+              "price": 888,
+              "quantity": 1
+            },
+            {
+              "id": 1000000,
+              "name": "四玫瑰 / 瓶",
+              "price": 680,
+              "quantity": 1
+            }
+          ],
+          "archived_at": "2026-07-12 12:12:26"
+        }
+      ],
+      "next_line_id": 1000002,
+      "adjustments": [
+        {
+          "type": "remove",
+          "item_id": 1000001,
+          "reason": "错点",
+          "created_at": "2026-07-12 12:20:43"
+        }
+      ],
+      "remark": "老客户",
+      "payments": [
+        {
+          "id": "P20260712122057633104",
+          "method": "支付宝",
+          "amount": 1943.0,
+          "time": "2026-07-12 12:20:57"
+        }
+      ],
+      "paid_at": "2026-07-12 12:21:01",
+      "payment_method": "支付宝",
+      "paid_amount": 1943.0
+    },
+    {
+      "id": "20260712-D2-001",
+      "table_id": "D2",
+      "created_at": "2026-07-12 12:22:02",
+      "items": [
+        {
+          "id": 61,
+          "menu_item_id": 61,
+          "name": "琳达马尔贝克老藤干红 / 瓶",
+          "price": 368.0,
+          "quantity": 1,
+          "line_total": 368.0
+        },
+        {
+          "id": 64,
+          "menu_item_id": 64,
+          "name": "布克宁-沃夫博士雷司令 / 瓶",
+          "price": 598.0,
+          "quantity": 1,
+          "line_total": 598.0
+        }
+      ],
+      "total": 966.0,
+      "guests": 6,
+      "status": "paid",
+      "submitted_at": "2026-07-12 12:22:05",
+      "tickets": [
+        {
+          "id": "T20260712122205736856",
+          "type": "下单",
+          "created_at": "2026-07-12 12:22:05",
+          "archived": true,
+          "items": [
+            {
+              "id": 61,
+              "name": "琳达马尔贝克老藤干红 / 瓶",
+              "price": 368.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 12:38:26"
+            },
+            {
+              "id": 64,
+              "name": "布克宁-沃夫博士雷司令 / 瓶",
+              "price": 598.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 12:38:26"
+            }
+          ],
+          "archived_at": "2026-07-12 12:38:27"
+        }
+      ],
+      "payments": [
+        {
+          "id": "P20260712123844611315",
+          "method": "支付宝",
+          "amount": 966.0,
+          "time": "2026-07-12 12:38:44"
+        }
+      ],
+      "paid_at": "2026-07-12 12:38:45",
+      "payment_method": "支付宝",
+      "paid_amount": 966.0
+    },
+    {
+      "id": "20260712-W1-001",
+      "table_id": "W1",
+      "created_at": "2026-07-12 12:40:08",
+      "items": [
+        {
+          "id": 18,
+          "menu_item_id": 18,
+          "name": "芝华士 12 年 / 杯",
+          "price": 55.0,
+          "quantity": 1,
+          "line_total": 55.0
+        },
+        {
+          "id": 16,
+          "menu_item_id": 16,
+          "name": "布莱特黑麦 / 杯",
+          "price": 55.0,
+          "quantity": 1,
+          "line_total": 55.0
+        },
+        {
+          "id": 11,
+          "menu_item_id": 11,
+          "name": "白咖啡尼格罗尼",
+          "price": 98.0,
+          "quantity": 1,
+          "line_total": 98.0
+        },
+        {
+          "id": 12,
+          "menu_item_id": 12,
+          "name": "闲人贝里尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 7,
+          "menu_item_id": 7,
+          "name": "苦瓜马天尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 5,
+          "menu_item_id": 5,
+          "name": "Volta",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 67,
+          "menu_item_id": 67,
+          "name": "特调",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        }
+      ],
+      "total": 560.0,
+      "guests": 2,
+      "status": "paid",
+      "submitted_at": "2026-07-12 12:40:12",
+      "tickets": [
+        {
+          "id": "T20260712124012496023",
+          "type": "下单",
+          "created_at": "2026-07-12 12:40:12",
+          "archived": true,
+          "items": [
+            {
+              "id": 18,
+              "name": "芝华士 12 年 / 杯",
+              "price": 55.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 12:50:08"
+            },
+            {
+              "id": 16,
+              "name": "布莱特黑麦 / 杯",
+              "price": 55.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 12:50:08"
+            },
+            {
+              "id": 11,
+              "name": "白咖啡尼格罗尼",
+              "price": 98.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 12:50:08"
+            },
+            {
+              "id": 12,
+              "name": "闲人贝里尼",
+              "price": 88.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 12:50:08"
+            },
+            {
+              "id": 7,
+              "name": "苦瓜马天尼",
+              "price": 88.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 12:50:08"
+            },
+            {
+              "id": 5,
+              "name": "Volta",
+              "price": 88.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 12:50:08"
+            },
+            {
+              "id": 67,
+              "name": "特调",
+              "price": 88.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 12:50:08"
+            }
+          ],
+          "archived_at": "2026-07-12 12:52:23"
+        }
+      ],
+      "payments": [
+        {
+          "id": "P20260712125230152138",
+          "method": "现金",
+          "amount": 560.0,
+          "time": "2026-07-12 12:52:30"
+        }
+      ],
+      "paid_at": "2026-07-12 12:52:30",
+      "payment_method": "现金",
+      "paid_amount": 560.0
+    },
+    {
+      "id": "20260712-D2-002",
+      "table_id": "D2",
+      "created_at": "2026-07-12 12:56:58",
+      "items": [
+        {
+          "id": 1000002,
+          "menu_item_id": 13,
+          "name": "暖冬 · 热红酒",
+          "price": 68.0,
+          "quantity": 1,
+          "line_total": 0,
+          "returned": true,
+          "return_reason": "错点",
+          "returned_at": "2026-07-12 13:01:15"
+        },
+        {
+          "id": 1000001,
+          "menu_item_id": 9,
+          "name": "橄榄油酸",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 1000000,
+          "menu_item_id": 8,
+          "name": "笨蛋解药",
+          "price": 98.0,
+          "quantity": 1,
+          "line_total": 98.0
+        },
+        {
+          "id": 11,
+          "menu_item_id": 11,
+          "name": "白咖啡尼格罗尼",
+          "price": 98.0,
+          "quantity": 1,
+          "line_total": 98.0
+        },
+        {
+          "id": 12,
+          "menu_item_id": 12,
+          "name": "闲人贝里尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 7,
+          "menu_item_id": 7,
+          "name": "苦瓜马天尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 6,
+          "menu_item_id": 6,
+          "name": "老赖流浪汉",
+          "price": 78.0,
+          "quantity": 1,
+          "line_total": 78.0
+        }
+      ],
+      "total": 538.0,
+      "guests": 6,
+      "status": "paid",
+      "submitted_at": "2026-07-12 12:57:01",
+      "tickets": [
+        {
+          "id": "T20260712125701743859",
+          "type": "下单",
+          "created_at": "2026-07-12 12:57:01",
+          "archived": true,
+          "items": [
+            {
+              "id": 11,
+              "name": "白咖啡尼格罗尼",
+              "price": 98.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 13:00:31"
+            },
+            {
+              "id": 12,
+              "name": "闲人贝里尼",
+              "price": 88.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 13:00:31"
+            },
+            {
+              "id": 7,
+              "name": "苦瓜马天尼",
+              "price": 88.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 13:00:29"
+            },
+            {
+              "id": 6,
+              "name": "老赖流浪汉",
+              "price": 78.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 13:00:31"
+            }
+          ],
+          "archived_at": "2026-07-12 13:00:31"
+        },
+        {
+          "id": "T20260712130100803785",
+          "type": "加菜",
+          "created_at": "2026-07-12 13:01:00",
+          "archived": true,
+          "items": [
+            {
+              "id": 1000002,
+              "name": "暖冬 · 热红酒",
+              "price": 68,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 13:01:03"
+            },
+            {
+              "id": 1000001,
+              "name": "橄榄油酸",
+              "price": 88,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 13:01:03"
+            },
+            {
+              "id": 1000000,
+              "name": "笨蛋解药",
+              "price": 98,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 13:01:03"
+            }
+          ],
+          "archived_at": "2026-07-12 13:01:04"
+        }
+      ],
+      "payments": [
+        {
+          "id": "P20260712130048057974",
+          "method": "现金",
+          "amount": 352.0,
+          "time": "2026-07-12 13:00:48"
+        },
+        {
+          "id": "P20260712130119035952",
+          "method": "支付宝",
+          "amount": 186.0,
+          "time": "2026-07-12 13:01:19"
+        }
+      ],
+      "next_line_id": 1000003,
+      "adjustments": [
+        {
+          "type": "remove",
+          "item_id": 1000002,
+          "reason": "错点",
+          "created_at": "2026-07-12 13:01:15"
+        }
+      ],
+      "paid_at": "2026-07-12 13:01:20",
+      "payment_method": "组合支付",
+      "paid_amount": 538.0
+    },
+    {
+      "id": "20260712-A1-003",
+      "table_id": "A1",
+      "created_at": "2026-07-12 13:05:25",
+      "items": [
+        {
+          "id": 12,
+          "menu_item_id": 12,
+          "name": "闲人贝里尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 8,
+          "menu_item_id": 8,
+          "name": "笨蛋解药",
+          "price": 98.0,
+          "quantity": 1,
+          "line_total": 98.0
+        },
+        {
+          "id": 7,
+          "menu_item_id": 7,
+          "name": "苦瓜马天尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 67,
+          "menu_item_id": 67,
+          "name": "特调",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        }
+      ],
+      "total": 362.0,
+      "guests": 4,
+      "status": "paid",
+      "submitted_at": "2026-07-12 13:05:27",
+      "tickets": [
+        {
+          "id": "T20260712130527897551",
+          "type": "下单",
+          "created_at": "2026-07-12 13:05:27",
+          "archived": true,
+          "items": [
+            {
+              "id": 12,
+              "name": "闲人贝里尼",
+              "price": 88.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 13:06:41"
+            },
+            {
+              "id": 8,
+              "name": "笨蛋解药",
+              "price": 98.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 13:06:41"
+            },
+            {
+              "id": 7,
+              "name": "苦瓜马天尼",
+              "price": 88.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 13:06:31"
+            },
+            {
+              "id": 67,
+              "name": "特调",
+              "price": 88.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 13:06:41"
+            }
+          ],
+          "archived_at": "2026-07-12 13:06:41"
+        }
+      ],
+      "payments": [
+        {
+          "id": "P20260712132253972702",
+          "method": "现金",
+          "amount": 362.0,
+          "time": "2026-07-12 13:22:53"
+        }
+      ],
+      "paid_at": "2026-07-12 13:22:54",
+      "payment_method": "现金",
+      "paid_amount": 362.0
+    },
+    {
+      "id": "20260712-A6-001",
+      "table_id": "A6",
+      "created_at": "2026-07-12 13:05:34",
+      "items": [
+        {
+          "id": 1000002,
+          "menu_item_id": 8,
+          "name": "笨蛋解药",
+          "price": 98.0,
+          "quantity": 2,
+          "line_total": 196.0
+        },
+        {
+          "id": 1000001,
+          "menu_item_id": 7,
+          "name": "苦瓜马天尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 1000000,
+          "menu_item_id": 12,
+          "name": "闲人贝里尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 1,
+          "menu_item_id": 1,
+          "name": "无耻之徒 2.0",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 9,
+          "menu_item_id": 9,
+          "name": "橄榄油酸",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 2,
+          "menu_item_id": 2,
+          "name": "玫瑰青提",
+          "price": 98.0,
+          "quantity": 1,
+          "line_total": 98.0
+        },
+        {
+          "id": 5,
+          "menu_item_id": 5,
+          "name": "Volta",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        }
+      ],
+      "total": 734.0,
+      "guests": 2,
+      "status": "paid",
+      "submitted_at": "2026-07-12 13:05:36",
+      "tickets": [
+        {
+          "id": "T20260712130536620724",
+          "type": "下单",
+          "created_at": "2026-07-12 13:05:36",
+          "archived": true,
+          "items": [
+            {
+              "id": 1,
+              "name": "无耻之徒 2.0",
+              "price": 88.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 13:06:30"
+            },
+            {
+              "id": 9,
+              "name": "橄榄油酸",
+              "price": 88.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 13:06:33"
+            },
+            {
+              "id": 2,
+              "name": "玫瑰青提",
+              "price": 98.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 13:06:42"
+            },
+            {
+              "id": 5,
+              "name": "Volta",
+              "price": 88.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 13:06:42"
+            }
+          ],
+          "archived_at": "2026-07-12 13:06:42"
+        },
+        {
+          "id": "T20260712131903983647",
+          "type": "加菜",
+          "created_at": "2026-07-12 13:19:03",
+          "archived": true,
+          "order_remark": "",
+          "items": [
+            {
+              "id": 1000002,
+              "name": "笨蛋解药",
+              "price": 98,
+              "quantity": 2,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-12 13:19:06"
+            },
+            {
+              "id": 1000001,
+              "name": "苦瓜马天尼",
+              "price": 88,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-12 13:19:07"
+            },
+            {
+              "id": 1000000,
+              "name": "闲人贝里尼",
+              "price": 88,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-12 13:19:08"
+            }
+          ],
+          "archived_at": "2026-07-12 13:19:09"
+        }
+      ],
+      "payments": [
+        {
+          "id": "P20260712131853261549",
+          "method": "支付宝",
+          "amount": 362.0,
+          "time": "2026-07-12 13:18:53"
+        },
+        {
+          "id": "P20260712131917402216",
+          "method": "现金",
+          "amount": 272.0,
+          "time": "2026-07-12 13:19:17"
+        }
+      ],
+      "next_line_id": 1000003,
+      "voucher": {
+        "name": "100元代金券×1",
+        "amount": 100.0,
+        "items": [
+          {
+            "id": 1,
+            "name": "100元代金券",
+            "quantity": 1,
+            "face_value": 100.0,
+            "amount": 100.0
+          }
+        ]
+      },
+      "paid_at": "2026-07-12 13:22:39",
+      "payment_method": "组合支付",
+      "paid_amount": 634.0
+    },
+    {
+      "id": "20260712-D2-003",
+      "table_id": "D2",
+      "created_at": "2026-07-12 13:05:40",
+      "items": [
+        {
+          "id": 1000001,
+          "menu_item_id": 67,
+          "name": "特调",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 1000000,
+          "menu_item_id": 5,
+          "name": "Volta",
+          "price": 88.0,
+          "quantity": 2,
+          "line_total": 176.0
+        },
+        {
+          "id": 11,
+          "menu_item_id": 11,
+          "name": "白咖啡尼格罗尼",
+          "price": 98.0,
+          "quantity": 1,
+          "line_total": 98.0
+        },
+        {
+          "id": 16,
+          "menu_item_id": 16,
+          "name": "布莱特黑麦 / 杯",
+          "price": 55.0,
+          "quantity": 1,
+          "line_total": 55.0
+        },
+        {
+          "id": 18,
+          "menu_item_id": 18,
+          "name": "芝华士 12 年 / 杯",
+          "price": 55.0,
+          "quantity": 1,
+          "line_total": 55.0
+        },
+        {
+          "id": 1,
+          "menu_item_id": 1,
+          "name": "无耻之徒 2.0",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 8,
+          "menu_item_id": 8,
+          "name": "笨蛋解药",
+          "price": 98.0,
+          "quantity": 1,
+          "line_total": 98.0
+        },
+        {
+          "id": 7,
+          "menu_item_id": 7,
+          "name": "苦瓜马天尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        }
+      ],
+      "total": 746.0,
+      "guests": 6,
+      "status": "paid",
+      "submitted_at": "2026-07-12 13:05:47",
+      "tickets": [
+        {
+          "id": "T20260712130547453300",
+          "type": "下单",
+          "created_at": "2026-07-12 13:05:47",
+          "archived": true,
+          "items": [
+            {
+              "id": 11,
+              "name": "白咖啡尼格罗尼",
+              "price": 98.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 13:06:27"
+            },
+            {
+              "id": 16,
+              "name": "布莱特黑麦 / 杯",
+              "price": 55.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 13:06:35"
+            },
+            {
+              "id": 18,
+              "name": "芝华士 12 年 / 杯",
+              "price": 55.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 13:06:39"
+            },
+            {
+              "id": 1,
+              "name": "无耻之徒 2.0",
+              "price": 88.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 13:06:39"
+            },
+            {
+              "id": 8,
+              "name": "笨蛋解药",
+              "price": 98.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 13:06:28"
+            },
+            {
+              "id": 7,
+              "name": "苦瓜马天尼",
+              "price": 88.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 13:06:39"
+            }
+          ],
+          "archived_at": "2026-07-12 13:06:39"
+        },
+        {
+          "id": "T20260712131507756883",
+          "type": "加菜",
+          "created_at": "2026-07-12 13:15:07",
+          "archived": true,
+          "order_remark": "",
+          "items": [
+            {
+              "id": 1000001,
+              "name": "特调",
+              "price": 88,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-12 13:15:11"
+            },
+            {
+              "id": 1000000,
+              "name": "Volta",
+              "price": 88,
+              "quantity": 2,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-12 13:15:13"
+            }
+          ],
+          "archived_at": "2026-07-12 13:15:14"
+        }
+      ],
+      "next_line_id": 1000002,
+      "payments": [
+        {
+          "id": "P20260712132304903001",
+          "method": "微信支付",
+          "amount": 746.0,
+          "time": "2026-07-12 13:23:04"
+        }
+      ],
+      "paid_at": "2026-07-12 13:23:05",
+      "payment_method": "微信支付",
+      "paid_amount": 746.0
+    },
+    {
+      "id": "20260712-W2-001",
+      "table_id": "W2",
+      "created_at": "2026-07-12 13:05:52",
+      "items": [
+        {
+          "id": 62,
+          "menu_item_id": 62,
+          "name": "马斯特伊皮尼亚干红 / 瓶",
+          "price": 528.0,
+          "quantity": 1,
+          "line_total": 528.0
+        }
+      ],
+      "total": 528.0,
+      "guests": 2,
+      "status": "paid",
+      "submitted_at": "2026-07-12 13:05:53",
+      "tickets": [
+        {
+          "id": "T20260712130553204517",
+          "type": "下单",
+          "created_at": "2026-07-12 13:05:53",
+          "archived": true,
+          "items": [
+            {
+              "id": 62,
+              "name": "马斯特伊皮尼亚干红 / 瓶",
+              "price": 528.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 13:06:25"
+            }
+          ],
+          "archived_at": "2026-07-12 13:06:26"
+        }
+      ],
+      "payments": [
+        {
+          "id": "P20260712132308013151",
+          "method": "现金",
+          "amount": 528.0,
+          "time": "2026-07-12 13:23:08"
+        }
+      ],
+      "paid_at": "2026-07-12 13:23:08",
+      "payment_method": "现金",
+      "paid_amount": 528.0
+    },
+    {
+      "id": "20260712-A10-001",
+      "table_id": "A10",
+      "created_at": "2026-07-12 13:05:58",
+      "items": [
+        {
+          "id": 16,
+          "menu_item_id": 16,
+          "name": "布莱特黑麦 / 杯",
+          "price": 55.0,
+          "quantity": 1,
+          "line_total": 55.0
+        }
+      ],
+      "total": 55.0,
+      "guests": 1,
+      "status": "paid",
+      "submitted_at": "2026-07-12 13:05:59",
+      "tickets": [
+        {
+          "id": "T20260712130559637191",
+          "type": "下单",
+          "created_at": "2026-07-12 13:05:59",
+          "archived": true,
+          "items": [
+            {
+              "id": 16,
+              "name": "布莱特黑麦 / 杯",
+              "price": 55.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 13:06:22"
+            }
+          ],
+          "archived_at": "2026-07-12 13:06:22"
+        }
+      ],
+      "payments": [
+        {
+          "id": "P20260712132300410249",
+          "method": "支付宝",
+          "amount": 55.0,
+          "time": "2026-07-12 13:23:00"
+        }
+      ],
+      "paid_at": "2026-07-12 13:23:01",
+      "payment_method": "支付宝",
+      "paid_amount": 55.0
+    },
+    {
+      "id": "20260712-B2-003",
+      "table_id": "B2",
+      "created_at": "2026-07-12 13:06:07",
+      "items": [
+        {
+          "id": 40,
+          "menu_item_id": 40,
+          "name": "欧摩 12 年 / 杯",
+          "price": 90.0,
+          "quantity": 1,
+          "line_total": 90.0,
+          "remark": "不要冰"
+        }
+      ],
+      "total": 90.0,
+      "guests": 1,
+      "status": "paid",
+      "submitted_at": "2026-07-12 13:06:12",
+      "tickets": [
+        {
+          "id": "T20260712130612972062",
+          "type": "下单",
+          "created_at": "2026-07-12 13:06:12",
+          "archived": true,
+          "items": [
+            {
+              "id": 40,
+              "name": "欧摩 12 年 / 杯",
+              "price": 90.0,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 13:06:19"
+            }
+          ],
+          "archived_at": "2026-07-12 13:06:20"
+        },
+        {
+          "id": "T20260712130649073902",
+          "type": "补打制作单",
+          "created_at": "2026-07-12 13:06:49",
+          "archived": true,
+          "items": [
+            {
+              "id": 40,
+              "name": "欧摩 12 年 / 杯",
+              "price": 90,
+              "quantity": 1,
+              "completed": true,
+              "completed_at": "2026-07-12 13:08:44"
+            }
+          ],
+          "archived_at": "2026-07-12 13:08:44"
+        }
+      ],
+      "payments": [
+        {
+          "id": "P20260712130758388094",
+          "method": "现金",
+          "amount": 90.0,
+          "time": "2026-07-12 13:07:58"
+        }
+      ],
+      "paid_at": "2026-07-12 13:18:49",
+      "payment_method": "现金",
+      "paid_amount": 90.0
+    },
+    {
+      "id": "20260712-W1-002",
+      "table_id": "W1",
+      "created_at": "2026-07-12 13:08:48",
+      "items": [
+        {
+          "id": 18,
+          "menu_item_id": 18,
+          "name": "芝华士 12 年 / 杯",
+          "price": 55.0,
+          "quantity": 1,
+          "line_total": 55.0,
+          "remark": "要冰"
+        },
+        {
+          "id": 7,
+          "menu_item_id": 7,
+          "name": "苦瓜马天尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 5,
+          "menu_item_id": 5,
+          "name": "Volta",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0,
+          "remark": "不要冰"
+        }
+      ],
+      "total": 231.0,
+      "guests": 2,
+      "status": "paid",
+      "remark": "VIP顾客",
+      "submitted_at": "2026-07-12 13:09:25",
+      "tickets": [
+        {
+          "id": "T20260712130925271626",
+          "type": "下单",
+          "created_at": "2026-07-12 13:09:25",
+          "archived": true,
+          "order_remark": "VIP顾客",
+          "items": [
+            {
+              "id": 18,
+              "name": "芝华士 12 年 / 杯",
+              "price": 55.0,
+              "quantity": 1,
+              "remark": "要冰",
+              "completed": true,
+              "completed_at": "2026-07-12 13:12:00"
+            },
+            {
+              "id": 7,
+              "name": "苦瓜马天尼",
+              "price": 88.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-12 13:12:01"
+            },
+            {
+              "id": 5,
+              "name": "Volta",
+              "price": 88.0,
+              "quantity": 1,
+              "remark": "不要冰",
+              "completed": true,
+              "completed_at": "2026-07-12 13:12:02"
+            }
+          ],
+          "archived_at": "2026-07-12 13:12:04"
+        }
+      ],
+      "payments": [
+        {
+          "id": "P20260712131546062569",
+          "method": "现金",
+          "amount": 231.0,
+          "time": "2026-07-12 13:15:46"
+        }
+      ],
+      "paid_at": "2026-07-12 13:16:09",
+      "payment_method": "现金",
+      "paid_amount": 231.0
+    },
+    {
+      "id": "20260712-A2-002",
+      "table_id": "A2",
+      "created_at": "2026-07-12 13:26:37",
+      "items": [
+        {
+          "id": 12,
+          "menu_item_id": 12,
+          "name": "闲人贝里尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 9,
+          "menu_item_id": 9,
+          "name": "橄榄油酸",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 8,
+          "menu_item_id": 8,
+          "name": "笨蛋解药",
+          "price": 98.0,
+          "quantity": 1,
+          "line_total": 98.0
+        },
+        {
+          "id": 7,
+          "menu_item_id": 7,
+          "name": "苦瓜马天尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        }
+      ],
+      "total": 362.0,
+      "guests": 2,
+      "status": "paid",
+      "submitted_at": "2026-07-12 13:26:41",
+      "tickets": [
+        {
+          "id": "T20260712132641384411",
+          "type": "下单",
+          "created_at": "2026-07-12 13:26:41",
+          "archived": true,
+          "order_remark": "",
+          "items": [
+            {
+              "id": 12,
+              "name": "闲人贝里尼",
+              "price": 88.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-12 13:26:59"
+            },
+            {
+              "id": 9,
+              "name": "橄榄油酸",
+              "price": 88.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-12 13:26:59"
+            },
+            {
+              "id": 8,
+              "name": "笨蛋解药",
+              "price": 98.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-12 13:26:59"
+            },
+            {
+              "id": 7,
+              "name": "苦瓜马天尼",
+              "price": 88.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-12 13:26:59"
+            }
+          ],
+          "archived_at": "2026-07-12 13:26:59"
+        }
+      ],
+      "payments": [
+        {
+          "id": "P20260712140304544063",
+          "method": "微信支付",
+          "amount": 362.0,
+          "time": "2026-07-12 14:03:04"
+        }
+      ],
+      "paid_at": "2026-07-12 14:03:05",
+      "payment_method": "微信支付",
+      "paid_amount": 362.0,
+      "cleared_at": "2026-07-12 14:03:05"
+    },
+    {
+      "id": "20260712-A3-002",
+      "table_id": "A3",
+      "created_at": "2026-07-12 13:26:45",
+      "items": [
+        {
+          "id": 1000000,
+          "menu_item_id": 67,
+          "name": "特调",
+          "price": 88.0,
+          "quantity": 1,
+          "added_at": "2026-07-12 14:03:30",
+          "line_total": 77.44,
+          "remark": "去冰",
+          "discount": 12.0
+        },
+        {
+          "id": 6,
+          "menu_item_id": 6,
+          "name": "老赖流浪汉",
+          "price": 78.0,
+          "quantity": 1,
+          "line_total": 78.0
+        },
+        {
+          "id": 5,
+          "menu_item_id": 5,
+          "name": "Volta",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        },
+        {
+          "id": 7,
+          "menu_item_id": 7,
+          "name": "苦瓜马天尼",
+          "price": 88.0,
+          "quantity": 1,
+          "line_total": 88.0
+        }
+      ],
+      "total": 331.44,
+      "guests": 3,
+      "status": "paid",
+      "submitted_at": "2026-07-12 13:26:48",
+      "tickets": [
+        {
+          "id": "T20260712132648316641",
+          "type": "下单",
+          "created_at": "2026-07-12 13:26:48",
+          "archived": true,
+          "order_remark": "",
+          "items": [
+            {
+              "id": 6,
+              "name": "老赖流浪汉",
+              "price": 78.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-12 13:26:54"
+            },
+            {
+              "id": 5,
+              "name": "Volta",
+              "price": 88.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-12 13:26:54"
+            },
+            {
+              "id": 7,
+              "name": "苦瓜马天尼",
+              "price": 88.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-12 13:26:54"
+            }
+          ],
+          "archived_at": "2026-07-12 13:26:54"
+        },
+        {
+          "id": "T20260712140346384785",
+          "type": "加菜",
+          "created_at": "2026-07-12 14:03:46",
+          "archived": true,
+          "order_remark": "",
+          "items": [
+            {
+              "id": 1000000,
+              "name": "特调",
+              "price": 88,
+              "quantity": 1,
+              "remark": "去冰",
+              "completed": true,
+              "completed_at": "2026-07-12 14:03:48"
+            }
+          ],
+          "archived_at": "2026-07-12 14:03:48"
+        }
+      ],
+      "payments": [
+        {
+          "id": "P20260712132651996168",
+          "method": "现金",
+          "amount": 254.0,
+          "time": "2026-07-12 13:26:51"
+        },
+        {
+          "id": "P20260712140352706656",
+          "method": "现金",
+          "amount": 77.44,
+          "time": "2026-07-12 14:03:52"
+        }
+      ],
+      "next_line_id": 1000001,
+      "paid_at": "2026-07-12 14:03:53",
+      "payment_method": "组合支付",
+      "paid_amount": 331.44,
+      "cleared_at": "2026-07-12 14:03:53"
+    },
+    {
+      "id": "20260712-A1-004",
+      "table_id": "A1",
+      "created_at": "2026-07-12 14:12:56",
+      "items": [
+        {
+          "id": 1,
+          "menu_item_id": 1,
+          "name": "无耻之徒 2.0",
+          "price": 88.0,
+          "quantity": 1,
+          "added_at": "2026-07-12 14:12:57",
+          "line_total": 88.0
+        },
+        {
+          "id": 7,
+          "menu_item_id": 7,
+          "name": "苦瓜马天尼",
+          "price": 88.0,
+          "quantity": 1,
+          "added_at": "2026-07-12 14:12:56",
+          "line_total": 74.8,
+          "discount": 15.0
+        }
+      ],
+      "total": 162.8,
+      "guests": 1,
+      "status": "paid",
+      "submitted_at": "2026-07-12 14:12:58",
+      "tickets": [
+        {
+          "id": "T20260712141258329527",
+          "type": "下单",
+          "created_at": "2026-07-12 14:12:58",
+          "archived": true,
+          "order_remark": "",
+          "items": [
+            {
+              "id": 1,
+              "name": "无耻之徒 2.0",
+              "price": 88.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-12 14:13:00"
+            },
+            {
+              "id": 7,
+              "name": "苦瓜马天尼",
+              "price": 88.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-12 14:13:02"
+            }
+          ],
+          "archived_at": "2026-07-12 14:13:03"
+        }
+      ],
+      "payments": [
+        {
+          "id": "P20260712141310746335",
+          "method": "微信支付",
+          "amount": 89.0,
+          "time": "2026-07-12 14:13:10"
+        },
+        {
+          "id": "P20260712141315895799",
+          "method": "支付宝",
+          "amount": 25.0,
+          "time": "2026-07-12 14:13:15"
+        },
+        {
+          "id": "P20260712141356600936",
+          "method": "现金",
+          "amount": 48.8,
+          "time": "2026-07-12 14:13:56"
+        }
+      ],
+      "paid_at": "2026-07-12 14:15:23",
+      "payment_method": "组合支付",
+      "paid_amount": 162.8,
+      "cleared_at": "2026-07-12 14:15:23"
+    },
+    {
+      "id": "20260712-A3-003",
+      "table_id": "A3",
+      "created_at": "2026-07-12 14:22:23",
+      "items": [
+        {
+          "id": 12,
+          "menu_item_id": 12,
+          "name": "闲人贝里尼",
+          "price": 88.0,
+          "quantity": 1,
+          "added_at": "2026-07-12 14:22:26",
+          "line_total": 0,
+          "returned": true,
+          "return_reason": "顾客要求",
+          "returned_at": "2026-07-12 14:39:33"
+        },
+        {
+          "id": 8,
+          "menu_item_id": 8,
+          "name": "笨蛋解药",
+          "price": 98.0,
+          "quantity": 1,
+          "added_at": "2026-07-12 14:22:25",
+          "line_total": 98.0
+        },
+        {
+          "id": 1,
+          "menu_item_id": 1,
+          "name": "无耻之徒 2.0",
+          "price": 88.0,
+          "quantity": 1,
+          "added_at": "2026-07-12 14:22:24",
+          "line_total": 88.0
+        },
+        {
+          "id": 67,
+          "menu_item_id": 67,
+          "name": "特调",
+          "price": 88.0,
+          "quantity": 1,
+          "added_at": "2026-07-12 14:22:23",
+          "line_total": 88.0
+        }
+      ],
+      "total": 274.0,
+      "guests": 2,
+      "status": "paid",
+      "submitted_at": "2026-07-12 14:22:27",
+      "tickets": [
+        {
+          "id": "T20260712142227155328",
+          "type": "下单",
+          "created_at": "2026-07-12 14:22:27",
+          "archived": true,
+          "order_remark": "",
+          "items": [
+            {
+              "id": 12,
+              "name": "闲人贝里尼",
+              "price": 88.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-12 14:22:29"
+            },
+            {
+              "id": 8,
+              "name": "笨蛋解药",
+              "price": 98.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-12 14:22:31"
+            },
+            {
+              "id": 1,
+              "name": "无耻之徒 2.0",
+              "price": 88.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-12 14:22:32"
+            },
+            {
+              "id": 67,
+              "name": "特调",
+              "price": 88.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-12 14:22:33"
+            }
+          ],
+          "archived_at": "2026-07-12 14:22:34"
+        }
+      ],
+      "payments": [
+        {
+          "id": "P20260712142242838371",
+          "method": "支付宝",
+          "amount": 189.0,
+          "time": "2026-07-12 14:22:42"
+        },
+        {
+          "id": "P20260712142249334277",
+          "method": "现金",
+          "amount": 73.0,
+          "time": "2026-07-12 14:22:49"
+        },
+        {
+          "id": "P20260712143941376633",
+          "method": "微信支付",
+          "amount": 8.0,
+          "time": "2026-07-12 14:39:41"
+        }
+      ],
+      "adjustments": [
+        {
+          "type": "remove",
+          "item_id": 12,
+          "reason": "顾客要求",
+          "created_at": "2026-07-12 14:39:33"
+        }
+      ],
+      "round_down": 4.0,
+      "paid_at": "2026-07-12 14:39:42",
+      "payment_method": "组合支付",
+      "paid_amount": 270.0,
+      "cleared_at": "2026-07-12 14:39:42"
+    },
+    {
+      "id": "20260712-A2-003",
+      "table_id": "A2",
+      "created_at": "2026-07-12 14:50:07",
+      "items": [
+        {
+          "id": 6,
+          "menu_item_id": 6,
+          "name": "老赖流浪汉",
+          "price": 78.0,
+          "quantity": 1,
+          "added_at": "2026-07-12 14:50:09",
+          "line_total": 78.0
+        },
+        {
+          "id": 5,
+          "menu_item_id": 5,
+          "name": "Volta",
+          "price": 88.0,
+          "quantity": 1,
+          "added_at": "2026-07-12 14:50:09",
+          "line_total": 88.0
+        },
+        {
+          "id": 7,
+          "menu_item_id": 7,
+          "name": "苦瓜马天尼",
+          "price": 88.0,
+          "quantity": 1,
+          "added_at": "2026-07-12 14:50:08",
+          "line_total": 88.0
+        },
+        {
+          "id": 67,
+          "menu_item_id": 67,
+          "name": "特调",
+          "price": 88.0,
+          "quantity": 1,
+          "added_at": "2026-07-12 14:50:07",
+          "line_total": 88.0
+        }
+      ],
+      "total": 342.0,
+      "guests": 1,
+      "status": "paid",
+      "operation_logs": [
+        {
+          "id": "L20260712145007747872",
+          "time": "2026-07-12 14:50:07",
+          "category": "菜品",
+          "action": "添加菜品",
+          "detail": "特调 × 1，单价 ¥88.00",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260712145008210303",
+          "time": "2026-07-12 14:50:08",
+          "category": "菜品",
+          "action": "添加菜品",
+          "detail": "苦瓜马天尼 × 1，单价 ¥88.00",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260712145009040674",
+          "time": "2026-07-12 14:50:09",
+          "category": "菜品",
+          "action": "添加菜品",
+          "detail": "Volta × 1，单价 ¥88.00",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260712145009393371",
+          "time": "2026-07-12 14:50:09",
+          "category": "菜品",
+          "action": "添加菜品",
+          "detail": "老赖流浪汉 × 1，单价 ¥78.00",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260712145010207804",
+          "time": "2026-07-12 14:50:10",
+          "category": "订单",
+          "action": "提交下单",
+          "detail": "提交 4 份菜品",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260712145023988813",
+          "time": "2026-07-12 14:50:23",
+          "category": "收款",
+          "action": "新增收款",
+          "detail": "支付宝 ¥98.00，收款流水 P20260712145023988720",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260712145030039444",
+          "time": "2026-07-12 14:50:30",
+          "category": "收款",
+          "action": "新增收款",
+          "detail": "现金 ¥88.00，收款流水 P20260712145030039337",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260712145033984130",
+          "time": "2026-07-12 14:50:33",
+          "category": "优惠",
+          "action": "使用优惠券",
+          "detail": "100元代金券×1，抵扣 ¥100.00",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260712145037958094",
+          "time": "2026-07-12 14:50:37",
+          "category": "收款",
+          "action": "新增收款",
+          "detail": "微信支付 ¥56.00，收款流水 P20260712145037957941",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260712145042084960",
+          "time": "2026-07-12 14:50:42",
+          "category": "订单",
+          "action": "完成结账",
+          "detail": "应收 ¥242.00，实收 ¥242.00，组合支付",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260712145042112963",
+          "time": "2026-07-12 14:50:42",
+          "category": "桌台",
+          "action": "清台",
+          "detail": "桌台 A2 已清理并恢复为空桌",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260712213101974546",
+          "time": "2026-07-12 21:31:01",
+          "category": "退款",
+          "action": "订单退款",
+          "detail": "退款 ¥12.00，原因：友情退款",
+          "operator": "收银员"
+        }
+      ],
+      "submitted_at": "2026-07-12 14:50:10",
+      "tickets": [
+        {
+          "id": "T20260712145010208053",
+          "type": "下单",
+          "created_at": "2026-07-12 14:50:10",
+          "archived": true,
+          "order_remark": "",
+          "items": [
+            {
+              "id": 6,
+              "name": "老赖流浪汉",
+              "price": 78.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-12 14:50:13"
+            },
+            {
+              "id": 5,
+              "name": "Volta",
+              "price": 88.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-12 14:50:14"
+            },
+            {
+              "id": 7,
+              "name": "苦瓜马天尼",
+              "price": 88.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-12 14:50:15"
+            },
+            {
+              "id": 67,
+              "name": "特调",
+              "price": 88.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-12 14:50:17"
+            }
+          ],
+          "archived_at": "2026-07-12 14:50:17"
+        }
+      ],
+      "payments": [
+        {
+          "id": "P20260712145023988720",
+          "method": "支付宝",
+          "amount": 98.0,
+          "time": "2026-07-12 14:50:23"
+        },
+        {
+          "id": "P20260712145030039337",
+          "method": "现金",
+          "amount": 88.0,
+          "time": "2026-07-12 14:50:30"
+        },
+        {
+          "id": "P20260712145037957941",
+          "method": "微信支付",
+          "amount": 56.0,
+          "time": "2026-07-12 14:50:37"
+        }
+      ],
+      "voucher": {
+        "name": "100元代金券×1",
+        "amount": 100.0,
+        "items": [
+          {
+            "id": 1,
+            "name": "100元代金券",
+            "quantity": 1,
+            "face_value": 100.0,
+            "amount": 100.0
+          }
+        ]
+      },
+      "paid_at": "2026-07-12 14:50:42",
+      "payment_method": "组合支付",
+      "paid_amount": 242.0,
+      "cleared_at": "2026-07-12 14:50:42",
+      "refunds": [
+        {
+          "id": "R20260712213101973750",
+          "amount": 12.0,
+          "reason": "友情退款",
+          "time": "2026-07-12 21:31:01"
+        }
+      ],
+      "refund_status": "partial",
+      "refunded_amount": 12.0
+    },
+    {
+      "id": "20260712-A2-004",
+      "table_id": "A2",
+      "created_at": "2026-07-12 22:56:58",
+      "items": [
+        {
+          "id": 1000001,
+          "menu_item_id": 9,
+          "name": "橄榄油酸",
+          "price": 88.0,
+          "quantity": 1,
+          "added_at": "2026-07-12 22:57:36",
+          "line_total": 74.8,
+          "discount": 15.0
+        },
+        {
+          "id": 1000000,
+          "menu_item_id": 2,
+          "name": "玫瑰青提",
+          "price": 98.0,
+          "quantity": 1,
+          "added_at": "2026-07-12 22:57:36",
+          "line_total": 98.0
+        },
+        {
+          "id": 6,
+          "menu_item_id": 6,
+          "name": "老赖流浪汉",
+          "price": 78.0,
+          "quantity": 1,
+          "added_at": "2026-07-12 22:56:59",
+          "line_total": 78.0
+        },
+        {
+          "id": 67,
+          "menu_item_id": 67,
+          "name": "特调",
+          "price": 88.0,
+          "quantity": 1,
+          "added_at": "2026-07-12 22:56:58",
+          "line_total": 88.0
+        }
+      ],
+      "total": 338.8,
+      "guests": 2,
+      "status": "paid",
+      "operation_logs": [
+        {
+          "id": "L20260712225658762602",
+          "time": "2026-07-12 22:56:58",
+          "category": "菜品",
+          "action": "添加菜品",
+          "detail": "特调 × 1，单价 ¥88.00",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260712225659519916",
+          "time": "2026-07-12 22:56:59",
+          "category": "菜品",
+          "action": "添加菜品",
+          "detail": "老赖流浪汉 × 1，单价 ¥78.00",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260712225702071174",
+          "time": "2026-07-12 22:57:02",
+          "category": "订单",
+          "action": "提交下单",
+          "detail": "提交 2 份菜品",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260712225736165435",
+          "time": "2026-07-12 22:57:36",
+          "category": "菜品",
+          "action": "加菜",
+          "detail": "玫瑰青提 × 1，单价 ¥98.00",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260712225736830339",
+          "time": "2026-07-12 22:57:36",
+          "category": "菜品",
+          "action": "加菜",
+          "detail": "橄榄油酸 × 1，单价 ¥88.00",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260712225738631280",
+          "time": "2026-07-12 22:57:38",
+          "category": "订单",
+          "action": "确认加菜",
+          "detail": "确认 2 份加菜",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260712230659463015",
+          "time": "2026-07-12 23:06:59",
+          "category": "优惠",
+          "action": "菜品折扣",
+          "detail": "橄榄油酸：8.5折，原因：未填写",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260712235700442919",
+          "time": "2026-07-12 23:57:00",
+          "category": "收款",
+          "action": "新增收款",
+          "detail": "微信支付 ¥338.80，收款流水 P20260712235700442777",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260712235701640421",
+          "time": "2026-07-12 23:57:01",
+          "category": "订单",
+          "action": "完成结账",
+          "detail": "应收 ¥338.80，实收 ¥338.80，微信支付",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260712235701722416",
+          "time": "2026-07-12 23:57:01",
+          "category": "桌台",
+          "action": "清台",
+          "detail": "桌台 A2 已清理并恢复为空桌",
+          "operator": "收银员"
+        }
+      ],
+      "submitted_at": "2026-07-12 22:57:02",
+      "tickets": [
+        {
+          "id": "T20260712225702071506",
+          "type": "下单",
+          "created_at": "2026-07-12 22:57:02",
+          "archived": true,
+          "order_remark": "",
+          "items": [
+            {
+              "id": 6,
+              "name": "老赖流浪汉",
+              "price": 78.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-12 22:57:03"
+            },
+            {
+              "id": 67,
+              "name": "特调",
+              "price": 88.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-12 22:57:14"
+            }
+          ],
+          "archived_at": "2026-07-12 22:57:15"
+        },
+        {
+          "id": "T20260712225738631228",
+          "type": "加菜",
+          "created_at": "2026-07-12 22:57:38",
+          "archived": true,
+          "order_remark": "",
+          "items": [
+            {
+              "id": 1000001,
+              "name": "橄榄油酸",
+              "price": 88,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-12 22:57:41"
+            },
+            {
+              "id": 1000000,
+              "name": "玫瑰青提",
+              "price": 98,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-12 22:57:42"
+            }
+          ],
+          "archived_at": "2026-07-12 22:57:43"
+        }
+      ],
+      "next_line_id": 1000002,
+      "payments": [
+        {
+          "id": "P20260712235700442777",
+          "method": "微信支付",
+          "amount": 338.8,
+          "time": "2026-07-12 23:57:00"
+        }
+      ],
+      "paid_at": "2026-07-12 23:57:01",
+      "payment_method": "微信支付",
+      "paid_amount": 338.8,
+      "cleared_at": "2026-07-12 23:57:01"
+    },
+    {
+      "id": "20260713-A3-001",
+      "table_id": "D2",
+      "created_at": "2026-07-13 00:23:00",
+      "items": [
+        {
+          "id": 1000003,
+          "menu_item_id": 4838481655,
+          "name": "马斯特伊皮尼亚",
+          "price": 528.0,
+          "quantity": 1,
+          "added_at": "2026-07-13 00:34:27",
+          "line_total": 528.0
+        },
+        {
+          "id": 1000002,
+          "menu_item_id": 11735517459,
+          "name": "西南幺哥",
+          "price": 88.0,
+          "quantity": 1,
+          "added_at": "2026-07-13 00:33:58",
+          "line_total": 83.0,
+          "reduction": 5.0
+        },
+        {
+          "id": 1000001,
+          "menu_item_id": 5542064721,
+          "name": "温斯顿",
+          "price": 88.0,
+          "quantity": 1,
+          "added_at": "2026-07-13 00:33:58",
+          "line_total": 70.4,
+          "discount": 20.0
+        },
+        {
+          "id": 1000000,
+          "menu_item_id": 5403670154,
+          "name": "服务费",
+          "price": 200.0,
+          "quantity": 1,
+          "added_at": "2026-07-13 00:33:48",
+          "line_total": 200.0
+        },
+        {
+          "id": 7867347790,
+          "menu_item_id": 7867347790,
+          "name": "玫瑰青提",
+          "price": 98.0,
+          "quantity": 1,
+          "added_at": "2026-07-13 00:23:00",
+          "line_total": 98.0
+        },
+        {
+          "id": 4789654960,
+          "menu_item_id": 4789654960,
+          "name": "无耻之徒",
+          "price": 88.0,
+          "quantity": 1,
+          "added_at": "2026-07-13 00:23:00",
+          "line_total": 0,
+          "returned": true,
+          "return_reason": "顾客要求",
+          "returned_at": "2026-07-13 00:33:44"
+        }
+      ],
+      "total": 979.4,
+      "guests": 6,
+      "status": "paid",
+      "operation_logs": [
+        {
+          "id": "L20260713002300284801",
+          "time": "2026-07-13 00:23:00",
+          "category": "菜品",
+          "action": "添加菜品",
+          "detail": "无耻之徒 × 1，单价 ¥88.00",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260713002300944059",
+          "time": "2026-07-13 00:23:00",
+          "category": "菜品",
+          "action": "添加菜品",
+          "detail": "玫瑰青提 × 1，单价 ¥98.00",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260713002302373140",
+          "time": "2026-07-13 00:23:02",
+          "category": "订单",
+          "action": "提交下单",
+          "detail": "提交 2 份菜品",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260713003344575470",
+          "time": "2026-07-13 00:33:44",
+          "category": "菜品",
+          "action": "退菜",
+          "detail": "无耻之徒 × 1，原因：顾客要求",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260713003348398160",
+          "time": "2026-07-13 00:33:48",
+          "category": "菜品",
+          "action": "加菜",
+          "detail": "服务费 × 1，单价 ¥200.00",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260713003349664091",
+          "time": "2026-07-13 00:33:49",
+          "category": "订单",
+          "action": "确认加菜",
+          "detail": "确认 1 份加菜",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260713003358222812",
+          "time": "2026-07-13 00:33:58",
+          "category": "菜品",
+          "action": "加菜",
+          "detail": "温斯顿 × 1，单价 ¥88.00",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260713003358765854",
+          "time": "2026-07-13 00:33:58",
+          "category": "菜品",
+          "action": "加菜",
+          "detail": "西南幺哥 × 1，单价 ¥88.00",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260713003405956840",
+          "time": "2026-07-13 00:34:05",
+          "category": "优惠",
+          "action": "菜品减免",
+          "detail": "西南幺哥：¥5.00，原因：未填写",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260713003413171007",
+          "time": "2026-07-13 00:34:13",
+          "category": "优惠",
+          "action": "菜品折扣",
+          "detail": "温斯顿：8折，原因：未填写",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260713003414304778",
+          "time": "2026-07-13 00:34:14",
+          "category": "订单",
+          "action": "确认加菜",
+          "detail": "确认 2 份加菜",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260713003427818339",
+          "time": "2026-07-13 00:34:27",
+          "category": "菜品",
+          "action": "加菜",
+          "detail": "马斯特伊皮尼亚 × 1，单价 ¥528.00",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260713003428737683",
+          "time": "2026-07-13 00:34:28",
+          "category": "订单",
+          "action": "确认加菜",
+          "detail": "确认 1 份加菜",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260713003439474809",
+          "time": "2026-07-13 00:34:39",
+          "category": "桌台",
+          "action": "转台",
+          "detail": "A3 → D2",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260713003448917660",
+          "time": "2026-07-13 00:34:48",
+          "category": "优惠",
+          "action": "使用优惠券",
+          "detail": "100元代金券×2，面值 ¥200.00，实收 ¥180.00，优惠 ¥20.00",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260713003453582512",
+          "time": "2026-07-13 00:34:53",
+          "category": "优惠",
+          "action": "使用优惠券",
+          "detail": "100元代金券×2、68抵扣×1，面值 ¥268.00，实收 ¥248.00，优惠 ¥20.00",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260713003510533541",
+          "time": "2026-07-13 00:35:10",
+          "category": "收款",
+          "action": "新增收款",
+          "detail": "微信支付 ¥500.00，收款流水 P20260713003510533498",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260713003517287595",
+          "time": "2026-07-13 00:35:17",
+          "category": "收款",
+          "action": "新增收款",
+          "detail": "支付宝 ¥100.00，收款流水 P20260713003517287471",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260713003518718909",
+          "time": "2026-07-13 00:35:18",
+          "category": "收款",
+          "action": "新增收款",
+          "detail": "现金 ¥111.40，收款流水 P20260713003518718776",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260713003522257988",
+          "time": "2026-07-13 00:35:22",
+          "category": "收款",
+          "action": "撤销收款",
+          "detail": "现金 ¥111.40，收款流水 P20260713003518718776",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260713003524452233",
+          "time": "2026-07-13 00:35:24",
+          "category": "优惠",
+          "action": "抹零",
+          "detail": "¥9.40",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260713003542239567",
+          "time": "2026-07-13 00:35:42",
+          "category": "收款",
+          "action": "新增收款",
+          "detail": "现金 ¥102.00，收款流水 P20260713003542239505",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260713003544558587",
+          "time": "2026-07-13 00:35:44",
+          "category": "订单",
+          "action": "完成结账",
+          "detail": "应收 ¥950.00，实收 ¥950.00，组合支付",
+          "operator": "收银员"
+        },
+        {
+          "id": "L20260713003544641946",
+          "time": "2026-07-13 00:35:44",
+          "category": "桌台",
+          "action": "清台",
+          "detail": "桌台 D2 已清理并恢复为空桌",
+          "operator": "收银员"
+        }
+      ],
+      "submitted_at": "2026-07-13 00:23:02",
+      "tickets": [
+        {
+          "id": "T20260713002302373394",
+          "type": "下单",
+          "created_at": "2026-07-13 00:23:02",
+          "archived": true,
+          "order_remark": "",
+          "items": [
+            {
+              "id": 7867347790,
+              "name": "玫瑰青提",
+              "price": 98.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-13 00:23:04"
+            },
+            {
+              "id": 4789654960,
+              "name": "无耻之徒",
+              "price": 88.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-13 00:23:04"
+            }
+          ],
+          "archived_at": "2026-07-13 00:23:04"
+        },
+        {
+          "id": "T20260713003349664025",
+          "type": "加菜",
+          "created_at": "2026-07-13 00:33:49",
+          "archived": true,
+          "order_remark": "",
+          "items": [
+            {
+              "id": 1000000,
+              "name": "服务费",
+              "price": 200,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-13 00:33:52"
+            }
+          ],
+          "archived_at": "2026-07-13 00:33:53"
+        },
+        {
+          "id": "T20260713003414304733",
+          "type": "加菜",
+          "created_at": "2026-07-13 00:34:14",
+          "archived": true,
+          "order_remark": "",
+          "items": [
+            {
+              "id": 1000002,
+              "name": "西南幺哥",
+              "price": 88,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-13 00:34:15"
+            },
+            {
+              "id": 1000001,
+              "name": "温斯顿",
+              "price": 88,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-13 00:34:18"
+            }
+          ],
+          "archived_at": "2026-07-13 00:34:19"
+        },
+        {
+          "id": "T20260713003428737633",
+          "type": "加菜",
+          "created_at": "2026-07-13 00:34:28",
+          "archived": true,
+          "order_remark": "",
+          "items": [
+            {
+              "id": 1000003,
+              "name": "马斯特伊皮尼亚",
+              "price": 528,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-13 00:34:31"
+            }
+          ],
+          "archived_at": "2026-07-13 00:34:31"
+        }
+      ],
+      "adjustments": [
+        {
+          "type": "remove",
+          "item_id": 4789654960,
+          "reason": "顾客要求",
+          "created_at": "2026-07-13 00:33:44"
+        }
+      ],
+      "next_line_id": 1000004,
+      "transferred_from": "A3",
+      "transferred_at": "2026-07-13 00:34:39",
+      "voucher": {
+        "name": "100元代金券×2、68抵扣×1",
+        "amount": 268.0,
+        "items": [
+          {
+            "id": 1,
+            "name": "100元代金券",
+            "quantity": 2,
+            "face_value": 100.0,
+            "sale_price": 90.0,
+            "amount": 200.0
+          },
+          {
+            "id": 4,
+            "name": "68抵扣",
+            "quantity": 1,
+            "face_value": 68.0,
+            "sale_price": 68.0,
+            "amount": 68.0
+          }
+        ]
+      },
+      "payments": [
+        {
+          "id": "P20260713003510533498",
+          "method": "微信支付",
+          "amount": 500.0,
+          "time": "2026-07-13 00:35:10"
+        },
+        {
+          "id": "P20260713003517287471",
+          "method": "支付宝",
+          "amount": 100.0,
+          "time": "2026-07-13 00:35:17"
+        },
+        {
+          "id": "P20260713003542239505",
+          "method": "现金",
+          "amount": 102.0,
+          "time": "2026-07-13 00:35:42"
+        }
+      ],
+      "round_down": 9.4,
+      "paid_at": "2026-07-13 00:35:44",
+      "payment_method": "组合支付",
+      "paid_amount": 950.0,
+      "cleared_at": "2026-07-13 00:35:44"
+    }
+  ]
+}
