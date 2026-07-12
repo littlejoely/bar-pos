@@ -26,7 +26,7 @@
 - 扫码支付为人工登记渠道，没有对接微信或支付宝官方支付接口；
 - 退款为系统登记，没有调用支付渠道原路退款；
 - 数据保存在 JSON 文件中，只适合单实例、小规模运行；
-- 当前 Flask 启动方式是开发服务器，不是生产 WSGI；
+- 直接运行 `backend/app.py` 时使用 Flask 开发服务器；生产部署使用 Gunicorn；
 - 邮件导出需要自行配置 SMTP，默认不启用；
 - 暂无自动化测试套件，合并重要改动前至少执行构建和核心流程回归。
 
@@ -45,6 +45,7 @@
 - Python 3.9.6
 - Flask 3.1.3
 - flask-cors 6.0.5
+- Gunicorn 23.0.0
 - openpyxl 3.1.5
 - JSON 文件存储
 
@@ -120,21 +121,22 @@ cd ..
 .venv/bin/python backend/app.py
 ```
 
-仓库提供了通用单服务器演示部署脚本：
+仓库提供 Silver Lining 单服务器部署脚本。服务器需预先安装 Python、`python3-venv`、Nginx，并允许部署账号使用 `sudo`：
 
 ```bash
-SERVER=deploy@example.com \
-SERVER_NAME=pos.example.com \
-CONFIGURE_NGINX=true \
-./deploy.sh
+SERVER=deploy@example.com ./deploy.sh
 ```
 
-该脚本不等同于生产方案。正式公网部署至少还需要：
+脚本默认部署到 `/srv/silverlining/pos-bar`，以独立 `silverlining` 用户运行 Gunicorn，通过 systemd 管理，并仅由 Nginx 对外提供服务。默认保留服务器运行数据；首次初始化或明确需要覆盖数据时使用：
+
+```bash
+SERVER=deploy@example.com DEPLOY_DATA=true ./deploy.sh
+```
+
+正式公网运营仍需补充：
 
 - 登录和后端 API 鉴权；
 - HTTPS；
-- Gunicorn、uWSGI 等生产 WSGI 服务；
-- systemd、Supervisor 或容器进程管理；
 - 自动备份、恢复演练、日志轮转和监控；
 - 限制 CORS、CSRF 防护、速率限制和安全响应头。
 
@@ -156,6 +158,7 @@ pos-bar/
 ├── docs/
 │   ├── PRD.md
 │   └── DEPENDENCIES.md
+├── deploy/                   # systemd 与 Nginx 生产配置
 ├── dev.sh
 └── deploy.sh
 ```

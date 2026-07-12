@@ -1,0 +1,22 @@
+[Unit]
+Description=Silver Lining POS Backend
+After=network.target
+
+[Service]
+Type=notify
+User=silverlining
+Group=silverlining
+WorkingDirectory=/srv/silverlining/pos-bar/backend
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/srv/silverlining/pos-bar/.venv/bin/gunicorn --workers 2 --threads 4 --bind 127.0.0.1:27779 --timeout 120 --access-logfile - --error-logfile - app:app
+Restart=on-failure
+RestartSec=3
+UMask=0027
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/srv/silverlining/pos-bar/backend/data
+
+[Install]
+WantedBy=multi-user.target

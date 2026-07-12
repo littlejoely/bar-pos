@@ -71,6 +71,7 @@ python3.9 -m venv .venv
 |---|---:|---|
 | Flask | 3.1.3 | HTTP 服务、路由、静态文件托管 |
 | flask-cors | 6.0.5 | 开发环境跨域支持 |
+| gunicorn | 23.0.0 | Linux 生产环境 WSGI 服务；该版本兼容项目的 Python 3.9 基线 |
 | openpyxl | 3.1.5 | 商品、订单、制作单 Excel 导入或导出 |
 
 邮件发送使用 Python 标准库 `smtplib` 和 `email`，不需要额外 pip 包。
