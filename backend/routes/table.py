@@ -1,7 +1,8 @@
 """
 桌台管理路由
 """
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, g, jsonify, request
+from auth.middleware import require_any_permission, require_permission
 import json
 import os
 import tempfile
@@ -66,8 +67,21 @@ def table_configuration_payload(data=None):
     for area in areas:
         name = area.get('name')
         area_tables = [t for t in tables if t.get('area') == name]
-        enriched.append({'name': name, 'table_count': len(area_tables)})
-    return {'areas': enriched, 'tables': tables}
+        area_payload = {'name': name, 'table_count': len(area_tables)}
+        if getattr(getattr(g, 'current_user', None), 'data_scope', 'all') == 'own_created':
+            area_payload['owned_by_current_user'] = area.get('_created_by_user_id') == g.current_user.id
+        enriched.append(area_payload)
+    public_tables = []
+    for table in tables:
+        public_table = dict(table)
+        public_table.pop('_active_owner_user_id', None)
+        public_table.pop('_active_owner_name', None)
+        creator_id = public_table.pop('_created_by_user_id', None)
+        public_table.pop('_created_by_user_name', None)
+        if getattr(getattr(g, 'current_user', None), 'data_scope', 'all') == 'own_created':
+            public_table['owned_by_current_user'] = creator_id == g.current_user.id
+        public_tables.append(public_table)
+    return {'areas': enriched, 'tables': public_tables}
 
 def load_orders():
     try:
@@ -113,10 +127,16 @@ def order_balance_settled(order):
 
 def enrich_table(table, orders):
     enriched = dict(table)
+    enriched.pop('_active_owner_user_id', None)
+    enriched.pop('_active_owner_name', None)
     order = next((
         o for o in orders
         if o['table_id'] == table['id'] and o.get('status') in ['pending', 'submitted', 'served']
     ), None)
+    current_user = getattr(g, 'current_user', None)
+    if current_user and any(role.code == 'guest' for role in current_user.roles):
+        owner_id = (order or {}).get('created_by_user_id') or table.get('_active_owner_user_id')
+        enriched['owned_by_current_user'] = owner_id == current_user.id
     item_count = sum(i.get('quantity', 0) for i in committed_items(order))
 
     enriched['active_order_id'] = order.get('id') if order else None
@@ -140,6 +160,7 @@ def enrich_table(table, orders):
     return enriched
 
 @table_bp.route('/list', methods=['GET'])
+@require_permission('table.view')
 def get_tables():
     """获取所有桌台列表"""
     tables = load_tables()
@@ -147,6 +168,7 @@ def get_tables():
     return jsonify({'success': True, 'data': [enrich_table(t, orders) for t in tables]})
 
 @table_bp.route('/<table_id>', methods=['GET'])
+@require_permission('table.view')
 def get_table(table_id):
     """获取单个桌台信息"""
     tables = load_tables()
@@ -157,6 +179,7 @@ def get_table(table_id):
     return jsonify({'success': False, 'error': '桌台不存在'}), 404
 
 @table_bp.route('/<table_id>/open', methods=['POST'])
+@require_permission('table.open')
 def open_table(table_id):
     """开台"""
     data = request.json or {}
@@ -185,11 +208,14 @@ def open_table(table_id):
     table['guests'] = guests
     table['remark'] = remark
     table['opened_at'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    table['_active_owner_user_id'] = g.current_user.id
+    table['_active_owner_name'] = g.current_user.display_name
 
     save_tables(tables)
-    return jsonify({'success': True, 'data': table})
+    return jsonify({'success': True, 'data': enrich_table(table, load_orders())})
 
 @table_bp.route('/<table_id>/guests', methods=['PUT'])
+@require_permission('table.edit_guests')
 def update_guests(table_id):
     """修改用餐人数"""
     data = request.json or {}
@@ -227,6 +253,7 @@ def update_guests(table_id):
     return jsonify({'success': True, 'data': enrich_table(table, orders)})
 
 @table_bp.route('/<table_id>/close', methods=['POST'])
+@require_permission('table.clear')
 def close_table(table_id):
     """清台"""
     tables = load_tables()
@@ -237,6 +264,8 @@ def close_table(table_id):
 
     orders = load_orders()
     order = next((o for o in orders if o.get('id') == table.get('order_id')), None)
+    if table.get('status') != 'pending_cleanup' or not order or order.get('status') != 'paid':
+        return jsonify({'success': False, 'error': '订单尚未完成结账，不能清台'}), 409
     if order:
         cleared_at = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         order['cleared_at'] = cleared_at
@@ -246,7 +275,8 @@ def close_table(table_id):
             'category': '桌台',
             'action': '清台',
             'detail': f'桌台 {table_id} 已清理并恢复为空桌',
-            'operator': '收银员',
+            'operator': g.current_user.display_name,
+            'operator_id': g.current_user.id,
         })
         save_orders(orders)
 
@@ -254,18 +284,22 @@ def close_table(table_id):
     table['guests'] = 0
     table['opened_at'] = None
     table['order_id'] = None
+    table.pop('_active_owner_user_id', None)
+    table.pop('_active_owner_name', None)
 
     save_tables(tables)
     return jsonify({'success': True, 'data': table})
 
 
 @table_bp.route('/configuration', methods=['GET'])
+@require_any_permission('table.view', 'table_config.view')
 def get_table_configuration():
     """获取桌区 + 桌台配置"""
     return jsonify({'success': True, 'data': table_configuration_payload()})
 
 
 @table_bp.route('/area', methods=['POST'])
+@require_permission('table_config.edit')
 def add_table_area():
     data = request.get_json(silent=True) or {}
     name = (data.get('name') or '').strip()
@@ -277,7 +311,11 @@ def add_table_area():
     if any(a.get('name') == name for a in areas):
         return jsonify({'success': False, 'error': '区域已存在'}), 400
 
-    new_area = {'name': name}
+    new_area = {
+        'name': name,
+        '_created_by_user_id': g.current_user.id,
+        '_created_by_user_name': g.current_user.display_name,
+    }
     position = data.get('position')
     try:
         position = int(position) if position is not None else None
@@ -293,6 +331,7 @@ def add_table_area():
 
 
 @table_bp.route('/area/<path:name>', methods=['PATCH'])
+@require_permission('table_config.edit')
 def rename_table_area(name):
     data = request.get_json(silent=True) or {}
     new_name = (data.get('name') or '').strip()
@@ -321,6 +360,7 @@ def rename_table_area(name):
 
 
 @table_bp.route('/area/<path:name>', methods=['DELETE'])
+@require_permission('table_config.edit')
 def delete_table_area(name):
     td = load_table_data()
     tables_in_area = [t for t in td.get('tables', []) if t.get('area') == name]
@@ -333,6 +373,7 @@ def delete_table_area(name):
 
 
 @table_bp.route('/area/<path:name>/position', methods=['PUT'])
+@require_permission('table_config.edit')
 def set_table_area_position(name):
     data = request.get_json(silent=True) or {}
     try:
@@ -357,6 +398,7 @@ def set_table_area_position(name):
 
 
 @table_bp.route('/definition', methods=['POST'])
+@require_permission('table_config.edit')
 def add_table_definition():
     data = request.get_json(silent=True) or {}
     table_id = (data.get('id') or '').strip()
@@ -387,6 +429,8 @@ def add_table_definition():
         'opened_at': None,
         'order_id': None,
         'default_guests': default_guests,
+        '_created_by_user_id': g.current_user.id,
+        '_created_by_user_name': g.current_user.display_name,
     }
 
     tables = td.setdefault('tables', [])
@@ -441,6 +485,7 @@ def add_table_definition():
 
 
 @table_bp.route('/definition/<table_id>', methods=['PATCH'])
+@require_permission('table_config.edit')
 def update_table_definition(table_id):
     data = request.get_json(silent=True) or {}
     new_id = (data.get('id') or '').strip() if 'id' in data else None
@@ -480,6 +525,7 @@ def update_table_definition(table_id):
 
 
 @table_bp.route('/definition/<table_id>', methods=['DELETE'])
+@require_permission('table_config.edit')
 def delete_table_definition(table_id):
     td = load_table_data()
     tables = td.get('tables', [])
@@ -505,6 +551,7 @@ def _find_table_insert_index(tables, area, position):
 
 
 @table_bp.route('/definition/<table_id>/position', methods=['PUT'])
+@require_permission('table_config.edit')
 def relocate_table_definition(table_id):
     data = request.get_json(silent=True) or {}
     target_area = (data.get('area') or '').strip()

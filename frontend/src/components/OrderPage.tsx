@@ -20,6 +20,7 @@ import {
 } from '@ant-design/icons'
 import axios from 'axios'
 import { formatAmount, formatMoney } from '../utils/money'
+import { useAuth } from '../auth/AuthContext'
 
 interface MenuItem {
   id: number
@@ -112,12 +113,15 @@ interface Order {
   payment_method?: string
   paid_amount?: number
   checkout?: CheckoutSummary
+  created_by_user_id?: string
+  created_by_user_name?: string
 }
 
 interface TableInfo {
   guests: number
   opened_at: string | null
   display_status?: string
+  owned_by_current_user?: boolean
 }
 
 interface Props {
@@ -215,9 +219,12 @@ interface CheckoutPanelProps {
   onUpdated: () => void
   onFinalize: () => void
   finalizing: boolean
+  readOnly?: boolean
 }
 
-const CheckoutPanel: FC<CheckoutPanelProps> = ({ order, onUpdated, onFinalize, finalizing }) => {
+const CheckoutPanel: FC<CheckoutPanelProps> = ({ order, onUpdated, onFinalize, finalizing, readOnly = false }) => {
+  const { hasPermission } = useAuth()
+  const canPerform = (permission: string) => !readOnly && hasPermission(permission)
   const summary = order.checkout
   const [discountInput, setDiscountInput] = useState<string>(
     summary?.order_discount ? String(100 - summary.order_discount) : '100'
@@ -534,18 +541,18 @@ const CheckoutPanel: FC<CheckoutPanelProps> = ({ order, onUpdated, onFinalize, f
         <div className="settlement-section">
           <h3>选择优惠</h3>
           <div className="settlement-choice-grid offer-grid">
-            <button type="button" disabled={financialAdjustmentsLocked} className={summary.order_reduction > 0 ? 'active' : ''} onClick={() => openOrderOffer('reduction')}>订单减免</button>
-            <button type="button" disabled={financialAdjustmentsLocked} className={summary.order_discount > 0 && summary.order_discount < 100 ? 'active' : ''} onClick={() => openOrderOffer('discount')}>订单打折</button>
-            <button type="button" disabled={financialAdjustmentsLocked} className={summary.order_discount === 100 ? 'active' : ''} onClick={applyFreeOrder}>免单</button>
+            {canPerform('order.reduction') && <button type="button" disabled={financialAdjustmentsLocked} className={summary.order_reduction > 0 ? 'active' : ''} onClick={() => openOrderOffer('reduction')}>订单减免</button>}
+            {canPerform('order.discount') && <button type="button" disabled={financialAdjustmentsLocked} className={summary.order_discount > 0 && summary.order_discount < 100 ? 'active' : ''} onClick={() => openOrderOffer('discount')}>订单打折</button>}
+            {canPerform('order.free') && <button type="button" disabled={financialAdjustmentsLocked} className={summary.order_discount === 100 ? 'active' : ''} onClick={applyFreeOrder}>免单</button>}
           </div>
         </div>
 
         <div className="settlement-section payment-section">
           <h3>选择支付方式</h3>
           <div className="settlement-choice-grid payment-grid">
-            <button type="button" onClick={() => openPayment('scan')}>扫码支付</button>
-            <button type="button" onClick={() => openPayment('cash')}>现金</button>
-            <button type="button" disabled={financialAdjustmentsLocked} className={voucherOpen ? 'active' : ''} onClick={openVoucherModal}>优惠券抵扣</button>
+            {canPerform('payment.collect') && <button type="button" onClick={() => openPayment('scan')}>扫码支付</button>}
+            {canPerform('payment.collect') && <button type="button" onClick={() => openPayment('cash')}>现金</button>}
+            {canPerform('voucher.view') && <button type="button" disabled={financialAdjustmentsLocked} className={voucherOpen ? 'active' : ''} onClick={openVoucherModal}>优惠券抵扣</button>}
           </div>
         </div>
       </section>
@@ -571,17 +578,17 @@ const CheckoutPanel: FC<CheckoutPanelProps> = ({ order, onUpdated, onFinalize, f
           <div className="payable-row">
             <span>应收</span>
             <b>{money(summary.payable)} 元</b>
-            <button type="button" disabled={saving || financialAdjustmentsLocked} onClick={openRoundDown}>抹零</button>
+            {canPerform('order.round_down') && <button type="button" disabled={saving || financialAdjustmentsLocked} onClick={openRoundDown}>抹零</button>}
           </div>
           {summary.voucher_amount > 0 && (
             <div className="voucher-deduction-row">
               <span>优惠券抵扣</span>
               <b>面值 {money(summary.voucher_amount)} 元</b>
-              <button
+              {canPerform('voucher.view') && <button
                 type="button"
                 disabled={saving}
                 onClick={() => callConfig({ voucher: { items: [] } })}
-              >撤销</button>
+              >撤销</button>}
             </div>
           )}
           {summary.voucher_income_amount > 0 && (
@@ -595,11 +602,16 @@ const CheckoutPanel: FC<CheckoutPanelProps> = ({ order, onUpdated, onFinalize, f
             <div className="payment-record-row" key={payment.id}>
               <span>{payment.method === '微信支付' ? '微信' : payment.method} 收款</span>
               <b>{money(payment.amount)} 元</b>
-              <button type="button" onClick={() => revertPayment(payment.id)}>撤销</button>
+              {canPerform('payment.revoke') && <button type="button" onClick={() => revertPayment(payment.id)}>撤销</button>}
             </div>
           ))}
         </div>
-        <button type="button" className={`balance-action${balanceIsPositive ? '' : ' settled'}`} disabled={balanceIsPositive || adding || finalizing} onClick={handleBalanceAction}>
+        <button
+          type="button"
+          className={`balance-action${balanceIsPositive ? '' : ' settled'}`}
+          disabled={balanceIsPositive || adding || finalizing || !canPerform('payment.checkout') || !canPerform('table.clear')}
+          onClick={handleBalanceAction}
+        >
           {balanceIsPositive ? <>还差 <span className="balance-due-amount">{money(summary.balance_due)}</span> 元</> : '已结清 · 清台'}
         </button>
       </section>
@@ -855,6 +867,7 @@ const CheckoutPanel: FC<CheckoutPanelProps> = ({ order, onUpdated, onFinalize, f
 }
 
 function OrderPage({ tableId, onBack, onRequestTableAction, productionTicketEnabled }: Props) {
+  const { user, hasPermission } = useAuth()
   const [categories, setCategories] = useState<Category[]>([])
   const [selectedCategory, setSelectedCategory] = useState(-1)
   const [order, setOrder] = useState<Order | null>(null)
@@ -873,6 +886,13 @@ function OrderPage({ tableId, onBack, onRequestTableAction, productionTicketEnab
   const [reprintMode, setReprintMode] = useState(false)
   const [reprintQuantities, setReprintQuantities] = useState<Record<number, number>>({})
   const [tableInfo, setTableInfo] = useState<TableInfo>({ guests: 0, opened_at: null })
+  const isGuest = Boolean(user?.roles.some(role => role.code === 'guest'))
+  const guestReadOnly = isGuest && (
+    order
+      ? order.created_by_user_id !== user?.id
+      : Boolean(tableInfo.opened_at) && tableInfo.owned_by_current_user === false
+  )
+  const canPerform = (permission: string) => !guestReadOnly && hasPermission(permission)
 
   useLayoutEffect(() => {
     setOrder(null)
@@ -884,7 +904,7 @@ function OrderPage({ tableId, onBack, onRequestTableAction, productionTicketEnab
   }, [tableId])
 
   useEffect(() => {
-    fetchMenu()
+    if (hasPermission('menu.view')) fetchMenu()
     fetchOrder(true)
     fetchTableInfo()
   }, [tableId])
@@ -942,6 +962,7 @@ function OrderPage({ tableId, onBack, onRequestTableAction, productionTicketEnab
   }
 
   const addItem = async (item: MenuItem) => {
+    if (!canPerform('order.add_item') || (addingAfterSubmit && !canPerform('order.addition'))) return
     try {
       const res = await axios.post(`/api/order/${tableId}/item`, {
         item_id: item.id,
@@ -1275,6 +1296,7 @@ function OrderPage({ tableId, onBack, onRequestTableAction, productionTicketEnab
   }
 
   const startAddMode = () => {
+    if (!canPerform('order.addition')) return
     setSelectedItemId(null)
     setAddingAfterSubmit(true)
   }
@@ -1450,6 +1472,7 @@ function OrderPage({ tableId, onBack, onRequestTableAction, productionTicketEnab
   }
 
   const openGuestEditor = () => {
+    if (!canPerform('table.edit_guests')) return
     setGuestInput(String(tableInfo.guests || 1))
     setGuestInputDirty(false)
     setGuestEditorVisible(true)
@@ -1523,11 +1546,11 @@ function OrderPage({ tableId, onBack, onRequestTableAction, productionTicketEnab
     (order?.checkout?.balance_due || 0) <= 0.01
   const orderSubmitted = ['submitted', 'served'].includes(order?.status || '')
   const tableAwaitingOrder = !order || order.status === 'pending'
-  const canCancelCurrentTable = !orderFinalized && (
+  const canCancelCurrentTable = !guestReadOnly && !orderFinalized && (
     Boolean(order) || Boolean(tableInfo.opened_at) || tableInfo.display_status === 'opened'
   )
   const checkoutMode = orderSubmitted && !addingAfterSubmit
-  const menuLocked = orderFinalized || (orderSubmitted && !addingAfterSubmit)
+  const menuLocked = guestReadOnly || orderFinalized || (orderSubmitted && !addingAfterSubmit)
   const selectedItem = orderItems.find(i => i.id === selectedItemId) || null
   const selectedItemUnavailable = !selectedItem || orderFinalized || (addingAfterSubmit && !selectedItem.addition_pending)
   const actionLabel = orderSubmitted
@@ -1612,15 +1635,17 @@ function OrderPage({ tableId, onBack, onRequestTableAction, productionTicketEnab
               className="order-meta order-guest-button"
               type="button"
               onClick={openGuestEditor}
-              title="点击修改人数"
+              disabled={!canPerform('table.edit_guests')}
+              title={guestReadOnly ? '访客不能修改既有订单' : canPerform('table.edit_guests') ? '点击修改人数' : '无修改人数权限'}
             >
               <EditOutlined />
               <span>{tableInfo.guests} 人</span>
               <em>·</em>
               <span>{getDuration()}</span>
             </button>
+            {guestReadOnly && <span className="guest-readonly-badge">访客只读</span>}
           </div>
-          {!orderFinalized && (
+          {!orderFinalized && (addingAfterSubmit ? canPerform('order.addition') : canPerform('order.change_quantity')) && (
             (!orderSubmitted && orderItems.length > 0) ||
             (addingAfterSubmit && pendingAdditionItems.length > 0)
           ) && (
@@ -1703,7 +1728,7 @@ function OrderPage({ tableId, onBack, onRequestTableAction, productionTicketEnab
                   </div>
                 )
               }
-              const isLocked = orderFinalized || item.returned || (addingAfterSubmit && !item.addition_pending)
+              const isLocked = guestReadOnly || orderFinalized || item.returned || (addingAfterSubmit && !item.addition_pending)
               const badge = formatItemBadge(item)
               const giftBadge = formatGiftBadge(item)
               const currentTotal = itemDisplayTotal(item)
@@ -1791,16 +1816,16 @@ function OrderPage({ tableId, onBack, onRequestTableAction, productionTicketEnab
                 {addingAfterSubmit ? (
                   <div className="bill-action-row">
                     <Button size="large" block onClick={cancelAddMode}>取消</Button>
-                    <Button type="primary" size="large" block disabled={!pendingAdditionItems.length} onClick={confirmAddMode}>下单</Button>
+                    <Button type="primary" size="large" block disabled={!pendingAdditionItems.length || !canPerform('order.addition')} onClick={confirmAddMode}>下单</Button>
                   </div>
                 ) : orderSubmitted ? (
-                  <Button size="large" block disabled={!orderItems.length} onClick={startAddMode}>加菜</Button>
+                  canPerform('order.addition') && <Button size="large" block disabled={!orderItems.length} onClick={startAddMode}>加菜</Button>
                 ) : (
                 <Button
                   type="primary"
                   size="large"
                   block
-                  disabled={!orderItems.length}
+                  disabled={!orderItems.length || !canPerform('order.submit')}
                   onClick={handlePrimaryAction}
                 >
                   {actionLabel}
@@ -1812,7 +1837,7 @@ function OrderPage({ tableId, onBack, onRequestTableAction, productionTicketEnab
         </div>
 
         <div className="action-panel">
-          {!checkoutMode && <div className="action-qty-block">
+          {!checkoutMode && (addingAfterSubmit ? canPerform('order.addition') : canPerform('order.change_quantity')) && <div className="action-qty-block">
             <div className="action-qty-stepper">
               <Button
                 shape="circle"
@@ -1831,7 +1856,7 @@ function OrderPage({ tableId, onBack, onRequestTableAction, productionTicketEnab
               />
             </div>
           </div>}
-          {!checkoutMode && <button
+          {!checkoutMode && canPerform('order.add_item') && <button
             type="button"
             className="action-button"
             disabled={selectedItemUnavailable}
@@ -1839,23 +1864,23 @@ function OrderPage({ tableId, onBack, onRequestTableAction, productionTicketEnab
           >
             <FileTextOutlined /> 菜品备注
           </button>}
-          <button
+          {canPerform('order.discount') && <button
             type="button"
             className={`action-button${selectedItem?.discount ? ' danger' : ''}`}
             disabled={selectedItemUnavailable || financialAdjustmentsLocked}
             onClick={selectedItem?.discount ? clearDiscount : openItemDiscount}
           >
             <TagOutlined /> {selectedItem?.discount ? '取消折扣' : '菜品打折'}
-          </button>
-          <button
+          </button>}
+          {canPerform('order.reduction') && <button
             type="button"
             className={`action-button${selectedItem?.reduction ? ' danger' : ''}`}
             disabled={selectedItemUnavailable || financialAdjustmentsLocked}
             onClick={selectedItem?.reduction ? clearReduction : openItemReduction}
           >
             <MinusCircleOutlined /> {selectedItem?.reduction ? '取消减免' : '菜品减免'}
-          </button>
-          {!checkoutMode && <button
+          </button>}
+          {!checkoutMode && (addingAfterSubmit ? canPerform('order.addition') : canPerform('order.change_quantity')) && <button
             type="button"
             className="action-button"
             disabled={selectedItemUnavailable}
@@ -1863,55 +1888,55 @@ function OrderPage({ tableId, onBack, onRequestTableAction, productionTicketEnab
           >
             <DeleteOutlined /> 删除
           </button>}
-          <button
+          {canPerform('order.return') && <button
             type="button"
             className="action-button"
             disabled={selectedItemUnavailable || financialAdjustmentsLocked || !orderSubmitted || addingAfterSubmit}
             onClick={returnSelectedItem}
           >
             <RollbackOutlined /> 退菜
-          </button>
-          <button
+          </button>}
+          {canPerform('order.gift') && <button
             type="button"
             className={`action-button${selectedItem?.gift_quantity ? ' danger' : ''}`}
             disabled={selectedItemUnavailable || financialAdjustmentsLocked}
             onClick={selectedItem?.gift_quantity ? clearGift : openItemGift}
           >
             <GiftOutlined /> {selectedItem?.gift_quantity ? '取消赠菜' : '赠菜'}
-          </button>
-          <button
+          </button>}
+          {canPerform('order.add_item') && <button
             type="button"
             className="action-button"
             disabled={!order || orderFinalized}
             onClick={openOrderRemark}
           >
             <ProfileOutlined /> 整单备注
-          </button>
-          <button
+          </button>}
+          {canPerform('table.transfer') && <button
             type="button"
             className="action-button"
             disabled={!orderItems.length || orderFinalized}
             onClick={() => onRequestTableAction?.('transfer', tableId)}
           >
             <SwapOutlined /> 转台
-          </button>
-          <button
+          </button>}
+          {canPerform('table.merge') && <button
             type="button"
             className="action-button"
             disabled={!orderItems.length || orderFinalized}
             onClick={() => onRequestTableAction?.('merge', tableId)}
           >
             <RetweetOutlined /> 并台
-          </button>
-          <button
+          </button>}
+          {canPerform('order.cancel') && <button
             type="button"
             className="action-button danger"
             disabled={!canCancelCurrentTable}
             onClick={handleCancelOrder}
           >
             <StopOutlined /> {tableAwaitingOrder ? '撤台' : '撤单'}
-          </button>
-          {productionTicketEnabled && <button
+          </button>}
+          {productionTicketEnabled && canPerform('ticket.reprint') && <button
             type="button"
             className={`action-button${reprintMode ? ' danger' : ''}`}
             disabled={!orderSubmitted || !reprintableItems.length || addingAfterSubmit}
@@ -1924,7 +1949,7 @@ function OrderPage({ tableId, onBack, onRequestTableAction, productionTicketEnab
 
         {orderSubmitted && !addingAfterSubmit ? (
           <section className="menu-panel checkout-panel-wrap">
-            <CheckoutPanel order={order!} onUpdated={fetchOrder} onFinalize={handleFinalize} finalizing={finalizing} />
+            <CheckoutPanel order={order!} onUpdated={fetchOrder} onFinalize={handleFinalize} finalizing={finalizing} readOnly={guestReadOnly} />
           </section>
         ) : (
         <section className="menu-panel">
@@ -1936,7 +1961,7 @@ function OrderPage({ tableId, onBack, onRequestTableAction, productionTicketEnab
                 <button
                   key={item.id}
                   className={`${quantity > 0 ? 'menu-card has-count' : 'menu-card'}${menuLocked ? ' locked' : ''}`}
-                  disabled={menuLocked}
+                  disabled={menuLocked || !canPerform('order.add_item') || (addingAfterSubmit && !canPerform('order.addition'))}
                   onClick={() => addItem(item)}
                 >
                   {quantity > 0 && <span className="menu-count">{quantity}</span>}

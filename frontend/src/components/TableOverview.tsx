@@ -7,6 +7,7 @@ import {
 } from '@ant-design/icons'
 import axios from 'axios'
 import { formatAmount } from '../utils/money'
+import { useAuth } from '../auth/AuthContext'
 
 type DisplayStatus = 'empty' | 'opened' | 'pending_checkout' | 'settled' | 'pending_cleanup'
 
@@ -22,6 +23,7 @@ interface DiningTable {
   order_total?: number
   item_count?: number
   default_guests?: number
+  owned_by_current_user?: boolean
 }
 
 interface TicketItem {
@@ -41,6 +43,7 @@ interface ProductionTicket {
   created_at: string
   items: TicketItem[]
   order_remark?: string
+  owned_by_current_user?: boolean
 }
 
 interface Stats {
@@ -71,6 +74,8 @@ const statusMeta: Record<DisplayStatus, { label: string; tone: string; action: s
 const getDefaultGuests = (table: DiningTable) => table.default_guests ?? 1
 
 function TableOverview({ onSelectTable, pendingAction, onCancelAction, onConfirmAction, productionTicketEnabled }: Props) {
+  const { user, hasPermission } = useAuth()
+  const isGuest = Boolean(user?.roles.some(role => role.code === 'guest'))
   const [tables, setTables] = useState<DiningTable[]>([])
   const [areas, setAreas] = useState<string[]>(['全部'])
   const [selectedArea, setSelectedArea] = useState('全部')
@@ -97,11 +102,11 @@ function TableOverview({ onSelectTable, pendingAction, onCancelAction, onConfirm
 
   useEffect(() => {
     fetchTables()
-    fetchStats()
+    if (hasPermission('history.view')) fetchStats()
   }, [])
 
   useEffect(() => {
-    if (productionTicketEnabled) fetchTickets()
+    if (productionTicketEnabled && hasPermission('ticket.view')) fetchTickets()
     else setTickets([])
   }, [productionTicketEnabled])
 
@@ -277,11 +282,19 @@ function TableOverview({ onSelectTable, pendingAction, onCancelAction, onConfirm
       if (table.id === pendingAction.sourceTableId) return
       if (pendingAction.kind === 'transfer' && table.display_status !== 'empty') return
       if (pendingAction.kind === 'merge' && table.display_status !== 'opened' && table.display_status !== 'pending_checkout') return
+      if (pendingAction.kind === 'merge' && isGuest && !table.owned_by_current_user) {
+        message.warning('访客只能与本人创建的演示订单并台')
+        return
+      }
       onConfirmAction?.(table.id)
       return
     }
 
     if (table.display_status === 'empty') {
+      if (!hasPermission('table.open')) {
+        message.warning('当前账号没有开台权限')
+        return
+      }
       setSelectedTableId(table.id)
       setGuestInput(getDefaultGuests(table))
       setGuestInputDirty(false)
@@ -291,6 +304,14 @@ function TableOverview({ onSelectTable, pendingAction, onCancelAction, onConfirm
     }
 
     if (table.display_status === 'pending_cleanup') {
+      if (isGuest && !table.owned_by_current_user) {
+        onSelectTable(table.id)
+        return
+      }
+      if (!hasPermission('table.clear')) {
+        message.warning('当前账号没有清台权限')
+        return
+      }
       Modal.confirm({
         title: `清台 ${table.id}`,
         content: '确认该桌已经完成清理？清台后桌台会恢复为空桌。',
@@ -301,7 +322,7 @@ function TableOverview({ onSelectTable, pendingAction, onCancelAction, onConfirm
             const res = await axios.post(`/api/table/${table.id}/close`)
             if (res.data.success) {
               fetchTables()
-              fetchStats()
+              if (hasPermission('history.view')) fetchStats()
             } else {
               message.error(res.data.error || '清台失败')
             }
@@ -396,7 +417,7 @@ function TableOverview({ onSelectTable, pendingAction, onCancelAction, onConfirm
             ))}
           </Space>
         </div>
-        <div className="filter-right">
+        {hasPermission('history.view') && <div className="filter-right">
           <div className="metric-pill">
             <span className="metric-label">未结账</span>
             <span className="metric-info">{stats.unpaid_count} 桌 · {stats.unpaid_guests} 人</span>
@@ -407,7 +428,7 @@ function TableOverview({ onSelectTable, pendingAction, onCancelAction, onConfirm
             <span className="metric-info">{stats.total_count} 笔 · {stats.total_guests} 人</span>
             <b className="metric-amount">¥{formatAmount(stats.total_amount)}</b>
           </div>
-        </div>
+        </div>}
       </section>
 
       <section className="table-grid">
@@ -417,7 +438,10 @@ function TableOverview({ onSelectTable, pendingAction, onCancelAction, onConfirm
             if (!pendingAction) return false
             if (table.id === pendingAction.sourceTableId) return true
             if (pendingAction.kind === 'transfer') return table.display_status !== 'empty'
-            if (pendingAction.kind === 'merge') return table.display_status !== 'opened' && table.display_status !== 'pending_checkout'
+            if (pendingAction.kind === 'merge') {
+              return (table.display_status !== 'opened' && table.display_status !== 'pending_checkout')
+                || (isGuest && !table.owned_by_current_user)
+            }
             return false
           })()
           return (
@@ -450,7 +474,7 @@ function TableOverview({ onSelectTable, pendingAction, onCancelAction, onConfirm
         })}
       </section>
 
-      {productionTicketEnabled && <section className={`ticket-board${tickets.length === 0 ? ' empty' : ''}`}>
+      {productionTicketEnabled && hasPermission('ticket.view') && <section className={`ticket-board${tickets.length === 0 ? ' empty' : ''}`}>
         <div className="ticket-board-head">
           <span><PrinterOutlined /> 制作单</span>
           <b>{tickets.length} 张</b>
@@ -502,6 +526,7 @@ function TableOverview({ onSelectTable, pendingAction, onCancelAction, onConfirm
                         id={`ticket-check-${ticket.id}-${item.originalIndex}`}
                         type="checkbox"
                         checked={Boolean(item.completed)}
+                        disabled={!hasPermission('ticket.check') || (isGuest && !ticket.owned_by_current_user)}
                         onChange={() => updateTicketItems(ticket, {
                           item_index: item.originalIndex,
                           completed: !item.completed,
@@ -523,10 +548,10 @@ function TableOverview({ onSelectTable, pendingAction, onCancelAction, onConfirm
                 ))}
               </div>
               <div className="ticket-note-actions">
-                <Button onClick={() => updateTicketItems(ticket, { all: true, completed: !allCompleted })}>
+                {hasPermission('ticket.check') && <Button disabled={isGuest && !ticket.owned_by_current_user} onClick={() => updateTicketItems(ticket, { all: true, completed: !allCompleted })}>
                   {allCompleted ? '取消全选' : '全选'}
-                </Button>
-                <Button type="primary" onClick={() => archiveTicket(ticket)}>完成</Button>
+                </Button>}
+                {hasPermission('ticket.complete') && <Button type="primary" disabled={isGuest && !ticket.owned_by_current_user} onClick={() => archiveTicket(ticket)}>完成</Button>}
               </div>
             </article>
           )})}

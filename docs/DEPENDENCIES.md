@@ -73,10 +73,34 @@ python3.9 -m venv .venv
 | flask-cors | 6.0.5 | 开发环境跨域支持 |
 | gunicorn | 23.0.0 | Linux 生产环境 WSGI 服务；该版本兼容项目的 Python 3.9 基线 |
 | openpyxl | 3.1.5 | 商品、订单、制作单 Excel 导入或导出 |
+| SQLAlchemy | 2.0.51 | 用户、角色、权限、会话及审计数据 ORM |
+| Alembic | 1.16.5 | Python 3.9 兼容的认证数据库迁移基线 |
+| argon2-cffi | 25.1.0 | 使用 Argon2id 哈希登录密码和短密码 |
 
 邮件发送使用 Python 标准库 `smtplib` 和 `email`，不需要额外 pip 包。
 
 ## 5. 可选运行配置
+
+登录权限模块支持以下环境变量。默认值适用于本地开发；生产环境使用 HTTPS 时必须开启安全 Cookie。
+
+| 环境变量 | 默认值 | 说明 |
+|---|---|---|
+| `POS_AUTH_DATABASE_URL` | 空 | SQLAlchemy 数据库 URL；设置后优先于数据库路径 |
+| `POS_AUTH_DATABASE_PATH` | `backend/instance/auth.db` | SQLite 认证数据库路径 |
+| `POS_COOKIE_SECURE` | `false` | HTTPS 生产环境应设为 `true` |
+| `POS_CORS_ORIGINS` | 本地 Vite 地址 | 允许携带 Cookie 的前端来源，多个值用逗号分隔 |
+| `POS_TRUST_PROXY` | `false` | 仅在可信反向代理后开启，用于读取真实客户端 IP |
+| `POS_SESSION_HOURS` | `12` | 服务端会话最长有效小时数 |
+| `POS_MAX_ACTIVE_SESSIONS` | `2` | 单用户最多同时有效会话数，超出后淘汰最旧会话 |
+| `POS_IDLE_LOCK_MINUTES` | `30` | 无操作后自动锁屏分钟数 |
+| `POS_LOGIN_FAILURE_LIMIT` | `5` | 单账号连续失败锁定阈值 |
+| `POS_LOGIN_LOCK_MINUTES` | `15` | 账号失败锁定时长（分钟） |
+| `POS_LOGIN_RATE_LIMIT` | `10` | 同一 IP + 账号每分钟登录/切换尝试上限 |
+| `POS_UNLOCK_RATE_LIMIT` | `5` | 单会话每 5 分钟解锁尝试上限 |
+
+认证 Cookie 为 HttpOnly，前端只持有 CSRF 令牌，不把登录令牌写入 localStorage。
+
+当前登录速率限制保存在单个 Python 进程内。若 Gunicorn 启用多个 Worker，应在反向代理或 Redis 中增加共享限流，不能把进程内计数视为完整的生产防暴力破解方案。
 
 订单历史“发送到邮箱”只有在 SMTP 环境变量完整时才可用。当前业务决定暂不配置邮箱服务。
 
@@ -128,7 +152,9 @@ Flask 会从 `frontend/dist` 提供前端静态文件，访问 `http://服务器
 - `system_settings.json`：系统功能开关；
 - `backups/`：菜单导入或迁移前备份。
 
-部署前应对整个 `backend/data` 目录做快照。当前 JSON 存储适合单实例、小规模使用，不支持多个后端进程并发写入。
+认证与权限数据默认位于 `backend/instance/auth.db`。该文件包含账号和会话等安全数据，已被 `.gitignore` 排除；备份、恢复和迁移时需与业务 JSON 数据一并处理。
+
+部署前应对整个 `backend/data` 目录做快照。当前 JSON 存储适合单实例、小规模使用，不支持多个后端进程并发写入。因此仓库内 systemd 配置固定使用 1 个 Gunicorn Worker，开发服务器也关闭多线程；迁移事务型数据库前不得擅自增加 Worker 或线程数。
 
 ## 9. 依赖升级规范
 

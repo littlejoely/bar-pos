@@ -1,11 +1,13 @@
 """
 菜单路由
 """
-from flask import Blueprint, jsonify, request, send_file
+from flask import Blueprint, g, jsonify, request, send_file
+from auth.middleware import require_permission
 from datetime import datetime
 from io import BytesIO
 import json
 import os
+import tempfile
 
 menu_bp = Blueprint('menu', __name__)
 
@@ -24,8 +26,34 @@ def load_menu():
 
 
 def save_menu(data):
-    with open(MENU_FILE, 'w', encoding='utf-8') as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+    fd, temp_path = tempfile.mkstemp(prefix='.pos-bar-', suffix='.json', dir=DATA_DIR)
+    try:
+        with os.fdopen(fd, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        os.replace(temp_path, MENU_FILE)
+    except Exception:
+        if os.path.exists(temp_path):
+            os.unlink(temp_path)
+        raise
+
+
+def public_menu_payload(menu):
+    scoped_user = getattr(getattr(g, 'current_user', None), 'data_scope', 'all') == 'own_created'
+    user_id = getattr(getattr(g, 'current_user', None), 'id', None)
+    result = {key: value for key, value in menu.items() if key != 'categories'}
+    result['categories'] = []
+    for category in menu.get('categories', []):
+        public_category = {key: value for key, value in category.items() if not key.startswith('_') and key != 'items'}
+        if scoped_user:
+            public_category['owned_by_current_user'] = category.get('_created_by_user_id') == user_id
+        public_category['items'] = []
+        for item in category.get('items', []):
+            public_item = {key: value for key, value in item.items() if not key.startswith('_')}
+            if scoped_user:
+                public_item['owned_by_current_user'] = item.get('_created_by_user_id') == user_id
+            public_category['items'].append(public_item)
+        result['categories'].append(public_category)
+    return result
 
 
 def next_item_id(menu):
@@ -81,11 +109,13 @@ def build_item_export(menu, selected_ids):
 
 
 @menu_bp.route('/menu', methods=['GET'])
+@require_permission('menu.view')
 def get_menu():
-    return jsonify({'success': True, 'data': load_menu()})
+    return jsonify({'success': True, 'data': public_menu_payload(load_menu())})
 
 
 @menu_bp.route('/menu/items/export', methods=['POST'])
+@require_permission('menu.export')
 def export_items():
     data = request.get_json(silent=True) or {}
     item_ids = data.get('item_ids')
@@ -129,6 +159,7 @@ def get_shop():
 
 
 @menu_bp.route('/menu/category', methods=['POST'])
+@require_permission('menu.create')
 def add_category():
     data = request.get_json(silent=True) or {}
     name = (data.get('name') or '').strip()
@@ -140,7 +171,12 @@ def add_category():
     if any(c.get('name') == name for c in categories):
         return jsonify({'success': False, 'error': '类别已存在'}), 400
 
-    new_category = {'name': name, 'items': []}
+    new_category = {
+        'name': name,
+        'items': [],
+        '_created_by_user_id': g.current_user.id,
+        '_created_by_user_name': g.current_user.display_name,
+    }
     position = data.get('position')
     try:
         position = int(position) if position is not None else None
@@ -152,10 +188,11 @@ def add_category():
     else:
         categories.append(new_category)
     save_menu(menu)
-    return jsonify({'success': True, 'data': menu})
+    return jsonify({'success': True, 'data': public_menu_payload(menu)})
 
 
 @menu_bp.route('/menu/category/<path:name>', methods=['DELETE'])
+@require_permission('menu.delete')
 def delete_category(name):
     menu = load_menu()
     categories = menu.get('categories', [])
@@ -166,10 +203,11 @@ def delete_category(name):
     item_count = len(target.get('items') or [])
     menu['categories'] = [c for c in categories if c.get('name') != name]
     save_menu(menu)
-    return jsonify({'success': True, 'data': menu, 'deleted_item_count': item_count})
+    return jsonify({'success': True, 'data': public_menu_payload(menu), 'deleted_item_count': item_count})
 
 
 @menu_bp.route('/menu/category/<path:name>', methods=['PATCH'])
+@require_permission('menu.edit')
 def rename_category(name):
     data = request.get_json(silent=True) or {}
     new_name = (data.get('name') or '').strip()
@@ -190,10 +228,11 @@ def rename_category(name):
             c['name'] = new_name
             break
     save_menu(menu)
-    return jsonify({'success': True, 'data': menu})
+    return jsonify({'success': True, 'data': public_menu_payload(menu)})
 
 
 @menu_bp.route('/menu/category/<path:name>/move', methods=['PUT'])
+@require_permission('menu.edit')
 def move_category(name):
     data = request.get_json(silent=True) or {}
     direction = data.get('direction')
@@ -211,13 +250,14 @@ def move_category(name):
     elif direction == 'down' and index < len(categories) - 1:
         categories[index], categories[index + 1] = categories[index + 1], categories[index]
     else:
-        return jsonify({'success': True, 'data': menu})
+        return jsonify({'success': True, 'data': public_menu_payload(menu)})
 
     save_menu(menu)
-    return jsonify({'success': True, 'data': menu})
+    return jsonify({'success': True, 'data': public_menu_payload(menu)})
 
 
 @menu_bp.route('/menu/category/<path:name>/position', methods=['PUT'])
+@require_permission('menu.edit')
 def set_category_position(name):
     data = request.get_json(silent=True) or {}
     try:
@@ -235,12 +275,12 @@ def set_category_position(name):
 
     target_idx = min(position - 1, len(categories) - 1)
     if target_idx == current_idx:
-        return jsonify({'success': True, 'data': menu})
+        return jsonify({'success': True, 'data': public_menu_payload(menu)})
 
     category = categories.pop(current_idx)
     categories.insert(target_idx, category)
     save_menu(menu)
-    return jsonify({'success': True, 'data': menu})
+    return jsonify({'success': True, 'data': public_menu_payload(menu)})
 
 
 def find_item(menu, item_id):
@@ -252,6 +292,7 @@ def find_item(menu, item_id):
 
 
 @menu_bp.route('/menu/item/<int:item_id>', methods=['PATCH'])
+@require_permission('menu.edit')
 def update_item(item_id):
     data = request.get_json(silent=True) or {}
     menu = load_menu()
@@ -299,10 +340,11 @@ def update_item(item_id):
             target.setdefault('items', []).append(item)
 
     save_menu(menu)
-    return jsonify({'success': True, 'data': menu})
+    return jsonify({'success': True, 'data': public_menu_payload(menu)})
 
 
 @menu_bp.route('/menu/items/batch-update', methods=['PUT'])
+@require_permission('menu.batch')
 def batch_update_items():
     data = request.get_json(silent=True) or {}
     raw_item_ids = data.get('item_ids')
@@ -382,10 +424,11 @@ def batch_update_items():
         target_category.setdefault('items', []).extend(moving_items)
 
     save_menu(menu)
-    return jsonify({'success': True, 'data': menu, 'updated_count': len(matched_items)})
+    return jsonify({'success': True, 'data': public_menu_payload(menu), 'updated_count': len(matched_items)})
 
 
 @menu_bp.route('/menu/item/<int:item_id>/move', methods=['PUT'])
+@require_permission('menu.edit')
 def move_item(item_id):
     data = request.get_json(silent=True) or {}
     direction = data.get('direction')
@@ -403,13 +446,14 @@ def move_item(item_id):
     elif direction == 'down' and idx < len(items) - 1:
         items[idx], items[idx + 1] = items[idx + 1], items[idx]
     else:
-        return jsonify({'success': True, 'data': menu})
+        return jsonify({'success': True, 'data': public_menu_payload(menu)})
 
     save_menu(menu)
-    return jsonify({'success': True, 'data': menu})
+    return jsonify({'success': True, 'data': public_menu_payload(menu)})
 
 
 @menu_bp.route('/menu/item/<int:item_id>/relocate', methods=['PUT'])
+@require_permission('menu.edit')
 def relocate_item(item_id):
     data = request.get_json(silent=True) or {}
     target_category_name = (data.get('category') or '').strip()
@@ -440,10 +484,11 @@ def relocate_item(item_id):
     target_items.insert(target_idx, item)
 
     save_menu(menu)
-    return jsonify({'success': True, 'data': menu})
+    return jsonify({'success': True, 'data': public_menu_payload(menu)})
 
 
 @menu_bp.route('/menu/item', methods=['POST'])
+@require_permission('menu.create')
 def add_item():
     data = request.get_json(silent=True) or {}
     category_name = (data.get('category') or '').strip()
@@ -477,6 +522,8 @@ def add_item():
         'name': name,
         'price': price,
         'sale_status': sale_status,
+        '_created_by_user_id': g.current_user.id,
+        '_created_by_user_name': g.current_user.display_name,
     }
     for field in ('english_name', 'abv', 'description'):
         value = (data.get(field) or '').strip()
@@ -495,10 +542,11 @@ def add_item():
     else:
         items.append(new_item)
     save_menu(menu)
-    return jsonify({'success': True, 'data': menu})
+    return jsonify({'success': True, 'data': public_menu_payload(menu)})
 
 
 @menu_bp.route('/menu/item/<int:item_id>', methods=['DELETE'])
+@require_permission('menu.delete')
 def delete_item(item_id):
     menu = load_menu()
     for category in menu.get('categories', []):
@@ -506,5 +554,5 @@ def delete_item(item_id):
         if any(i.get('id') == item_id for i in items):
             category['items'] = [i for i in items if i.get('id') != item_id]
             save_menu(menu)
-            return jsonify({'success': True, 'data': menu})
+            return jsonify({'success': True, 'data': public_menu_payload(menu)})
     return jsonify({'success': False, 'error': '商品不存在'}), 404

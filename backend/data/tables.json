@@ -34,7 +34,8 @@
       "status": "empty",
       "guests": 0,
       "opened_at": null,
-      "order_id": null
+      "order_id": null,
+      "remark": ""
     },
     {
       "id": "A5",
@@ -109,7 +110,8 @@
       "status": "empty",
       "guests": 0,
       "opened_at": null,
-      "order_id": null
+      "order_id": null,
+      "remark": ""
     },
     {
       "id": "B4",

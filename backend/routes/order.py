@@ -1,7 +1,8 @@
 """
 订单管理路由
 """
-from flask import Blueprint, jsonify, request, send_file
+from flask import Blueprint, g, jsonify, request, send_file
+from copy import deepcopy
 import json
 import os
 import tempfile
@@ -11,13 +12,30 @@ from io import BytesIO
 from email.message import EmailMessage
 from datetime import datetime
 from routes.voucher import load_vouchers
+from routes.menu import load_menu
 from routes.system_settings import production_ticket_enabled
+from auth.middleware import has_permission, permission_denied, require_permission
+from auth.database import get_auth_session
+from auth.models import User
+from sqlalchemy import select
 
 order_bp = Blueprint('order', __name__)
 
 DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data')
 ORDERS_FILE = os.path.join(DATA_DIR, 'orders.json')
 TABLES_FILE = os.path.join(DATA_DIR, 'tables.json')
+
+
+def current_operator():
+    user = getattr(g, 'current_user', None)
+    return user.display_name if user is not None else '系统'
+
+
+def require_request_permissions(*permission_codes):
+    for permission_code in permission_codes:
+        if not has_permission(permission_code):
+            return permission_denied(permission_code)
+    return None
 
 
 def atomic_json_save(path, data):
@@ -62,6 +80,8 @@ def update_table_status(table_id, status, reset=False, order_id=None):
         table['guests'] = 0
         table['opened_at'] = None
         table['order_id'] = None
+        table.pop('_active_owner_user_id', None)
+        table.pop('_active_owner_name', None)
     elif order_id is not None:
         table['order_id'] = order_id
 
@@ -84,7 +104,9 @@ def create_pending_order(table_id, orders):
         'items': [],
         'total': 0,
         'guests': table_guests,
-        'status': 'pending'
+        'status': 'pending',
+        'created_by_user_id': g.current_user.id,
+        'created_by_user_name': g.current_user.display_name,
     }
     orders.append(order)
     update_table_status(table_id, 'occupied', order_id=order_id)
@@ -241,9 +263,30 @@ def compute_checkout_summary(order):
 
 
 def attach_checkout_summary(order):
-    """把 compute_checkout_summary 结果直接挂到 order 上并返回。"""
-    order['checkout'] = compute_checkout_summary(order)
-    return order
+    """生成只用于响应的订单副本，并隐藏非超级管理员不可见的身份信息。"""
+    result = deepcopy(order)
+    result['checkout'] = compute_checkout_summary(result)
+    current_user = getattr(g, 'current_user', None)
+    current_is_superadmin = current_user is not None and any(role.code == 'superadmin' for role in current_user.roles)
+    if current_user is not None and not current_is_superadmin:
+        hidden_ids = getattr(g, '_hidden_superadmin_ids', None)
+        if hidden_ids is None:
+            hidden_ids = {
+                user.id for user in get_auth_session().scalars(select(User)).all()
+                if any(role.code == 'superadmin' for role in user.roles)
+            }
+            g._hidden_superadmin_ids = hidden_ids
+        for log in result.get('operation_logs', []):
+            if log.get('operator_id') in hidden_ids or 'superadmin' in (log.get('operator_roles') or []):
+                log['operator'] = '系统授权操作'
+                log.pop('operator_id', None)
+                log.pop('operator_roles', None)
+        for collection in ('payments', 'refunds'):
+            for record in result.get(collection, []):
+                if record.get('operator_id') in hidden_ids:
+                    record['operator'] = '系统授权操作'
+                    record.pop('operator_id', None)
+    return result
 
 
 def financial_adjustments_locked(order):
@@ -282,11 +325,19 @@ def is_voucher_withdrawal(data):
     return not voucher.get('name') and not (voucher.get('amount') or 0)
 
 
+def has_pending_additions(order):
+    return any(item.get('addition_pending') is True for item in order.get('items', []))
+
+
+def pending_additions_response():
+    return jsonify({'success': False, 'error': '存在未提交加菜，请先下单或取消本轮加菜'}), 409
+
+
 def current_time():
     return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
 
-def append_operation_log(order, category, action, detail, operator='收银员'):
+def append_operation_log(order, category, action, detail, operator=None):
     """记录订单操作明细，供订单历史追溯。"""
     now = current_time()
     order.setdefault('operation_logs', []).append({
@@ -295,7 +346,9 @@ def append_operation_log(order, category, action, detail, operator='收银员'):
         'category': category,
         'action': action,
         'detail': detail,
-        'operator': operator,
+        'operator': operator or current_operator(),
+        'operator_id': getattr(getattr(g, 'current_user', None), 'id', None),
+        'operator_roles': [role.code for role in getattr(getattr(g, 'current_user', None), 'roles', [])],
     })
 
 
@@ -472,6 +525,7 @@ def generate_order_id(table_id):
     return f"{today}-{table_id}-{seq:03d}"
 
 @order_bp.route('/<table_id>', methods=['GET'])
+@require_permission('table.view')
 def get_order(table_id):
     """获取桌台当前订单"""
     orders = load_orders()
@@ -486,9 +540,15 @@ def get_order(table_id):
     return jsonify({'success': True, 'data': None})
 
 @order_bp.route('/<table_id>/create', methods=['POST'])
+@require_permission('order.create')
 def create_order(table_id):
     """创建新订单"""
     orders = load_orders()
+    table = next((item for item in load_tables() if item.get('id') == table_id), None)
+    if table is None:
+        return jsonify({'success': False, 'error': '桌台不存在'}), 404
+    if table.get('status') == 'empty':
+        return jsonify({'success': False, 'error': '请先开台'}), 409
 
     # 检查是否已有未支付订单
     existing = find_active_order(orders, table_id)
@@ -501,23 +561,39 @@ def create_order(table_id):
     return jsonify({'success': True, 'data': attach_checkout_summary(order)})
 
 @order_bp.route('/<table_id>/item', methods=['POST'])
+@require_permission('order.add_item')
 def add_item(table_id):
     """添加菜品到订单"""
-    data = request.json
+    data = request.get_json(silent=True) or {}
     item_id = data.get('item_id')
-    name = data.get('name')
-    price = data.get('price')
     quantity = data.get('quantity', 1)
     add_mode_change = data.get('add_mode_change') is True
+    if add_mode_change:
+        denied = require_request_permissions('order.addition')
+        if denied:
+            return denied
 
-    if not item_id or not name or price is None:
+    if not item_id:
         return jsonify({'success': False, 'error': '菜品参数不完整'}), 400
 
     try:
-        price = float(price)
+        item_id = int(item_id)
         quantity = int(quantity)
-    except:
-        return jsonify({'success': False, 'error': '菜品价格或数量无效'}), 400
+    except (TypeError, ValueError):
+        return jsonify({'success': False, 'error': '菜品或数量无效'}), 400
+
+    menu_item = next((
+        item
+        for category in load_menu().get('categories', [])
+        for item in category.get('items', [])
+        if item.get('id') == item_id
+    ), None)
+    if menu_item is None:
+        return jsonify({'success': False, 'error': '菜品不存在'}), 404
+    if menu_item.get('sale_status', 'on_sale') != 'on_sale':
+        return jsonify({'success': False, 'error': '该菜品已下架'}), 400
+    name = str(menu_item.get('name', '')).strip()
+    price = float(menu_item.get('price', 0) or 0)
 
     if quantity <= 0:
         return jsonify({'success': False, 'error': '菜品数量必须大于 0'}), 400
@@ -527,6 +603,14 @@ def add_item(table_id):
     order = active_order
 
     if not order:
+        denied = require_request_permissions('order.create')
+        if denied:
+            return denied
+        table = next((item for item in load_tables() if item.get('id') == table_id), None)
+        if table is None:
+            return jsonify({'success': False, 'error': '桌台不存在'}), 404
+        if table.get('status') == 'empty':
+            return jsonify({'success': False, 'error': '请先开台'}), 409
         order = create_pending_order(table_id, orders)
     elif 'guests' not in order:
         table = next((t for t in load_tables() if t['id'] == table_id), None)
@@ -572,6 +656,11 @@ def add_item(table_id):
 def remove_item(table_id, item_id):
     """从订单移除菜品"""
     data = request.get_json(silent=True) or {}
+    bypass_adjustment = data.get('add_mode_change') is True or data.get('add_mode_revert') is True
+    required_permission = 'order.addition' if bypass_adjustment else 'order.return' if data.get('return_item') is True else 'order.change_quantity'
+    denied = require_request_permissions(required_permission)
+    if denied:
+        return denied
     orders = load_orders()
     active_order = find_active_order(orders, table_id)
     order = active_order
@@ -579,7 +668,6 @@ def remove_item(table_id, item_id):
     if not order:
         return jsonify({'success': False, 'error': '订单不存在'}), 404
 
-    bypass_adjustment = data.get('add_mode_change') is True or data.get('add_mode_revert') is True
     if order.get('status') != 'pending' and not bypass_adjustment and financial_adjustments_locked(order):
         return financial_adjustment_locked_response()
     if order.get('status') != 'pending' and not data.get('reason') and not bypass_adjustment:
@@ -621,6 +709,7 @@ def remove_item(table_id, item_id):
 
 
 @order_bp.route('/<table_id>/additions', methods=['DELETE'])
+@require_permission('order.addition')
 def clear_pending_additions(table_id):
     """取消或清空本轮尚未提交的加菜。"""
     orders = load_orders()
@@ -647,6 +736,10 @@ def clear_pending_additions(table_id):
 def update_quantity(table_id, item_id):
     """更新菜品数量"""
     data = request.json or {}
+    bypass_adjustment = data.get('add_mode_change') is True or data.get('add_mode_revert') is True
+    denied = require_request_permissions('order.addition' if bypass_adjustment else 'order.change_quantity')
+    if denied:
+        return denied
     quantity = data.get('quantity', 1)
     try:
         quantity = int(quantity)
@@ -660,7 +753,6 @@ def update_quantity(table_id, item_id):
     if not order:
         return jsonify({'success': False, 'error': '订单不存在'}), 404
 
-    bypass_adjustment = data.get('add_mode_change') is True or data.get('add_mode_revert') is True
     if order.get('status') != 'pending' and not data.get('reason') and not bypass_adjustment:
         return jsonify({'success': False, 'error': '请选择改菜原因'}), 400
 
@@ -699,6 +791,15 @@ def update_quantity(table_id, item_id):
 def patch_item(table_id, item_id):
     """修改菜品属性：备注 / 折扣 / 减免"""
     data = request.get_json(silent=True) or {}
+    permission_fields = (
+        ('remark', 'order.add_item'),
+        ('discount', 'order.discount'),
+        ('reduction', 'order.reduction'),
+        ('gift_quantity', 'order.gift'),
+    )
+    denied = require_request_permissions(*(code for field, code in permission_fields if field in data))
+    if denied:
+        return denied
     orders = load_orders()
     order = find_active_order(orders, table_id)
     if not order:
@@ -795,6 +896,7 @@ def patch_item(table_id, item_id):
 
 
 @order_bp.route('/<table_id>/remark', methods=['PUT'])
+@require_permission('order.add_item')
 def update_order_remark(table_id):
     """修改整单备注"""
     data = request.get_json(silent=True) or {}
@@ -812,6 +914,7 @@ def update_order_remark(table_id):
     return jsonify({'success': True, 'data': attach_checkout_summary(order)})
 
 @order_bp.route('/<table_id>/submit', methods=['POST'])
+@require_permission('order.submit')
 def submit_order(table_id):
     """下单并生成虚拟小票，进入待结账"""
     orders = load_orders()
@@ -836,6 +939,10 @@ def submit_order(table_id):
 def print_ticket(table_id):
     """补打或加菜打印虚拟小票"""
     data = request.json or {}
+    required_permission = 'order.addition' if data.get('type') == '加菜' else 'ticket.reprint'
+    denied = require_request_permissions(required_permission)
+    if denied:
+        return denied
     orders = load_orders()
     order = find_active_order(orders, table_id)
 
@@ -878,6 +985,7 @@ def print_ticket(table_id):
     return jsonify({'success': True, 'data': {'order': attach_checkout_summary(order), 'ticket': ticket}})
 
 @order_bp.route('/<table_id>/ticket/<ticket_id>/archive', methods=['POST'])
+@require_permission('ticket.complete')
 def archive_ticket(table_id, ticket_id):
     """归档虚拟小票"""
     orders = load_orders()
@@ -900,6 +1008,7 @@ def archive_ticket(table_id, ticket_id):
 
 
 @order_bp.route('/<table_id>/ticket/<ticket_id>/items', methods=['PATCH'])
+@require_permission('ticket.check')
 def update_ticket_items(table_id, ticket_id):
     """更新制作单划菜状态。"""
     data = request.get_json(silent=True) or {}
@@ -932,6 +1041,7 @@ def update_ticket_items(table_id, ticket_id):
     return jsonify({'success': True, 'data': ticket})
 
 @order_bp.route('/tickets', methods=['GET'])
+@require_permission('ticket.view')
 def list_tickets():
     """获取未归档虚拟小票"""
     if not production_ticket_enabled():
@@ -951,7 +1061,8 @@ def list_tickets():
                 'table_id': order.get('table_id'),
                 'guests': order.get('guests', 0),
                 'order_remark': ticket.get('order_remark') or order.get('remark', ''),
-                'items': ticket.get('items', [])
+                'items': ticket.get('items', []),
+                'owned_by_current_user': order.get('created_by_user_id') == g.current_user.id,
             })
 
     tickets.sort(key=lambda item: item.get('created_at') or '', reverse=True)
@@ -959,6 +1070,7 @@ def list_tickets():
 
 
 @order_bp.route('/tickets/history', methods=['GET'])
+@require_permission('ticket.history')
 def ticket_history():
     """获取全部历史制作单，包括进行中和已完成。"""
     if not production_ticket_enabled():
@@ -978,12 +1090,14 @@ def ticket_history():
                 'guests': order.get('guests', 0),
                 'order_remark': ticket.get('order_remark') or order.get('remark', ''),
                 'items': ticket.get('items', []),
+                'owned_by_current_user': order.get('created_by_user_id') == g.current_user.id,
             })
     tickets.sort(key=lambda item: item.get('created_at') or '', reverse=True)
     return jsonify({'success': True, 'data': tickets})
 
 
 @order_bp.route('/tickets/export', methods=['POST'])
+@require_permission('ticket.history')
 def export_ticket_history():
     data = request.get_json(silent=True) or {}
     requested_ids = data.get('ticket_ids')
@@ -1023,8 +1137,32 @@ def update_checkout_config(table_id):
     order = next((o for o in orders if o['table_id'] == table_id and o.get('status') in ['submitted', 'served']), None)
     if not order:
         return jsonify({'success': False, 'error': '订单不在可结账状态'}), 404
+    if has_pending_additions(order):
+        return pending_additions_response()
 
     data = request.get_json(silent=True) or {}
+    discount_value = data.get('order_discount')
+    free_operation = data.get('clear_all_offers') is True
+    if 'order_discount' in data:
+        try:
+            free_operation = free_operation or float(discount_value or 0) == 100 or float(order.get('order_discount', 0) or 0) == 100
+        except (TypeError, ValueError):
+            pass
+    required_permissions = []
+    if free_operation:
+        required_permissions.append('order.free')
+    else:
+        if 'order_discount' in data:
+            required_permissions.append('order.discount')
+        if 'order_reduction' in data:
+            required_permissions.append('order.reduction')
+        if 'voucher' in data:
+            required_permissions.append('voucher.view')
+        if 'round_down' in data:
+            required_permissions.append('order.round_down')
+    denied = require_request_permissions(*required_permissions)
+    if denied:
+        return denied
     if data and financial_adjustments_locked(order) and not is_voucher_withdrawal(data):
         return financial_adjustment_locked_response()
 
@@ -1121,7 +1259,7 @@ def update_checkout_config(table_id):
             if voucher_amount == 0 and not voucher_name:
                 order.pop('voucher', None)
             else:
-                order['voucher'] = {'name': voucher_name, 'amount': voucher_amount}
+                return jsonify({'success': False, 'error': '请选择系统中已配置的优惠券'}), 400
 
     if 'round_down' in data:
         try:
@@ -1176,12 +1314,15 @@ def update_checkout_config(table_id):
 
 
 @order_bp.route('/<table_id>/payment', methods=['POST'])
+@require_permission('payment.collect')
 def add_payment(table_id):
     """新增一笔收款记录（支持组合支付）"""
     orders = load_orders()
     order = next((o for o in orders if o['table_id'] == table_id and o.get('status') in ['submitted', 'served']), None)
     if not order:
         return jsonify({'success': False, 'error': '订单不在可结账状态'}), 404
+    if has_pending_additions(order):
+        return pending_additions_response()
 
     data = request.get_json(silent=True) or {}
     method = (data.get('method') or '').strip()
@@ -1203,6 +1344,8 @@ def add_payment(table_id):
         'method': method,
         'amount': amount,
         'time': current_time(),
+        'operator': current_operator(),
+        'operator_id': g.current_user.id,
     }
     payments.append(payment)
     append_operation_log(order, '收款', '新增收款', f'{method} ¥{amount:.2f}，收款流水 {payment["id"]}')
@@ -1211,13 +1354,13 @@ def add_payment(table_id):
 
 
 @order_bp.route('/<table_id>/payment/<payment_id>', methods=['DELETE'])
+@require_permission('payment.revoke')
 def revert_payment(table_id, payment_id):
     """撤销一笔已收款"""
     orders = load_orders()
     order = next((o for o in orders if o['table_id'] == table_id and o.get('status') in ['submitted', 'served']), None)
     if not order:
         return jsonify({'success': False, 'error': '订单不在可结账状态'}), 404
-
     payments = order.get('payments', []) or []
     target = next((p for p in payments if p.get('id') == payment_id), None)
     if not target:
@@ -1232,6 +1375,7 @@ def revert_payment(table_id, payment_id):
 
 
 @order_bp.route('/<table_id>/checkout', methods=['POST'])
+@require_permission('payment.checkout')
 def checkout(table_id):
     """正式结账清台：将已收款确认完毕的订单标记为已支付，桌台进入待清台"""
     orders = load_orders()
@@ -1239,6 +1383,8 @@ def checkout(table_id):
 
     if not order:
         return jsonify({'success': False, 'error': '订单不在可结账状态'}), 404
+    if has_pending_additions(order):
+        return pending_additions_response()
 
     if not order['items']:
         return jsonify({'success': False, 'error': '订单没有菜品，不能结账'}), 400
@@ -1255,6 +1401,9 @@ def checkout(table_id):
 
     # 如果请求体带了 payment_method 且当前没有收款记录，则把这一笔作为最终收款一次性记入
     if not payments and data.get('payment_method'):
+        denied = require_request_permissions('payment.collect')
+        if denied:
+            return denied
         method = (data.get('payment_method') or '').strip()
         if method not in ALLOWED_PAYMENT_METHODS:
             return jsonify({'success': False, 'error': '付款方式无效'}), 400
@@ -1269,6 +1418,8 @@ def checkout(table_id):
             'method': method,
             'amount': amount,
             'time': current_time(),
+            'operator': current_operator(),
+            'operator_id': g.current_user.id,
         })
         order['payments'] = payments
 
@@ -1303,6 +1454,7 @@ def checkout(table_id):
     return jsonify({'success': True, 'data': attach_checkout_summary(order)})
 
 @order_bp.route('/<table_id>/transfer', methods=['POST'])
+@require_permission('table.transfer')
 def transfer_table(table_id):
     """转台：将当前桌台的订单整体迁移到另一空桌"""
     data = request.get_json(silent=True) or {}
@@ -1330,6 +1482,9 @@ def transfer_table(table_id):
     order['table_id'] = target_id
     order['transferred_from'] = table_id
     order['transferred_at'] = current_time()
+    for ticket in order.get('tickets', []):
+        if not ticket.get('archived'):
+            ticket['table_id'] = target_id
     append_operation_log(order, '桌台', '转台', f'{table_id} → {target_id}')
 
     src_guests = src.get('guests', 0)
@@ -1339,11 +1494,15 @@ def transfer_table(table_id):
     src['guests'] = 0
     src['opened_at'] = None
     src['order_id'] = None
+    src.pop('_active_owner_user_id', None)
+    src.pop('_active_owner_name', None)
 
     dst['status'] = 'occupied'
     dst['guests'] = src_guests or order.get('guests', 1)
     dst['opened_at'] = src_opened or current_time()
     dst['order_id'] = order['id']
+    dst['_active_owner_user_id'] = order.get('created_by_user_id')
+    dst['_active_owner_name'] = order.get('created_by_user_name')
 
     save_orders(orders)
     save_tables(tables)
@@ -1351,6 +1510,7 @@ def transfer_table(table_id):
 
 
 @order_bp.route('/<table_id>/merge', methods=['POST'])
+@require_permission('table.merge')
 def merge_table(table_id):
     """并台：将当前桌台的订单合并到另一已开台的桌台"""
     data = request.get_json(silent=True) or {}
@@ -1378,31 +1538,27 @@ def merge_table(table_id):
     if not dst_order:
         return jsonify({'success': False, 'error': '目标桌台没有活动订单'}), 404
 
+    protected_fields = ('payments', 'voucher', 'order_discount', 'order_reduction', 'round_down')
+    if any(src_order.get(field) for field in protected_fields) or any(dst_order.get(field) for field in protected_fields):
+        return jsonify({'success': False, 'error': '存在收款或整单优惠时不能并台，请先撤销相关记录'}), 409
+    if has_pending_additions(src_order) or has_pending_additions(dst_order):
+        return pending_additions_response()
+
     for src_item in src_order.get('items', []):
-        existing = next((i for i in dst_order['items'] if i['id'] == src_item['id']), None)
-        if existing:
-            existing['quantity'] += src_item.get('quantity', 0)
-            existing.pop('discount', None)
-            existing.pop('reduction', None)
-            if src_item.get('remark'):
-                existing['remark'] = src_item['remark']
-            else:
-                existing.pop('remark', None)
-        else:
-            new_item = {
-                'id': src_item['id'],
-                'name': src_item['name'],
-                'price': src_item['price'],
-                'quantity': src_item.get('quantity', 0),
-                'added_at': src_item.get('added_at') or src_order.get('submitted_at') or src_order.get('created_at'),
-            }
-            if src_item.get('remark'):
-                new_item['remark'] = src_item['remark']
-            dst_order['items'].append(new_item)
+        new_item = dict(src_item)
+        if any(item.get('id') == new_item.get('id') for item in dst_order['items']):
+            new_item.setdefault('menu_item_id', new_item.get('id'))
+            new_item['id'] = next_order_line_id(dst_order)
+        new_item['added_at'] = new_item.get('added_at') or src_order.get('submitted_at') or src_order.get('created_at')
+        new_item.pop('addition_pending', None)
+        dst_order['items'].append(new_item)
 
     recalc_order(dst_order)
 
     merged_quantity = sum(item.get('quantity', 0) for item in src_order.get('items', []))
+    for ticket in src_order.get('tickets', []):
+        if not ticket.get('archived'):
+            ticket['table_id'] = target_id
     append_operation_log(src_order, '桌台', '并台转出', f'{table_id} → {target_id}，转出 {merged_quantity} 份菜品')
     append_operation_log(dst_order, '桌台', '并台接收', f'接收桌台 {table_id} 的 {merged_quantity} 份菜品')
 
@@ -1415,6 +1571,8 @@ def merge_table(table_id):
     src['guests'] = 0
     src['opened_at'] = None
     src['order_id'] = None
+    src.pop('_active_owner_user_id', None)
+    src.pop('_active_owner_name', None)
 
     save_orders(orders)
     save_tables(tables)
@@ -1422,12 +1580,16 @@ def merge_table(table_id):
 
 
 @order_bp.route('/<table_id>/cancel', methods=['POST'])
+@require_permission('order.cancel')
 def cancel_order(table_id):
     """取消当前订单并释放桌台"""
     orders = load_orders()
     order = find_active_order(orders, table_id)
 
     if order:
+        checkout = compute_checkout_summary(order)
+        if checkout.get('paid_total', 0) > 0.005:
+            return jsonify({'success': False, 'error': '订单已有收款，请先撤销全部收款后再撤单'}), 409
         withdrawing_table = order.get('status') == 'pending'
         order['status'] = 'canceled'
         order['canceled_at'] = current_time()
@@ -1446,6 +1608,7 @@ def cancel_order(table_id):
     })
 
 @order_bp.route('/list', methods=['GET'])
+@require_permission('history.view')
 def list_orders():
     """获取订单历史"""
     orders = load_orders()
@@ -1463,6 +1626,7 @@ def selected_export_orders(order_ids):
 
 
 @order_bp.route('/export', methods=['POST'])
+@require_permission('history.export')
 def export_orders():
     data = request.get_json(silent=True) or {}
     orders = selected_export_orders(data.get('order_ids'))
@@ -1482,6 +1646,7 @@ def export_orders():
 
 
 @order_bp.route('/export/email', methods=['POST'])
+@require_permission('history.export')
 def email_order_export():
     data = request.get_json(silent=True) or {}
     recipient = (data.get('email') or '').strip()
@@ -1539,6 +1704,7 @@ def email_order_export():
 
 
 @order_bp.route('/history/<order_id>/refund', methods=['POST'])
+@require_permission('payment.refund')
 def refund_history_order(order_id):
     """为已支付订单登记退款，支持多次部分退款。"""
     orders = load_orders()
@@ -1575,6 +1741,8 @@ def refund_history_order(order_id):
         'amount': amount,
         'reason': reason,
         'time': current_time(),
+        'operator': current_operator(),
+        'operator_id': g.current_user.id,
     })
     total_after = round(refunded_total + amount, 2)
     order['refund_status'] = 'full' if total_after >= paid_total - 0.01 else 'partial'
@@ -1584,16 +1752,33 @@ def refund_history_order(order_id):
     return jsonify({'success': True, 'data': order})
 
 @order_bp.route('/stats', methods=['GET'])
+@require_permission('history.view')
 def stats():
     """获取日结统计"""
     today = datetime.now().strftime('%Y%m%d')
+    today_date = datetime.now().strftime('%Y-%m-%d')
     orders = load_orders()
-    today_orders = [o for o in orders if o['status'] == 'paid' and o['id'].startswith(today)]
+    today_orders = [
+        order for order in orders
+        if order.get('status') == 'paid' and (
+            str(order.get('paid_at', '')).startswith(today_date)
+            or (not order.get('paid_at') and str(order.get('id', '')).startswith(today))
+        )
+    ]
     pending_orders = [o for o in orders if o.get('status') in ['pending', 'submitted', 'served']]
     tables = load_tables()
     opened_tables = [t for t in tables if t['status'] == 'occupied']
 
-    total_amount = round(sum(o['total'] for o in today_orders), 2)
+    def net_received(order):
+        payments = order.get('payments', []) or []
+        voucher_income = voucher_financials(order.get('voucher'))[1]
+        received = round(sum(payment.get('amount', 0) or 0 for payment in payments) + voucher_income, 2)
+        if not payments and voucher_income <= 0:
+            received = round(order.get('paid_amount', order.get('total', 0)) or 0, 2)
+        refunded = round(sum(refund.get('amount', 0) or 0 for refund in order.get('refunds', [])), 2)
+        return max(0, round(received - refunded, 2))
+
+    total_amount = round(sum(net_received(order) for order in today_orders), 2)
     total_count = len(today_orders)
     total_guests = sum(o.get('guests', 0) for o in today_orders)
     unpaid_amount = round(sum(committed_order_total(o) for o in pending_orders), 2)

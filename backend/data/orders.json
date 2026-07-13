@@ -4795,6 +4795,884 @@
       "payment_method": "组合支付",
       "paid_amount": 950.0,
       "cleared_at": "2026-07-13 00:35:44"
+    },
+    {
+      "id": "20260713-A3-001",
+      "table_id": "A3",
+      "created_at": "2026-07-13 23:35:15",
+      "items": [],
+      "total": 0,
+      "guests": 1,
+      "status": "canceled",
+      "created_by_user_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+      "created_by_user_name": "访客用户",
+      "operation_logs": [
+        {
+          "id": "L20260713233515577661",
+          "time": "2026-07-13 23:35:15",
+          "category": "菜品",
+          "action": "添加菜品",
+          "detail": "特调 × 1，单价 ¥88.00",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260713233516341673",
+          "time": "2026-07-13 23:35:16",
+          "category": "菜品",
+          "action": "添加菜品",
+          "detail": "老赖流浪汉 × 1，单价 ¥78.00",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260713233517265070",
+          "time": "2026-07-13 23:35:17",
+          "category": "菜品",
+          "action": "添加菜品",
+          "detail": "特调 × 1，单价 ¥88.00",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260713233518730283",
+          "time": "2026-07-13 23:35:18",
+          "category": "菜品",
+          "action": "删除菜品",
+          "detail": "老赖流浪汉 × 1",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260713233518833347",
+          "time": "2026-07-13 23:35:18",
+          "category": "菜品",
+          "action": "删除菜品",
+          "detail": "特调 × 2",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260713233521300017",
+          "time": "2026-07-13 23:35:21",
+          "category": "桌台",
+          "action": "撤台",
+          "detail": "桌台 A3 已撤台并恢复为空桌",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        }
+      ],
+      "canceled_at": "2026-07-13 23:35:21"
+    },
+    {
+      "id": "20260713-B3-001",
+      "table_id": "B3",
+      "created_at": "2026-07-13 23:35:30",
+      "items": [
+        {
+          "id": 11736218919,
+          "menu_item_id": 11736218919,
+          "name": "橄榄油酸",
+          "price": 88.0,
+          "quantity": 1,
+          "added_at": "2026-07-13 23:35:31",
+          "line_total": 88.0
+        },
+        {
+          "id": 9421872157,
+          "menu_item_id": 9421872157,
+          "name": "老赖流浪汉",
+          "price": 78.0,
+          "quantity": 1,
+          "added_at": "2026-07-13 23:35:30",
+          "line_total": 78.0
+        },
+        {
+          "id": 4793824065,
+          "menu_item_id": 4793824065,
+          "name": "特调",
+          "price": 88.0,
+          "quantity": 1,
+          "added_at": "2026-07-13 23:35:30",
+          "line_total": 88.0
+        }
+      ],
+      "total": 254.0,
+      "guests": 1,
+      "status": "paid",
+      "created_by_user_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+      "created_by_user_name": "访客用户",
+      "operation_logs": [
+        {
+          "id": "L20260713233530313404",
+          "time": "2026-07-13 23:35:30",
+          "category": "菜品",
+          "action": "添加菜品",
+          "detail": "特调 × 1，单价 ¥88.00",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260713233530727922",
+          "time": "2026-07-13 23:35:30",
+          "category": "菜品",
+          "action": "添加菜品",
+          "detail": "老赖流浪汉 × 1，单价 ¥78.00",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260713233531179215",
+          "time": "2026-07-13 23:35:31",
+          "category": "菜品",
+          "action": "添加菜品",
+          "detail": "橄榄油酸 × 1，单价 ¥88.00",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260713233531974076",
+          "time": "2026-07-13 23:35:31",
+          "category": "订单",
+          "action": "提交下单",
+          "detail": "提交 3 份菜品",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260713233537777384",
+          "time": "2026-07-13 23:35:37",
+          "category": "收款",
+          "action": "新增收款",
+          "detail": "现金 ¥254.00，收款流水 P20260713233537777296",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260713233539163479",
+          "time": "2026-07-13 23:35:39",
+          "category": "订单",
+          "action": "完成结账",
+          "detail": "应收 ¥254.00，实收 ¥254.00，现金",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260713233539210678",
+          "time": "2026-07-13 23:35:39",
+          "category": "桌台",
+          "action": "清台",
+          "detail": "桌台 B3 已清理并恢复为空桌",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9"
+        },
+        {
+          "id": "L20260713233601961600",
+          "time": "2026-07-13 23:36:01",
+          "category": "退款",
+          "action": "订单退款",
+          "detail": "退款 ¥25.00，原因：多结账",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        }
+      ],
+      "submitted_at": "2026-07-13 23:35:31",
+      "tickets": [
+        {
+          "id": "T20260713233531974267",
+          "type": "下单",
+          "created_at": "2026-07-13 23:35:31",
+          "archived": true,
+          "order_remark": "",
+          "items": [
+            {
+              "id": 11736218919,
+              "name": "橄榄油酸",
+              "price": 88.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-13 23:35:33"
+            },
+            {
+              "id": 9421872157,
+              "name": "老赖流浪汉",
+              "price": 78.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-13 23:35:33"
+            },
+            {
+              "id": 4793824065,
+              "name": "特调",
+              "price": 88.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-13 23:35:33"
+            }
+          ],
+          "archived_at": "2026-07-13 23:35:33"
+        }
+      ],
+      "payments": [
+        {
+          "id": "P20260713233537777296",
+          "method": "现金",
+          "amount": 254.0,
+          "time": "2026-07-13 23:35:37",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9"
+        }
+      ],
+      "paid_at": "2026-07-13 23:35:39",
+      "payment_method": "现金",
+      "paid_amount": 254.0,
+      "cleared_at": "2026-07-13 23:35:39",
+      "refunds": [
+        {
+          "id": "R20260713233601961537",
+          "amount": 25.0,
+          "reason": "多结账",
+          "time": "2026-07-13 23:36:01",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9"
+        }
+      ],
+      "refund_status": "partial",
+      "refunded_amount": 25.0
+    },
+    {
+      "id": "20260714-A4-001",
+      "table_id": "D2",
+      "created_at": "2026-07-14 00:01:09",
+      "items": [
+        {
+          "id": 1000003,
+          "menu_item_id": 4787354765,
+          "name": "High Ball",
+          "price": 68.0,
+          "quantity": 1,
+          "added_at": "2026-07-14 00:02:14",
+          "line_total": 68.0
+        },
+        {
+          "id": 1000002,
+          "menu_item_id": 4786571316,
+          "name": "Side Car",
+          "price": 80.0,
+          "quantity": 1,
+          "added_at": "2026-07-14 00:02:13",
+          "line_total": 80.0
+        },
+        {
+          "id": 1000001,
+          "menu_item_id": 9785224661,
+          "name": "笨蛋解药",
+          "price": 98.0,
+          "quantity": 1,
+          "added_at": "2026-07-14 00:01:42",
+          "line_total": 98.0
+        },
+        {
+          "id": 1000000,
+          "menu_item_id": 5542064721,
+          "name": "温斯顿",
+          "price": 88.0,
+          "quantity": 1,
+          "added_at": "2026-07-14 00:01:41",
+          "line_total": 0,
+          "returned": true,
+          "return_reason": "错点",
+          "returned_at": "2026-07-14 00:02:03"
+        },
+        {
+          "id": 11729698681,
+          "menu_item_id": 11729698681,
+          "name": "白咖啡尼格罗尼",
+          "price": 98.0,
+          "quantity": 1,
+          "added_at": "2026-07-14 00:01:30",
+          "line_total": 0,
+          "gift_quantity": 1,
+          "gift_reason": "老顾客"
+        },
+        {
+          "id": 11730077150,
+          "menu_item_id": 11730077150,
+          "name": "香香斯普莫尼",
+          "price": 88.0,
+          "quantity": 1,
+          "added_at": "2026-07-14 00:01:23",
+          "line_total": 88.0,
+          "remark": "要冰"
+        },
+        {
+          "id": 9421872157,
+          "menu_item_id": 9421872157,
+          "name": "老赖流浪汉",
+          "price": 78.0,
+          "quantity": 1,
+          "added_at": "2026-07-14 00:01:11",
+          "line_total": 73.0,
+          "reduction": 5.0
+        },
+        {
+          "id": 4793824065,
+          "menu_item_id": 4793824065,
+          "name": "特调",
+          "price": 88.0,
+          "quantity": 1,
+          "added_at": "2026-07-14 00:01:09",
+          "line_total": 74.8,
+          "discount": 15.0
+        }
+      ],
+      "total": 481.8,
+      "guests": 6,
+      "status": "paid",
+      "created_by_user_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+      "created_by_user_name": "访客用户",
+      "operation_logs": [
+        {
+          "id": "L20260714000109850087",
+          "time": "2026-07-14 00:01:09",
+          "category": "菜品",
+          "action": "添加菜品",
+          "detail": "特调 × 1，单价 ¥88.00",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260714000111142147",
+          "time": "2026-07-14 00:01:11",
+          "category": "菜品",
+          "action": "添加菜品",
+          "detail": "老赖流浪汉 × 1，单价 ¥78.00",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260714000115831256",
+          "time": "2026-07-14 00:01:15",
+          "category": "优惠",
+          "action": "菜品折扣",
+          "detail": "特调：8.5折，原因：未填写",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260714000122586641",
+          "time": "2026-07-14 00:01:22",
+          "category": "优惠",
+          "action": "菜品减免",
+          "detail": "老赖流浪汉：¥5.00，原因：未填写",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260714000123721041",
+          "time": "2026-07-14 00:01:23",
+          "category": "菜品",
+          "action": "添加菜品",
+          "detail": "香香斯普莫尼 × 1，单价 ¥88.00",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260714000127866145",
+          "time": "2026-07-14 00:01:27",
+          "category": "菜品",
+          "action": "修改菜品备注",
+          "detail": "香香斯普莫尼：要冰",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260714000130068790",
+          "time": "2026-07-14 00:01:30",
+          "category": "菜品",
+          "action": "添加菜品",
+          "detail": "白咖啡尼格罗尼 × 1，单价 ¥98.00",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260714000131367868",
+          "time": "2026-07-14 00:01:31",
+          "category": "订单",
+          "action": "提交下单",
+          "detail": "提交 4 份菜品",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260714000141937834",
+          "time": "2026-07-14 00:01:41",
+          "category": "菜品",
+          "action": "加菜",
+          "detail": "温斯顿 × 1，单价 ¥88.00",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260714000142686286",
+          "time": "2026-07-14 00:01:42",
+          "category": "菜品",
+          "action": "加菜",
+          "detail": "笨蛋解药 × 1，单价 ¥98.00",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260714000145300677",
+          "time": "2026-07-14 00:01:45",
+          "category": "订单",
+          "action": "确认加菜",
+          "detail": "确认 2 份加菜",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260714000150784621",
+          "time": "2026-07-14 00:01:50",
+          "category": "桌台",
+          "action": "转台",
+          "detail": "A4 → B5",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260714000157846149",
+          "time": "2026-07-14 00:01:57",
+          "category": "桌台",
+          "action": "转台",
+          "detail": "B5 → D2",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260714000203223028",
+          "time": "2026-07-14 00:02:03",
+          "category": "菜品",
+          "action": "退菜",
+          "detail": "温斯顿 × 1，原因：错点",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260714000208137467",
+          "time": "2026-07-14 00:02:08",
+          "category": "优惠",
+          "action": "赠菜",
+          "detail": "白咖啡尼格罗尼：1 份，原因：老顾客",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260714000213339270",
+          "time": "2026-07-14 00:02:13",
+          "category": "菜品",
+          "action": "加菜",
+          "detail": "Side Car × 1，单价 ¥80.00",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260714000214084374",
+          "time": "2026-07-14 00:02:14",
+          "category": "菜品",
+          "action": "加菜",
+          "detail": "High Ball × 1，单价 ¥68.00",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260714000215451234",
+          "time": "2026-07-14 00:02:15",
+          "category": "订单",
+          "action": "确认加菜",
+          "detail": "确认 2 份加菜",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260714000225017791",
+          "time": "2026-07-14 00:02:25",
+          "category": "制作单",
+          "action": "补打制作单",
+          "detail": "生成制作单 T20260714000225017764",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260714000235695193",
+          "time": "2026-07-14 00:02:35",
+          "category": "优惠",
+          "action": "整单折扣",
+          "detail": "8.8折，原因：未填写",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260714000241899872",
+          "time": "2026-07-14 00:02:41",
+          "category": "收款",
+          "action": "新增收款",
+          "detail": "微信支付 ¥200.00，收款流水 P20260714000241899779",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260714000247068413",
+          "time": "2026-07-14 00:02:47",
+          "category": "收款",
+          "action": "新增收款",
+          "detail": "支付宝 ¥50.00，收款流水 P20260714000247068319",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260714000251957121",
+          "time": "2026-07-14 00:02:51",
+          "category": "优惠",
+          "action": "使用优惠券",
+          "detail": "100元代金券×1，面值 ¥100.00，实收 ¥90.00，优惠 ¥10.00",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260714000258210678",
+          "time": "2026-07-14 00:02:58",
+          "category": "收款",
+          "action": "新增收款",
+          "detail": "现金 ¥73.98，收款流水 P20260714000258210590",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260714000259280841",
+          "time": "2026-07-14 00:02:59",
+          "category": "订单",
+          "action": "完成结账",
+          "detail": "应收 ¥413.98，实收 ¥413.98，组合支付",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9",
+          "operator_roles": [
+            "guest"
+          ]
+        },
+        {
+          "id": "L20260714000259329000",
+          "time": "2026-07-14 00:02:59",
+          "category": "桌台",
+          "action": "清台",
+          "detail": "桌台 D2 已清理并恢复为空桌",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9"
+        }
+      ],
+      "submitted_at": "2026-07-14 00:01:31",
+      "tickets": [
+        {
+          "id": "T20260714000131368312",
+          "type": "下单",
+          "created_at": "2026-07-14 00:01:31",
+          "archived": true,
+          "order_remark": "",
+          "items": [
+            {
+              "id": 11729698681,
+              "name": "白咖啡尼格罗尼",
+              "price": 98.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-14 00:01:35"
+            },
+            {
+              "id": 11730077150,
+              "name": "香香斯普莫尼",
+              "price": 88.0,
+              "quantity": 1,
+              "remark": "要冰",
+              "completed": true,
+              "completed_at": "2026-07-14 00:01:36"
+            },
+            {
+              "id": 9421872157,
+              "name": "老赖流浪汉",
+              "price": 78.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-14 00:01:35"
+            },
+            {
+              "id": 4793824065,
+              "name": "特调",
+              "price": 88.0,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-14 00:01:37"
+            }
+          ],
+          "archived_at": "2026-07-14 00:01:38"
+        },
+        {
+          "id": "T20260714000145300637",
+          "type": "加菜",
+          "created_at": "2026-07-14 00:01:45",
+          "archived": true,
+          "order_remark": "",
+          "items": [
+            {
+              "id": 1000001,
+              "name": "笨蛋解药",
+              "price": 98,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-14 00:01:47"
+            },
+            {
+              "id": 1000000,
+              "name": "温斯顿",
+              "price": 88,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-14 00:01:47"
+            }
+          ],
+          "archived_at": "2026-07-14 00:01:47"
+        },
+        {
+          "id": "T20260714000215451187",
+          "type": "加菜",
+          "created_at": "2026-07-14 00:02:15",
+          "archived": true,
+          "order_remark": "",
+          "items": [
+            {
+              "id": 1000003,
+              "name": "High Ball",
+              "price": 68,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-14 00:02:16"
+            },
+            {
+              "id": 1000002,
+              "name": "Side Car",
+              "price": 80,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-14 00:02:16"
+            }
+          ],
+          "archived_at": "2026-07-14 00:02:16"
+        },
+        {
+          "id": "T20260714000225017764",
+          "type": "补打制作单",
+          "created_at": "2026-07-14 00:02:25",
+          "archived": true,
+          "order_remark": "",
+          "items": [
+            {
+              "id": 1000003,
+              "name": "High Ball",
+              "price": 68,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-14 00:02:28"
+            },
+            {
+              "id": 1000002,
+              "name": "Side Car",
+              "price": 80,
+              "quantity": 1,
+              "remark": "",
+              "completed": true,
+              "completed_at": "2026-07-14 00:02:28"
+            }
+          ],
+          "archived_at": "2026-07-14 00:02:28"
+        }
+      ],
+      "next_line_id": 1000004,
+      "transferred_from": "B5",
+      "transferred_at": "2026-07-14 00:01:57",
+      "adjustments": [
+        {
+          "type": "remove",
+          "item_id": 1000000,
+          "reason": "错点",
+          "created_at": "2026-07-14 00:02:03"
+        }
+      ],
+      "order_discount": 12.0,
+      "payments": [
+        {
+          "id": "P20260714000241899779",
+          "method": "微信支付",
+          "amount": 200.0,
+          "time": "2026-07-14 00:02:41",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9"
+        },
+        {
+          "id": "P20260714000247068319",
+          "method": "支付宝",
+          "amount": 50.0,
+          "time": "2026-07-14 00:02:47",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9"
+        },
+        {
+          "id": "P20260714000258210590",
+          "method": "现金",
+          "amount": 73.98,
+          "time": "2026-07-14 00:02:58",
+          "operator": "访客用户",
+          "operator_id": "7c57e9ff-02c7-4ba1-a0f6-14b43be3c6b9"
+        }
+      ],
+      "voucher": {
+        "name": "100元代金券×1",
+        "amount": 100.0,
+        "items": [
+          {
+            "id": 1,
+            "name": "100元代金券",
+            "quantity": 1,
+            "face_value": 100.0,
+            "sale_price": 90.0,
+            "amount": 100.0
+          }
+        ]
+      },
+      "paid_at": "2026-07-14 00:02:59",
+      "payment_method": "组合支付",
+      "paid_amount": 413.98,
+      "cleared_at": "2026-07-14 00:02:59"
     }
   ]
 }

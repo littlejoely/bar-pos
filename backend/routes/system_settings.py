@@ -1,5 +1,6 @@
 """系统功能开关。"""
 from flask import Blueprint, jsonify, request
+from auth.middleware import require_permission
 import json
 import os
 import tempfile
@@ -44,6 +45,7 @@ def get_system_settings():
 
 
 @system_settings_bp.route('/system-settings', methods=['PATCH'])
+@require_permission('system.production_ticket')
 def update_system_settings():
     data = request.get_json(silent=True) or {}
     settings = load_system_settings()

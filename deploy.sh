@@ -26,13 +26,14 @@ SSH=(ssh -p "$SSH_PORT" "$SERVER")
 SCP=(scp -P "$SSH_PORT")
 
 echo "[1/7] Prepare Silver Lining runtime user and directories"
-"${SSH[@]}" "getent group '$APP_USER' >/dev/null || sudo groupadd --system '$APP_USER'; id -u '$APP_USER' >/dev/null 2>&1 || sudo useradd --system --gid '$APP_USER' --home-dir /srv/silverlining --create-home --shell /usr/sbin/nologin '$APP_USER'; sudo install -d -o '$APP_USER' -g '$APP_USER' -m 0750 '$REMOTE_DIR/backend/data' '$REMOTE_DIR/backend/routes' '$REMOTE_DIR/frontend/dist'"
+"${SSH[@]}" "getent group '$APP_USER' >/dev/null || sudo groupadd --system '$APP_USER'; id -u '$APP_USER' >/dev/null 2>&1 || sudo useradd --system --gid '$APP_USER' --home-dir /srv/silverlining --create-home --shell /usr/sbin/nologin '$APP_USER'; sudo install -d -o '$APP_USER' -g '$APP_USER' -m 0750 '$REMOTE_DIR/backend/data' '$REMOTE_DIR/backend/instance' '$REMOTE_DIR/backend/routes' '$REMOTE_DIR/backend/auth' '$REMOTE_DIR/frontend/dist'"
 
 echo "[2/7] Upload backend code and locked dependencies"
-"${SSH[@]}" "rm -rf /tmp/silverlining-pos-backend && mkdir -p /tmp/silverlining-pos-backend/routes"
+"${SSH[@]}" "rm -rf /tmp/silverlining-pos-backend && mkdir -p /tmp/silverlining-pos-backend/routes /tmp/silverlining-pos-backend/auth"
 "${SCP[@]}" backend/app.py backend/requirements.txt backend/requirements.lock "$SERVER:/tmp/silverlining-pos-backend/"
 "${SCP[@]}" backend/routes/*.py "$SERVER:/tmp/silverlining-pos-backend/routes/"
-"${SSH[@]}" "sudo install -o '$APP_USER' -g '$APP_USER' -m 0640 /tmp/silverlining-pos-backend/app.py /tmp/silverlining-pos-backend/requirements.txt /tmp/silverlining-pos-backend/requirements.lock '$REMOTE_DIR/backend/'; sudo install -o '$APP_USER' -g '$APP_USER' -m 0640 /tmp/silverlining-pos-backend/routes/*.py '$REMOTE_DIR/backend/routes/'; rm -rf /tmp/silverlining-pos-backend"
+"${SCP[@]}" backend/auth/*.py "$SERVER:/tmp/silverlining-pos-backend/auth/"
+"${SSH[@]}" "sudo install -o '$APP_USER' -g '$APP_USER' -m 0640 /tmp/silverlining-pos-backend/app.py /tmp/silverlining-pos-backend/requirements.txt /tmp/silverlining-pos-backend/requirements.lock '$REMOTE_DIR/backend/'; sudo install -o '$APP_USER' -g '$APP_USER' -m 0640 /tmp/silverlining-pos-backend/routes/*.py '$REMOTE_DIR/backend/routes/'; sudo install -o '$APP_USER' -g '$APP_USER' -m 0640 /tmp/silverlining-pos-backend/auth/*.py '$REMOTE_DIR/backend/auth/'; rm -rf /tmp/silverlining-pos-backend"
 
 if [[ "$DEPLOY_DATA" == "true" ]] || ! "${SSH[@]}" "test -f '$REMOTE_DIR/backend/data/menu.json'"; then
   echo "[3/7] Seed runtime data"

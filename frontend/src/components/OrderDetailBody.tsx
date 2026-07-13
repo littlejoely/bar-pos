@@ -25,6 +25,7 @@ export interface OrderPaymentRecord {
   method: string
   amount: number
   time: string
+  operator?: string
 }
 
 export interface OrderRefundRecord {
@@ -32,6 +33,7 @@ export interface OrderRefundRecord {
   amount: number
   reason: string
   time: string
+  operator?: string
 }
 
 export interface OrderOperationLog {
@@ -84,6 +86,8 @@ export interface OrderHistory {
     voucher_income_amount?: number
     voucher_discount_amount?: number
   }
+  created_by_user_id?: string
+  created_by_user_name?: string
 }
 
 export const orderStatusLabels: Record<string, { label: string; color: string }> = {
@@ -159,9 +163,9 @@ const operationCategoryColor: Record<string, string> = {
 
 const buildOperationLogs = (order: OrderHistory): OrderOperationLog[] => {
   const legacy: OrderOperationLog[] = []
-  const add = (id: string, time: string | undefined, category: string, action: string, detail: string) => {
+  const add = (id: string, time: string | undefined, category: string, action: string, detail: string, operator = '系统记录') => {
     if (!time) return
-    legacy.push({ id, time, category, action, detail, operator: '系统记录' })
+    legacy.push({ id, time, category, action, detail, operator })
   }
   add('legacy-created', order.created_at, '订单', '创建订单', `桌台 ${order.table_id}，人数 ${order.guests ?? '—'}`)
   ;(order.items || []).forEach((item, index) => {
@@ -169,11 +173,11 @@ const buildOperationLogs = (order: OrderHistory): OrderOperationLog[] => {
   })
   add('legacy-submit', order.submitted_at, '订单', '提交下单', '菜品正式提交')
   ;(order.payments || []).forEach(payment => {
-    add(`legacy-payment-${payment.id}`, payment.time, '收款', '收款', `${payment.method} ¥${payment.amount.toFixed(2)}，流水 ${payment.id}`)
+    add(`legacy-payment-${payment.id}`, payment.time, '收款', '收款', `${payment.method} ¥${payment.amount.toFixed(2)}，流水 ${payment.id}`, payment.operator)
   })
   add('legacy-paid', order.paid_at, '订单', '完成结账', `实收 ¥${paidTotalForLog(order).toFixed(2)}`)
   ;(order.refunds || []).forEach(refund => {
-    add(`legacy-refund-${refund.id}`, refund.time, '退款', '订单退款', `退款 ¥${refund.amount.toFixed(2)}，原因：${refund.reason}`)
+    add(`legacy-refund-${refund.id}`, refund.time, '退款', '订单退款', `退款 ¥${refund.amount.toFixed(2)}，原因：${refund.reason}`, refund.operator)
   })
   add('legacy-cleared', order.cleared_at, '桌台', '清台', `桌台 ${order.table_id} 已恢复为空桌`)
   add('legacy-canceled', order.canceled_at, '订单', '撤销订单', '订单已取消')
@@ -327,7 +331,7 @@ const OrderDetailBody: FC<{ order: OrderHistory }> = ({ order }) => {
         <div className="order-payment-list">
           {payments.length > 0 ? payments.map(payment => (
             <div key={payment.id}>
-              <span>{payment.method === '微信支付' ? '微信' : payment.method}</span>
+              <span>{payment.method === '微信支付' ? '微信' : payment.method}{payment.operator ? ` · ${payment.operator}` : ''}</span>
               <b>¥{payment.amount.toFixed(2)}</b>
               <time>{payment.time || '—'}</time>
             </div>
@@ -347,7 +351,7 @@ const OrderDetailBody: FC<{ order: OrderHistory }> = ({ order }) => {
           )}
           {(order.refunds || []).map(refund => (
             <div key={refund.id} className="order-refund-record">
-              <span>退款 · {refund.reason}</span>
+              <span>退款 · {refund.reason}{refund.operator ? ` · ${refund.operator}` : ''}</span>
               <b>-¥{refund.amount.toFixed(2)}</b>
               <time>{refund.time || '—'}</time>
             </div>
@@ -365,7 +369,7 @@ const OrderDetailBody: FC<{ order: OrderHistory }> = ({ order }) => {
               <time>{log.time}</time>
               <Tag color={operationCategoryColor[log.category] || 'default'}>{log.category}</Tag>
               <span className="operation-content"><b>{log.action}</b><em>{log.detail}</em></span>
-              <span className="operation-operator">{log.operator || '收银员'}</span>
+              <span className="operation-operator">{log.operator || '系统记录'}</span>
             </div>
           )) : <div className="order-detail-empty compact">暂无操作记录</div>}
         </div>

@@ -9,6 +9,7 @@ import isBetween from 'dayjs/plugin/isBetween'
 import 'dayjs/locale/zh-cn'
 import axios from 'axios'
 import OrderDetailBody, { type OrderHistory } from './OrderDetailBody'
+import { useAuth } from '../auth/AuthContext'
 
 dayjs.extend(isBetween)
 dayjs.locale('zh-cn')
@@ -104,6 +105,8 @@ const ComparisonLine = ({ current, previous, yearAgo }: {
 )
 
 function HistoryPage({}: Props = {}) {
+  const { user, hasPermission } = useAuth()
+  const isGuest = Boolean(user?.roles.some(role => role.code === 'guest'))
   const [orders, setOrders] = useState<OrderHistory[]>([])
   const [loading, setLoading] = useState(false)
   const [dateRange, setDateRange] = useState<[Dayjs, Dayjs]>([
@@ -567,7 +570,7 @@ function HistoryPage({}: Props = {}) {
           onSearch={setKeyword}
           style={{ width: 240 }}
         />
-        <Dropdown
+        {hasPermission('history.export') && <Dropdown
           menu={{
             items: [
               { key: 'local', icon: <DownloadOutlined />, label: '导出到本地' },
@@ -583,7 +586,7 @@ function HistoryPage({}: Props = {}) {
           <Button className="history-export-button" loading={exporting} icon={<DownloadOutlined />}>
             <span>导出数据</span><DownOutlined className="history-export-arrow" />
           </Button>
-        </Dropdown>
+        </Dropdown>}
       </div>
 
       <div className="history-stats">
@@ -661,8 +664,10 @@ function HistoryPage({}: Props = {}) {
           scroll={{ x: 1090, y: tableBodyHeight }}
           pagination={false}
           onRow={(record) => ({
-            onClick: () => setDetailOrder(record),
-            style: { cursor: 'pointer' },
+            onClick: () => {
+              if (hasPermission('history.detail')) setDetailOrder(record)
+            },
+            style: { cursor: hasPermission('history.detail') ? 'pointer' : 'default' },
           })}
         />
         <div className="history-pagination-footer">
@@ -714,13 +719,14 @@ function HistoryPage({}: Props = {}) {
         rootClassName="history-detail-drawer"
         extra={detailOrder && (
           <Space size={8}>
-            <Button
+            {hasPermission('payment.refund') && <Button
               danger
               className="history-refund-btn"
-              disabled={detailOrder.status !== 'paid' || refundableTotalOf(detailOrder) <= 0.005}
+              disabled={detailOrder.status !== 'paid' || refundableTotalOf(detailOrder) <= 0.005 || (isGuest && detailOrder.created_by_user_id !== user?.id)}
+              title={isGuest && detailOrder.created_by_user_id !== user?.id ? '访客不能退款既有订单' : undefined}
               onClick={openRefund}
-            >退款</Button>
-            <Button type="primary" onClick={printOrderDetail}>打印</Button>
+            >退款</Button>}
+            {hasPermission('history.print') && <Button type="primary" onClick={printOrderDetail}>打印</Button>}
           </Space>
         )}
         open={detailOrder !== null}
@@ -784,14 +790,16 @@ function HistoryPage({}: Props = {}) {
           </div>
           <label className="refund-reason-field">
             <span>退款原因</span>
-            <Input.TextArea
-              value={refundReason}
-              onChange={event => setRefundReason(event.target.value)}
-              placeholder="请填写退款原因"
-              maxLength={100}
-              showCount
-              autoSize={{ minRows: 3, maxRows: 5 }}
-            />
+            <div className="refund-reason-input-wrap">
+              <Input.TextArea
+                value={refundReason}
+                onChange={event => setRefundReason(event.target.value)}
+                placeholder="请填写退款原因"
+                maxLength={100}
+                autoSize={{ minRows: 3, maxRows: 5 }}
+              />
+              <span className="refund-reason-count">{refundReason.length}/100</span>
+            </div>
           </label>
         </div>
       </Modal>

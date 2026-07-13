@@ -41,6 +41,7 @@ frontend/dist/
 *.sqlite3
 backend/data/backups/
 backend/data/*.tmp
+backend/instance/
 
 # Local imports / exports
 *.xlsx

@@ -1,12 +1,19 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { ConfigProvider, message } from 'antd'
+import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { Avatar, ConfigProvider, Dropdown, Spin, message } from 'antd'
+import { LockOutlined, LogoutOutlined, SwapOutlined, UserOutlined } from '@ant-design/icons'
 import axios from 'axios'
 import zhCN from 'antd/locale/zh_CN'
 import TableOverview from './components/TableOverview'
-import OrderPage from './components/OrderPage'
-import HistoryPage from './components/HistoryPage'
-import SettingsPage from './components/SettingsPage'
-import ProductionHistoryPage from './components/ProductionHistoryPage'
+import { AuthProvider, useAuth } from './auth/AuthContext'
+import { LoginPage } from './components/LoginPage'
+import { LockScreen } from './components/LockScreen'
+import { CredentialChangePage } from './components/CredentialChangePage'
+import AccountSwitcher from './components/AccountSwitcher'
+
+const OrderPage = lazy(() => import('./components/OrderPage'))
+const HistoryPage = lazy(() => import('./components/HistoryPage'))
+const SettingsPage = lazy(() => import('./components/SettingsPage'))
+const ProductionHistoryPage = lazy(() => import('./components/ProductionHistoryPage'))
 
 type ViewName = 'tables' | 'order' | 'history' | 'production-history' | 'settings'
 
@@ -20,13 +27,19 @@ type PendingTableAction =
   | { kind: 'merge'; sourceTableId: string }
   | null
 
-function App() {
-  const [view, setView] = useState<View>({ name: 'tables' })
+function PosWorkspace() {
+  const { user, defaultView, hasPermission, lock, logout } = useAuth()
+  const initialView = ['tables', 'history', 'production-history', 'settings'].includes(defaultView)
+    ? defaultView as ViewName
+    : 'tables'
+  const [view, setView] = useState<View>({ name: initialView })
   const [pendingAction, setPendingAction] = useState<PendingTableAction>(null)
   const [productionTicketEnabled, setProductionTicketEnabled] = useState(false)
+  const [systemSettingsLoaded, setSystemSettingsLoaded] = useState(false)
   const navTabsRef = useRef<HTMLDivElement>(null)
   const navTabRefs = useRef(new Map<ViewName, HTMLButtonElement>())
   const [navIndicator, setNavIndicator] = useState({ left: 0, width: 0, ready: false })
+  const [accountSwitcherOpen, setAccountSwitcherOpen] = useState(false)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -40,13 +53,14 @@ function App() {
         }
       })
       .catch(() => undefined)
+      .finally(() => setSystemSettingsLoaded(true))
   }, [])
 
   useEffect(() => {
-    if (!productionTicketEnabled && view.name === 'production-history') {
+    if (systemSettingsLoaded && !productionTicketEnabled && view.name === 'production-history') {
       setView({ name: 'tables' })
     }
-  }, [productionTicketEnabled, view.name])
+  }, [productionTicketEnabled, systemSettingsLoaded, view.name])
 
   const handleSelectTable = (tableId: string) => {
     setView({ name: 'order', tableId })
@@ -85,12 +99,16 @@ function App() {
   }
 
   const navTabs: { key: ViewName; label: string }[] = [
-    { key: 'tables', label: '桌台' },
-    { key: 'history', label: '订单历史' },
-    ...(productionTicketEnabled
+    ...(hasPermission('table.view') ? [{ key: 'tables' as ViewName, label: '桌台' }] : []),
+    ...(hasPermission('history.view') ? [{ key: 'history' as ViewName, label: '订单历史' }] : []),
+    ...(productionTicketEnabled && hasPermission('ticket.history')
       ? [{ key: 'production-history' as ViewName, label: '制作单记录' }]
       : []),
-    { key: 'settings', label: '设置' },
+    ...(Array.from([
+      'menu.view', 'table_config.view', 'voucher.view', 'system.production_ticket',
+      'user.view', 'role.view',
+      'audit.view',
+    ]).some(hasPermission) ? [{ key: 'settings' as ViewName, label: '设置' }] : []),
   ]
   const activeNavKey: ViewName = view.name === 'order' ? 'tables' : view.name
 
@@ -113,6 +131,13 @@ function App() {
     observer.observe(activeTab)
     return () => observer.disconnect()
   }, [activeNavKey, productionTicketEnabled])
+
+  useEffect(() => {
+    const currentKey = view.name === 'order' ? 'tables' : view.name
+    if (navTabs.length && !navTabs.some(tab => tab.key === currentKey)) {
+      setView({ name: navTabs[0].key })
+    }
+  }, [view.name, navTabs.map(tab => tab.key).join('|')])
 
   return (
     <ConfigProvider
@@ -181,10 +206,37 @@ function App() {
               )
             })}
           </div>
-          <div className="top-nav-right" />
+          <div className="top-nav-right">
+            <Dropdown
+              trigger={['click']}
+              menu={{
+                items: [
+                  { key: 'identity', disabled: true, label: `${user?.display_name} · ${user?.roles.map(role => role.name).join(' / ')}` },
+                  { type: 'divider' },
+                  { key: 'switch', icon: <SwapOutlined />, label: '切换账号', onClick: () => setAccountSwitcherOpen(true) },
+                  { key: 'lock', icon: <LockOutlined />, label: '锁定屏幕', onClick: () => lock() },
+                  { key: 'logout', icon: <LogoutOutlined />, label: '退出登录', danger: true, onClick: () => logout() },
+                ],
+              }}
+            >
+              <button type="button" className="top-nav-user">
+                <Avatar size={30} icon={<UserOutlined />}>{user?.display_name?.slice(0, 1)}</Avatar>
+                <span>{user?.display_name}</span>
+              </button>
+            </Dropdown>
+          </div>
         </header>
 
         <div className="page-shell">
+          <Suspense fallback={<div className="auth-loading"><Spin size="large" /><span>正在加载页面…</span></div>}>
+          {navTabs.length === 0 && (
+            <div className="auth-loading">
+              <span>{systemSettingsLoaded
+                ? '当前账号暂无可访问模块，或其默认业务模块尚未开启，请联系管理员调整权限。'
+                : '正在加载系统配置…'}</span>
+            </div>
+          )}
+          {navTabs.length > 0 && <>
           {view.name === 'tables' && (
             <TableOverview
               onSelectTable={handleSelectTable}
@@ -207,9 +259,31 @@ function App() {
           {view.name === 'settings' && (
             <SettingsPage onProductionTicketEnabledChange={setProductionTicketEnabled} />
           )}
+          </>}
+          </Suspense>
         </div>
+        <AccountSwitcher open={accountSwitcherOpen} onClose={() => setAccountSwitcherOpen(false)} />
       </div>
     </ConfigProvider>
+  )
+}
+
+function AuthGate() {
+  const { stage, user } = useAuth()
+  if (stage === 'loading') {
+    return <div className="auth-loading"><Spin size="large" /><span>正在检查登录状态…</span></div>
+  }
+  if (stage === 'bootstrap' || stage === 'login') return <LoginPage />
+  if (stage === 'locked') return <LockScreen />
+  if (stage === 'credential-change') return <CredentialChangePage />
+  return <PosWorkspace key={user?.id} />
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <AuthGate />
+    </AuthProvider>
   )
 }
 

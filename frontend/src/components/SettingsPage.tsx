@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import type { FC, ReactNode } from 'react'
 import {
   Button,
@@ -13,6 +13,7 @@ import {
   Tag,
   Tabs,
   Table as AntTable,
+  Tooltip,
   message,
 } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
@@ -27,8 +28,12 @@ import axios from 'axios'
 import dayjs from 'dayjs'
 import StepperInput from './StepperInput'
 import { formatAmount } from '../utils/money'
+import { useAuth } from '../auth/AuthContext'
+import { RoleManagementPanel, UserManagementPanel } from './AccessManagement'
+import SettingsTableFrame from './SettingsTableFrame'
+import SystemLogPanel from './SystemLogPanel'
 
-type SettingsTab = 'category' | 'item' | 'area' | 'table' | 'voucher' | 'production'
+type SettingsTab = 'category' | 'item' | 'area' | 'table' | 'voucher' | 'production' | 'user' | 'role' | 'audit'
 
 const TAB_META: Record<SettingsTab, { label: string; addLabel: string }> = {
   category: { label: '类别管理', addLabel: '添加类别' },
@@ -37,6 +42,9 @@ const TAB_META: Record<SettingsTab, { label: string; addLabel: string }> = {
   table: { label: '桌台管理', addLabel: '添加桌台' },
   voucher: { label: '优惠券管理', addLabel: '添加优惠券' },
   production: { label: '制作单管理', addLabel: '' },
+  user: { label: '用户管理', addLabel: '' },
+  role: { label: '角色权限', addLabel: '' },
+  audit: { label: '系统日志', addLabel: '' },
 }
 
 interface MenuItem {
@@ -47,11 +55,13 @@ interface MenuItem {
   abv?: string
   description?: string
   sale_status?: 'on_sale' | 'off_sale'
+  owned_by_current_user?: boolean
 }
 
 interface Category {
   name: string
   items: MenuItem[]
+  owned_by_current_user?: boolean
 }
 
 interface MenuData {
@@ -67,6 +77,7 @@ interface ItemRow extends MenuItem {
 interface TableArea {
   name: string
   table_count: number
+  owned_by_current_user?: boolean
 }
 
 interface TableInfo {
@@ -77,6 +88,7 @@ interface TableInfo {
   opened_at?: string | null
   order_id?: string | null
   default_guests?: number
+  owned_by_current_user?: boolean
 }
 
 interface TableConfig {
@@ -93,6 +105,7 @@ interface VoucherDefinition {
   name: string
   sale_price: number
   face_value: number
+  owned_by_current_user?: boolean
 }
 
 interface Props {
@@ -170,14 +183,19 @@ interface DragHandleProps {
   index: number
   label: string
   onStartGhost?: (label: string, tr: HTMLTableRowElement | null) => void
+  disabled?: boolean
 }
 
-const DragHandle: FC<DragHandleProps> = ({ index, label, onStartGhost }) => (
+const DragHandle: FC<DragHandleProps> = ({ index, label, onStartGhost, disabled = false }) => (
   <span
-    className="drag-handle"
-    title="拖动排序"
-    draggable
+    className={`drag-handle${disabled ? ' disabled' : ''}`}
+    title={disabled ? '访客用户不可操作其他用户创建的数据' : '拖动排序'}
+    draggable={!disabled}
     onDragStart={(e) => {
+      if (disabled) {
+        e.preventDefault()
+        return
+      }
       e.dataTransfer.setData('text/plain', String(index))
       e.dataTransfer.effectAllowed = 'move'
       e.dataTransfer.setDragImage(transparentDragImg, 0, 0)
@@ -189,97 +207,28 @@ const DragHandle: FC<DragHandleProps> = ({ index, label, onStartGhost }) => (
   </span>
 )
 
-const getPageItems = (page: number, totalPages: number): Array<number | string> => {
-  if (totalPages <= 5) return Array.from({ length: totalPages }, (_, index) => index + 1)
-  if (page <= 3) return [1, 2, 3, 'more-right', totalPages]
-  if (page >= totalPages - 2) return [1, 'more-left', totalPages - 2, totalPages - 1, totalPages]
-  return [1, 'more-left', page, 'more-right', totalPages]
-}
-
-interface SettingsTableFrameProps {
-  total: number
-  unit: string
-  page: number
-  pageSize: number
-  onPageChange: (page: number) => void
-  onPageSizeChange: (pageSize: number) => void
-  children: (bodyHeight: number) => ReactNode
-}
-
-const SettingsTableFrame: FC<SettingsTableFrameProps> = ({
-  total,
-  unit,
-  page,
-  pageSize,
-  onPageChange,
-  onPageSizeChange,
-  children,
-}) => {
-  const frameRef = useRef<HTMLDivElement>(null)
-  const [bodyHeight, setBodyHeight] = useState(260)
-  const totalPages = Math.max(1, Math.ceil(total / pageSize))
-  const pageItems = getPageItems(page, totalPages)
-
-  useLayoutEffect(() => {
-    const frame = frameRef.current
-    if (!frame) return
-    const updateHeight = () => setBodyHeight(Math.max(140, frame.clientHeight - 102))
-    updateHeight()
-    const observer = new ResizeObserver(updateHeight)
-    observer.observe(frame)
-    return () => observer.disconnect()
-  }, [])
-
-  return (
-    <div className="settings-table-frame" ref={frameRef}>
-      {children(bodyHeight)}
-      <div className="settings-table-pagination-footer">
-        <span className="table-record-total">共 <b>{total}</b> {unit}</span>
-        <div className="history-pagination-controls">
-          <button
-            type="button"
-            className="history-page-arrow"
-            disabled={page <= 1}
-            onClick={() => onPageChange(Math.max(1, page - 1))}
-            aria-label="上一页"
-          >‹</button>
-          <div className="history-page-number-slots">
-            {pageItems.map(item => typeof item === 'number' ? (
-              <button
-                key={item}
-                type="button"
-                className={page === item ? 'active' : ''}
-                onClick={() => onPageChange(item)}
-              >{item}</button>
-            ) : <span key={item}>•••</span>)}
-          </div>
-          <button
-            type="button"
-            className="history-page-arrow"
-            disabled={page >= totalPages}
-            onClick={() => onPageChange(Math.min(totalPages, page + 1))}
-            aria-label="下一页"
-          >›</button>
-          <Select
-            className="history-page-size-selector"
-            value={pageSize}
-            showSearch={false}
-            popupMatchSelectWidth={false}
-            options={[10, 20, 50, 100].map(size => ({ value: size, label: `${size} 条/页` }))}
-            onChange={size => onPageSizeChange(size)}
-          />
-        </div>
-      </div>
-    </div>
-  )
-}
+const ScopedActionHint: FC<{ disabled: boolean; children: ReactNode }> = ({ disabled, children }) => (
+  disabled
+    ? <Tooltip title="访客用户不可操作其他用户创建的数据"><span className="guest-disabled-action">{children}</span></Tooltip>
+    : <>{children}</>
+)
 
 export default function SettingsPage({ onProductionTicketEnabledChange }: Props = {}) {
+  const { user, hasPermission } = useAuth()
+  const isGuest = user?.data_scope === 'own_created' || Boolean(user?.roles.some(role => role.code === 'guest'))
   const [menu, setMenu] = useState<MenuData>({ categories: [] })
-  const [activeTab, setActiveTab] = useState<SettingsTab>('category')
+  const initialTab: SettingsTab = hasPermission('menu.view') ? 'category'
+    : hasPermission('table_config.view') ? 'area'
+      : hasPermission('voucher.view') ? 'voucher'
+        : hasPermission('system.production_ticket') ? 'production'
+          : hasPermission('user.view') ? 'user'
+            : hasPermission('role.view') ? 'role'
+              : 'audit'
+  const [activeTab, setActiveTab] = useState<SettingsTab>(initialTab)
   const [addVisible, setAddVisible] = useState(false)
   const [categoryPage, setCategoryPage] = useState(1)
   const [categoryPageSize, setCategoryPageSize] = useState(10)
+  const [categoryKeyword, setCategoryKeyword] = useState('')
   const [itemPage, setItemPage] = useState(1)
   const [itemPageSize, setItemPageSize] = useState(10)
   const [itemBatchMode, setItemBatchMode] = useState(false)
@@ -289,8 +238,11 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
   const [itemBatchForm] = Form.useForm()
   const [tablePage, setTablePage] = useState(1)
   const [tablePageSize, setTablePageSize] = useState(10)
+  const [tableKeyword, setTableKeyword] = useState('')
   const [voucherPage, setVoucherPage] = useState(1)
   const [voucherPageSize, setVoucherPageSize] = useState(10)
+  const [voucherKeyword, setVoucherKeyword] = useState('')
+  const [areaKeyword, setAreaKeyword] = useState('')
   const [itemExporting, setItemExporting] = useState(false)
   const [itemKeyword, setItemKeyword] = useState('')
   const [itemCategoryFilter, setItemCategoryFilter] = useState<string>('all')
@@ -399,9 +351,9 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
   }
 
   useEffect(() => {
-    fetchMenu()
-    fetchTableConfig()
-    fetchVouchers()
+    if (hasPermission('menu.view')) fetchMenu()
+    if (hasPermission('table_config.view')) fetchTableConfig()
+    if (hasPermission('voucher.view')) fetchVouchers()
     fetchSystemSettings()
   }, [])
 
@@ -653,7 +605,10 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
       )
     })
   }, [itemRows, itemKeyword, itemCategoryFilter])
-  const allFilteredItemsSelected = filteredItemRows.length > 0 && filteredItemRows.every(
+  const mutableFilteredItemRows = isGuest
+    ? filteredItemRows.filter(item => item.owned_by_current_user)
+    : filteredItemRows
+  const allFilteredItemsSelected = mutableFilteredItemRows.length > 0 && mutableFilteredItemRows.every(
     item => selectedItemIds.includes(item.id),
   )
 
@@ -702,7 +657,7 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
   }
 
   const toggleSelectAllFilteredItems = () => {
-    setSelectedItemIds(allFilteredItemsSelected ? [] : filteredItemRows.map(item => item.id))
+    setSelectedItemIds(allFilteredItemsSelected ? [] : mutableFilteredItemRows.map(item => item.id))
   }
 
   const openItemBatchModal = () => {
@@ -951,9 +906,38 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
   const tableRows: TableRow[] = tableConfig.tables.map(t => ({ ...t, key: t.id }))
   const [selectedArea, setSelectedArea] = useState<string | null>(null)
 
+  const normalizedCategoryKeyword = categoryKeyword.trim().toLowerCase()
+  const filteredCategories = useMemo(
+    () => normalizedCategoryKeyword
+      ? menu.categories.filter(category => category.name.toLowerCase().includes(normalizedCategoryKeyword))
+      : menu.categories,
+    [menu.categories, normalizedCategoryKeyword],
+  )
+
+  const normalizedAreaKeyword = areaKeyword.trim().toLowerCase()
+  const filteredAreas = useMemo(
+    () => normalizedAreaKeyword
+      ? tableConfig.areas.filter(area => area.name.toLowerCase().includes(normalizedAreaKeyword))
+      : tableConfig.areas,
+    [tableConfig.areas, normalizedAreaKeyword],
+  )
+
+  const normalizedTableKeyword = tableKeyword.trim().toLowerCase()
+
   const filteredTableRows = useMemo(
-    () => selectedArea ? tableRows.filter(r => r.area === selectedArea) : tableRows,
-    [tableRows, selectedArea]
+    () => tableRows.filter(row => (
+      (!selectedArea || row.area === selectedArea)
+      && (!normalizedTableKeyword || row.id.toLowerCase().includes(normalizedTableKeyword) || row.area.toLowerCase().includes(normalizedTableKeyword))
+    )),
+    [tableRows, selectedArea, normalizedTableKeyword]
+  )
+
+  const normalizedVoucherKeyword = voucherKeyword.trim().toLowerCase()
+  const filteredVouchers = useMemo(
+    () => normalizedVoucherKeyword
+      ? vouchers.filter(voucher => voucher.name.toLowerCase().includes(normalizedVoucherKeyword))
+      : vouchers,
+    [vouchers, normalizedVoucherKeyword],
   )
 
   useEffect(() => {
@@ -963,9 +947,11 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
   }, [tableConfig.areas, selectedArea])
 
   useEffect(() => {
-    const maxPage = Math.max(1, Math.ceil(menu.categories.length / categoryPageSize))
+    const maxPage = Math.max(1, Math.ceil(filteredCategories.length / categoryPageSize))
     setCategoryPage(p => Math.min(p, maxPage))
-  }, [menu.categories.length, categoryPageSize])
+  }, [filteredCategories.length, categoryPageSize])
+
+  useEffect(() => setCategoryPage(1), [categoryKeyword])
 
   useEffect(() => {
     const maxPage = Math.max(1, Math.ceil(filteredItemRows.length / itemPageSize))
@@ -984,14 +970,16 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
 
   useEffect(() => {
     setTablePage(1)
-  }, [selectedArea])
+  }, [selectedArea, tableKeyword])
 
   useEffect(() => {
-    const maxPage = Math.max(1, Math.ceil(vouchers.length / voucherPageSize))
+    const maxPage = Math.max(1, Math.ceil(filteredVouchers.length / voucherPageSize))
     setVoucherPage(p => Math.min(p, maxPage))
-  }, [vouchers.length, voucherPageSize])
+  }, [filteredVouchers.length, voucherPageSize])
 
-  const pagedCategories = menu.categories.slice(
+  useEffect(() => setVoucherPage(1), [voucherKeyword])
+
+  const pagedCategories = filteredCategories.slice(
     (categoryPage - 1) * categoryPageSize,
     categoryPage * categoryPageSize,
   )
@@ -1003,7 +991,7 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
     (tablePage - 1) * tablePageSize,
     tablePage * tablePageSize,
   )
-  const pagedVouchers = vouchers.slice(
+  const pagedVouchers = filteredVouchers.slice(
     (voucherPage - 1) * voucherPageSize,
     voucherPage * voucherPageSize,
   )
@@ -1115,10 +1103,11 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
       title: '操作',
       key: 'action',
       width: 100,
-      render: (_, record) => (
-        <span className="row-action-group">
-          <Button type="text" icon={<EditOutlined />} onClick={() => openEditVoucher(record)} />
-          <Popconfirm
+      render: (_, record) => {
+        const locked = isGuest && !record.owned_by_current_user
+        return <span className="row-action-group">
+          {hasPermission('voucher.edit') && <ScopedActionHint disabled={locked}><Button disabled={locked} type="text" icon={<EditOutlined />} onClick={() => openEditVoucher(record)} /></ScopedActionHint>}
+          {hasPermission('voucher.delete') && (locked ? <ScopedActionHint disabled><Button disabled type="text" icon={<DeleteOutlined />} /></ScopedActionHint> : <Popconfirm
             title={`删除优惠券「${record.name}」？`}
             okText="删除"
             cancelText="取消"
@@ -1126,9 +1115,9 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
             onConfirm={() => deleteVoucher(record.id)}
           >
             <Button type="text" danger icon={<DeleteOutlined />} />
-          </Popconfirm>
+          </Popconfirm>)}
         </span>
-      ),
+      },
     },
   ]
 
@@ -1142,11 +1131,12 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
         const flatIndex = tableRows.findIndex(r => r.id === record.id)
         return (
           <span className="seq-cell-wrap">
-            <DragHandle
+            {hasPermission('table_config.edit') && <DragHandle
               index={flatIndex}
               label={`${record.area} · ${record.id}`}
               onStartGhost={startGhost}
-            />
+              disabled={isGuest && !record.owned_by_current_user}
+            />}
             <span className="seq-value">{flatIndex + 1}</span>
           </span>
         )
@@ -1175,14 +1165,16 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
       width: 100,
       render: (_, record) => {
         const canDelete = record.status === 'empty'
+        const locked = isGuest && !record.owned_by_current_user
         return (
           <span className="row-action-group">
-            <Button
+            {hasPermission('table_config.edit') && <ScopedActionHint disabled={locked}><Button
+              disabled={locked}
               type="text"
               icon={<EditOutlined />}
               onClick={() => openEditTable(record)}
-            />
-            <Popconfirm
+            /></ScopedActionHint>}
+            {hasPermission('table_config.edit') && (locked ? <ScopedActionHint disabled><Button disabled type="text" icon={<DeleteOutlined />} /></ScopedActionHint> : <Popconfirm
               title={`删除桌台「${record.id}」？`}
               okText="删除"
               cancelText="取消"
@@ -1190,7 +1182,7 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
               onConfirm={() => deleteTableDef(record.id)}
             >
               <Button type="text" danger icon={<DeleteOutlined />} disabled={!canDelete} />
-            </Popconfirm>
+            </Popconfirm>)}
           </span>
         )
       },
@@ -1207,7 +1199,7 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
         const index = menu.categories.findIndex(category => category.name === record.name)
         return (
           <span className="seq-cell-wrap">
-            <DragHandle index={index} label={record.name} onStartGhost={startGhost} />
+            {hasPermission('menu.edit') && <DragHandle index={index} label={record.name} onStartGhost={startGhost} disabled={isGuest && !record.owned_by_current_user} />}
             <span className="seq-value">{index + 1}</span>
           </span>
         )
@@ -1227,14 +1219,16 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
       width: 100,
       render: (_, record) => {
         const itemCount = record.items?.length || 0
+        const locked = isGuest && !record.owned_by_current_user
         return (
           <span className="row-action-group">
-            <Button
+            {hasPermission('menu.edit') && <ScopedActionHint disabled={locked}><Button
+              disabled={locked}
               type="text"
               icon={<EditOutlined />}
               onClick={() => openRenameCategory(record)}
-            />
-            <Popconfirm
+            /></ScopedActionHint>}
+            {hasPermission('menu.delete') && (locked ? <ScopedActionHint disabled><Button disabled type="text" icon={<DeleteOutlined />} /></ScopedActionHint> : <Popconfirm
               title={`删除类别「${record.name}」？`}
               description={
                 itemCount > 0
@@ -1247,7 +1241,7 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
               onConfirm={() => deleteCategory(record.name)}
             >
               <Button type="text" danger icon={<DeleteOutlined />} />
-            </Popconfirm>
+            </Popconfirm>)}
           </span>
         )
       },
@@ -1276,11 +1270,12 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
         const position = categoryItems.findIndex(item => item.id === record.id) + 1
         return (
           <span className="seq-cell-wrap">
-            <DragHandle
+            {hasPermission('menu.edit') && <DragHandle
               index={filteredItemRows.findIndex(item => item.id === record.id)}
               label={`${record.category} · ${record.name}`}
               onStartGhost={startGhost}
-            />
+              disabled={isGuest && !record.owned_by_current_user}
+            />}
             <span className="seq-value">{position}</span>
           </span>
         )
@@ -1321,14 +1316,16 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
       title: '操作',
       key: 'action',
       width: 100,
-      render: (_, record) => (
-        <span className="row-action-group">
-          <Button
+      render: (_, record) => {
+        const locked = isGuest && !record.owned_by_current_user
+        return <span className="row-action-group">
+          {hasPermission('menu.edit') && <ScopedActionHint disabled={locked}><Button
+            disabled={locked}
             type="text"
             icon={<EditOutlined />}
             onClick={() => openEditItem(record)}
-          />
-          <Popconfirm
+          /></ScopedActionHint>}
+          {hasPermission('menu.delete') && (locked ? <ScopedActionHint disabled><Button disabled type="text" icon={<DeleteOutlined />} /></ScopedActionHint> : <Popconfirm
             title={`删除商品「${record.name}」？`}
             okText="删除"
             cancelText="取消"
@@ -1336,9 +1333,9 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
             onConfirm={() => deleteItem(record.id)}
           >
             <Button type="text" danger icon={<DeleteOutlined />} />
-          </Popconfirm>
+          </Popconfirm>)}
         </span>
-      ),
+      },
     },
   ]
 
@@ -1379,6 +1376,24 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
 
   const addModalTitle = () => TAB_META[activeTab].addLabel
 
+  const settingsTabs = [
+    { key: 'category' as SettingsTab, label: '类别管理', permission: 'menu.view' },
+    { key: 'item' as SettingsTab, label: '商品管理', permission: 'menu.view' },
+    { key: 'area' as SettingsTab, label: '区域管理', permission: 'table_config.view' },
+    { key: 'table' as SettingsTab, label: '桌台管理', permission: 'table_config.view' },
+    { key: 'voucher' as SettingsTab, label: '优惠券管理', permission: 'voucher.view' },
+    { key: 'production' as SettingsTab, label: '制作单管理', permission: 'system.production_ticket' },
+    { key: 'user' as SettingsTab, label: '用户管理', permission: 'user.view' },
+    { key: 'role' as SettingsTab, label: '角色权限', permission: 'role.view' },
+    { key: 'audit' as SettingsTab, label: '系统日志', permission: 'audit.view' },
+  ].filter(tab => hasPermission(tab.permission))
+
+  useEffect(() => {
+    if (settingsTabs.length && !settingsTabs.some(tab => tab.key === activeTab)) {
+      setActiveTab(settingsTabs[0].key)
+    }
+  }, [activeTab, settingsTabs.map(tab => tab.key).join('|')])
+
   return (
     <div className="settings-page">
       <div className="settings-header">
@@ -1386,59 +1401,60 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
           <Tabs
             activeKey={activeTab}
             onChange={(k) => setActiveTab(k as SettingsTab)}
-            items={[
-              { key: 'category', label: '类别管理' },
-              { key: 'item', label: '商品管理' },
-              { key: 'area', label: '区域管理' },
-              { key: 'table', label: '桌台管理' },
-              { key: 'voucher', label: '优惠券管理' },
-              { key: 'production', label: '制作单管理' },
-            ]}
+            items={settingsTabs.map(tab => ({ key: tab.key, label: tab.label }))}
           />
         </div>
-        {activeTab !== 'production' && <div className="settings-header-actions">
-          <Button
-            type="primary"
-            icon={<PlusOutlined />}
-            onClick={() => openAddModal()}
-          >
-            {TAB_META[activeTab].addLabel}
-          </Button>
-        </div>}
       </div>
 
-      <div className={`settings-body${['category', 'item', 'table', 'voucher'].includes(activeTab) ? ' settings-body-table' : ''}`}>
+      <div className={`settings-body${['category', 'item', 'area', 'table', 'voucher', 'user', 'role', 'audit'].includes(activeTab) ? ' settings-body-table' : ''}`}>
         {activeTab === 'category' && (
-          <SettingsTableFrame
-            total={menu.categories.length}
-            unit="个类别"
-            page={categoryPage}
-            pageSize={categoryPageSize}
-            onPageChange={setCategoryPage}
-            onPageSizeChange={size => {
-              setCategoryPageSize(size)
-              setCategoryPage(1)
-            }}
-          >
-            {bodyHeight => (
-              <AntTable
-                className="pos-table settings-data-table"
-                rowKey="name"
-                size="small"
-                columns={categoryColumns}
-                dataSource={pagedCategories}
-                scroll={{ y: bodyHeight }}
-                pagination={false}
-                components={{ body: { row: DragRow } }}
-                onRow={record => ({
-                  index: menu.categories.findIndex(category => category.name === record.name),
-                  moveRow: handleCategoryDrag,
-                  onDragMove: moveGhost,
-                  onDragEnd: endGhost,
-                } as any)}
-              />
-            )}
-          </SettingsTableFrame>
+          <>
+            <div className="item-filter-bar settings-management-toolbar">
+              <div className="item-filter-left">
+                <Input.Search
+                  className="item-search"
+                  placeholder="搜索类别名称"
+                  allowClear
+                  enterButton="搜索"
+                  value={categoryKeyword}
+                  onChange={event => setCategoryKeyword(event.target.value)}
+                />
+              </div>
+              {hasPermission('menu.create') && <div className="item-filter-actions">
+                <Button type="primary" className="item-batch-button" icon={<PlusOutlined />} onClick={openAddModal}>添加类别</Button>
+              </div>}
+            </div>
+            <SettingsTableFrame
+              total={filteredCategories.length}
+              unit="个类别"
+              page={categoryPage}
+              pageSize={categoryPageSize}
+              onPageChange={setCategoryPage}
+              onPageSizeChange={size => {
+                setCategoryPageSize(size)
+                setCategoryPage(1)
+              }}
+            >
+              {bodyHeight => (
+                <AntTable
+                  className="pos-table settings-data-table"
+                  rowKey="name"
+                  size="small"
+                  columns={categoryColumns}
+                  dataSource={pagedCategories}
+                  scroll={{ y: bodyHeight }}
+                  pagination={false}
+                  components={{ body: { row: DragRow } }}
+                  onRow={record => ({
+                    index: menu.categories.findIndex(category => category.name === record.name),
+                    moveRow: handleCategoryDrag,
+                    onDragMove: moveGhost,
+                    onDragEnd: endGhost,
+                  } as any)}
+                />
+              )}
+            </SettingsTableFrame>
+          </>
         )}
 
         {activeTab === 'item' && (
@@ -1464,7 +1480,7 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
                 />
               </div>
               <div className="item-filter-actions">
-                {!itemBatchMode ? (
+                {hasPermission('menu.batch') && (!itemBatchMode ? (
                   <Button className="item-batch-button" onClick={enterItemBatchMode}>批量操作</Button>
                 ) : (
                   <div className="item-batch-actions">
@@ -1481,15 +1497,23 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
                     setSelectedItemIds([])
                   }}>退出</Button>
                   </div>
-                )}
-                <Button
+                ))}
+                {hasPermission('menu.export') && <Button
                   className="item-batch-button item-export-button"
                   icon={<DownloadOutlined />}
                   loading={itemExporting}
                   onClick={exportItems}
                 >
                   导出数据
-                </Button>
+                </Button>}
+                {hasPermission('menu.create') && <Button
+                  type="primary"
+                  className="item-batch-button"
+                  icon={<PlusOutlined />}
+                  onClick={openAddModal}
+                >
+                  添加商品
+                </Button>}
               </div>
             </div>
             <SettingsTableFrame
@@ -1521,7 +1545,7 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
                       <button
                         type="button"
                         className="item-select-all-button"
-                        disabled={!filteredItemRows.length}
+                        disabled={!mutableFilteredItemRows.length}
                         onClick={event => {
                           event.stopPropagation()
                           toggleSelectAllFilteredItems()
@@ -1529,6 +1553,10 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
                       >{allFilteredItemsSelected ? '取消' : '全选'}</button>
                     ),
                     onChange: keys => setSelectedItemIds(keys.map(Number)),
+                    getCheckboxProps: record => ({
+                      disabled: isGuest && !record.owned_by_current_user,
+                      title: isGuest && !record.owned_by_current_user ? '访客用户不可操作其他用户创建的数据' : undefined,
+                    }),
                     columnWidth: 64,
                   } : undefined}
                   onRow={record => ({
@@ -1544,10 +1572,22 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
         )}
 
         {activeTab === 'area' && (
-          <div className="area-tile-grid">
-            {tableConfig.areas.length === 0 ? (
-              <div className="area-tile-empty">暂无区域，点击右上角"添加区域"创建</div>
-            ) : tableConfig.areas.map((area, index) => (
+          <div className="area-management-wrap">
+            <div className="item-filter-bar settings-management-toolbar">
+              <div className="item-filter-left">
+                <Input.Search className="item-search" placeholder="搜索区域名称" allowClear enterButton="搜索" value={areaKeyword} onChange={event => setAreaKeyword(event.target.value)} />
+              </div>
+              {hasPermission('table_config.edit') && <div className="item-filter-actions">
+                <Button type="primary" className="item-batch-button" icon={<PlusOutlined />} onClick={openAddModal}>添加区域</Button>
+              </div>}
+            </div>
+            <div className="area-tile-grid">
+            {filteredAreas.length === 0 ? (
+              <div className="area-tile-empty">{tableConfig.areas.length ? '没有匹配的区域' : '暂无区域，点击“添加区域”创建'}</div>
+            ) : filteredAreas.map((area) => {
+              const index = tableConfig.areas.findIndex(item => item.name === area.name)
+              const locked = isGuest && !area.owned_by_current_user
+              return (
               <div
                 key={area.name}
                 className="area-tile"
@@ -1556,14 +1596,15 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
                   <span className="area-tile-seq">
                     <span className="seq-value">{index + 1}</span>
                   </span>
-                  <div className="area-tile-actions">
-                    <Button
+                  {hasPermission('table_config.edit') && <div className="area-tile-actions">
+                    <ScopedActionHint disabled={locked}><Button
+                      disabled={locked}
                       type="text"
                       size="small"
                       icon={<EditOutlined />}
                       onClick={() => openRenameArea(area)}
-                    />
-                    <Popconfirm
+                    /></ScopedActionHint>
+                    {locked ? <ScopedActionHint disabled><Button disabled type="text" size="small" icon={<DeleteOutlined />} /></ScopedActionHint> : <Popconfirm
                       title={`删除区域「${area.name}」？`}
                       description={
                         area.table_count > 0
@@ -1576,8 +1617,8 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
                       onConfirm={() => deleteArea(area.name)}
                     >
                       <Button type="text" size="small" danger icon={<DeleteOutlined />} />
-                    </Popconfirm>
-                  </div>
+                    </Popconfirm>}
+                  </div>}
                 </div>
                 <div className="area-tile-name">{area.name}</div>
                 <div className="area-tile-count">
@@ -1585,14 +1626,16 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
                   <span className="count-label">个桌台</span>
                 </div>
               </div>
-            ))}
+              )
+            })}
+            </div>
           </div>
         )}
 
         {activeTab === 'table' && (
           <div className="table-mgmt-wrap">
             <div className="table-mgmt-filter">
-              <span className="filter-label">区域筛选</span>
+              <Input.Search className="management-search" placeholder="搜索桌台号 / 区域" allowClear enterButton="搜索" value={tableKeyword} onChange={event => setTableKeyword(event.target.value)} />
               <Select
                 value={selectedArea ?? '__all__'}
                 onChange={(v) => setSelectedArea(v === '__all__' ? null : v)}
@@ -1602,6 +1645,7 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
                   ...tableConfig.areas.map(a => ({ label: a.name, value: a.name })),
                 ]}
               />
+              {hasPermission('table_config.edit') && <Button type="primary" className="item-batch-button management-add-button" icon={<PlusOutlined />} onClick={openAddModal}>添加桌台</Button>}
             </div>
             <SettingsTableFrame
               total={filteredTableRows.length}
@@ -1637,30 +1681,40 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
         )}
 
         {activeTab === 'voucher' && (
-          <SettingsTableFrame
-            total={vouchers.length}
-            unit="张优惠券"
-            page={voucherPage}
-            pageSize={voucherPageSize}
-            onPageChange={setVoucherPage}
-            onPageSizeChange={size => {
-              setVoucherPageSize(size)
-              setVoucherPage(1)
-            }}
-          >
-            {bodyHeight => (
-              <AntTable
-                className="pos-table settings-data-table"
-                rowKey="id"
-                size="small"
-                columns={voucherColumns}
-                dataSource={pagedVouchers}
-                scroll={{ y: bodyHeight }}
-                pagination={false}
-                locale={{ emptyText: '暂无优惠券，点击右上角“添加优惠券”创建' }}
-              />
-            )}
-          </SettingsTableFrame>
+          <>
+            <div className="item-filter-bar settings-management-toolbar">
+              <div className="item-filter-left">
+                <Input.Search className="item-search" placeholder="搜索优惠券名称" allowClear enterButton="搜索" value={voucherKeyword} onChange={event => setVoucherKeyword(event.target.value)} />
+              </div>
+              {hasPermission('voucher.create') && <div className="item-filter-actions">
+                <Button type="primary" className="item-batch-button" icon={<PlusOutlined />} onClick={openAddModal}>添加优惠券</Button>
+              </div>}
+            </div>
+            <SettingsTableFrame
+              total={filteredVouchers.length}
+              unit="张优惠券"
+              page={voucherPage}
+              pageSize={voucherPageSize}
+              onPageChange={setVoucherPage}
+              onPageSizeChange={size => {
+                setVoucherPageSize(size)
+                setVoucherPage(1)
+              }}
+            >
+              {bodyHeight => (
+                <AntTable
+                  className="pos-table settings-data-table"
+                  rowKey="id"
+                  size="small"
+                  columns={voucherColumns}
+                  dataSource={pagedVouchers}
+                  scroll={{ y: bodyHeight }}
+                  pagination={false}
+                  locale={{ emptyText: '暂无匹配的优惠券' }}
+                />
+              )}
+            </SettingsTableFrame>
+          </>
         )}
 
         {activeTab === 'production' && (
@@ -1671,15 +1725,26 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
                 开启后，下单和加菜会生成制作单，并显示桌台页制作单面板、补打制作单及制作单记录。
               </span>
             </div>
-            <Switch
-              checked={productionTicketEnabled}
-              loading={productionSettingSaving}
-              checkedChildren="开启"
-              unCheckedChildren="关闭"
-              onChange={updateProductionTicketEnabled}
-            />
+            <Tooltip title={isGuest ? '访客用户不可修改系统级设置' : undefined}>
+              <span className={isGuest ? 'guest-disabled-action' : undefined}>
+                <Switch
+                  checked={productionTicketEnabled}
+                  loading={productionSettingSaving}
+                  disabled={isGuest}
+                  checkedChildren="开启"
+                  unCheckedChildren="关闭"
+                  onChange={updateProductionTicketEnabled}
+                />
+              </span>
+            </Tooltip>
           </div>
         )}
+
+        {activeTab === 'user' && <UserManagementPanel />}
+
+        {activeTab === 'role' && <RoleManagementPanel />}
+
+        {activeTab === 'audit' && <SystemLogPanel />}
       </div>
 
       <Modal
@@ -1718,8 +1783,8 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
 
         {activeTab === 'item' && (
           <Form form={itemForm} layout="vertical" onFinish={addItem}>
-            <Row gutter={16}>
-              <Col span={8}>
+            <Row gutter={16} className="settings-form-grid">
+              <Col span={12}>
                 <Form.Item
                   label="类别"
                   name="category"
@@ -1735,7 +1800,7 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
                   />
                 </Form.Item>
               </Col>
-              <Col span={8}>
+              <Col span={12}>
                 <Form.Item
                   label="序号（类别内，可选）"
                   name="position"
@@ -1750,7 +1815,7 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
                   />
                 </Form.Item>
               </Col>
-              <Col span={8}>
+              <Col span={12}>
                 <Form.Item
                   label="价格 (¥)"
                   name="price"
@@ -1778,7 +1843,7 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
                   <Input placeholder="可选，如 18%" allowClear />
                 </Form.Item>
               </Col>
-              <Col span={12}>
+              <Col span={24}>
                 <Form.Item label="描述" name="description">
                   <Input placeholder="可选" allowClear />
                 </Form.Item>
@@ -1821,8 +1886,8 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
 
         {activeTab === 'table' && (
           <Form form={tableDefForm} layout="vertical" onFinish={addTableDef} initialValues={{ default_guests: 1 }}>
-            <Row gutter={16}>
-              <Col span={6}>
+            <Row gutter={16} className="settings-form-grid settings-table-form-grid">
+              <Col span={12}>
                 <Form.Item
                   label="所属区域"
                   name="area"
@@ -1838,7 +1903,7 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
                   />
                 </Form.Item>
               </Col>
-              <Col span={6}>
+              <Col span={12}>
                 <Form.Item
                   label="桌台号"
                   name="id"
@@ -1847,7 +1912,7 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
                   <Input placeholder="如 A1、B2" allowClear />
                 </Form.Item>
               </Col>
-              <Col span={6}>
+              <Col span={12}>
                 <Form.Item
                   label="序号（区域内，可选）"
                   name="position"
@@ -1862,7 +1927,7 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
                   />
                 </Form.Item>
               </Col>
-              <Col span={6}>
+              <Col span={12}>
                 <Form.Item
                   label="默认人数"
                   name="default_guests"
@@ -2114,8 +2179,8 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
         destroyOnClose
       >
         <Form form={editTableForm} layout="vertical" onFinish={submitEditTable}>
-          <Row gutter={16}>
-            <Col span={6}>
+          <Row gutter={16} className="settings-form-grid settings-table-form-grid">
+            <Col span={12}>
               <Form.Item
                 label="所属区域"
                 name="area"
@@ -2128,7 +2193,7 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
                 />
               </Form.Item>
             </Col>
-            <Col span={6}>
+            <Col span={12}>
               <Form.Item
                 label="桌台号"
                 name="id"
@@ -2137,7 +2202,7 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
                 <Input placeholder="如 A1" allowClear disabled={editingTable?.status !== 'empty'} />
               </Form.Item>
             </Col>
-            <Col span={6}>
+            <Col span={12}>
               <Form.Item
                 label="序号 (区域内)"
                 name="seq"
@@ -2146,7 +2211,7 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
                 <StepperInput min={1} step={1} placeholder="如 1" disabled={editingTable?.status !== 'empty'} style={{ width: '100%' }} />
               </Form.Item>
             </Col>
-            <Col span={6}>
+            <Col span={12}>
               <Form.Item
                 label="默认人数"
                 name="default_guests"
@@ -2179,8 +2244,8 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
         width={680}
       >
         <Form form={editItemForm} layout="vertical" onFinish={submitEditItem}>
-          <Row gutter={16}>
-            <Col span={6}>
+          <Row gutter={16} className="settings-form-grid">
+            <Col span={12}>
               <Form.Item
                 label="类别"
                 name="category"
@@ -2197,7 +2262,7 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
                 />
               </Form.Item>
             </Col>
-            <Col span={6}>
+            <Col span={12}>
               <Form.Item
                 label="类别排序（类别内）"
                 name="seq"
@@ -2216,7 +2281,7 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
                 />
               </Form.Item>
             </Col>
-            <Col span={6}>
+            <Col span={12}>
               <Form.Item
                 label="售卖状态"
                 name="sale_status"
@@ -2230,7 +2295,7 @@ export default function SettingsPage({ onProductionTicketEnabledChange }: Props 
                 />
               </Form.Item>
             </Col>
-            <Col span={6}>
+            <Col span={12}>
               <Form.Item
                 label="价格 (¥)"
                 name="price"
